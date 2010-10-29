@@ -20,6 +20,9 @@ function add_stylesheets()
 function add_javascripts()
 {
   wp_enqueue_script("jquery"); // WordPress already has jquery files
+  wp_enqueue_script('jquery-ui-core');
+  wp_enqueue_script('jquery-ui-dialog');
+  
 
   wp_register_script("social_connect", plugins_url() . "/wp_social_connect/media/js/connect.js");
   wp_enqueue_script("social_connect");
