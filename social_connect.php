@@ -55,8 +55,8 @@ function social_connect_admin_menu()
 
 function register_social_connect_settings()
 {
-	register_setting( 'social-connect-settings-group', 'facebook_api_key' );
-	register_setting( 'social-connect-settings-group', 'facebook_secret_key' );
+	register_setting( 'social-connect-settings-group', 'social_connect_facebook_api_key' );
+	register_setting( 'social-connect-settings-group', 'social_connect_facebook_secret_key' );
 }
 
 
@@ -71,12 +71,12 @@ function render_social_connect_settings()
     <table class="form-table">
         <tr valign="top">
         <th scope="row">Facebook API Key</th>
-        <td><input type="text" name="facebook_api_key" value="<?php echo get_option('facebook_api_key'); ?>" /></td>
+        <td><input type="text" name="social_connect_facebook_api_key" value="<?php echo get_option('social_connect_facebook_api_key'); ?>" /></td>
         </tr>
 
         <tr valign="top">
         <th scope="row">Facebook Secret Key</th>
-        <td><input type="text" name="facebook_secret_key" value="<?php echo get_option('facebook_secret_key'); ?>" /></td>
+        <td><input type="text" name="social_connect_facebook_secret_key" value="<?php echo get_option('social_connect_facebook_secret_key'); ?>" /></td>
         </tr>
     </table>
 
@@ -102,6 +102,12 @@ function render_login_form_social_connect()
   <a href="#" class="socal_connect_login_google">Google</a> <br/>
   <a href="#" class="socal_connect_login_wordpress">WordPress</a> <br/>
 </div>
+
+<div class="social_connect_facebook_auth" client_id="<?php echo get_option('social_connect_facebook_api_key'); ?>" redirect_uri="<?php 
+  echo urlencode(plugins_url() . '/wp_social_connect/facebook/facebook.php'); ?>">
+</div>
+
+
 <?php
 }
 
