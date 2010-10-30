@@ -13,34 +13,54 @@ License: GPL2
 
 function add_stylesheets()
 {
-  wp_register_style("social_connect", plugins_url() . "/wp_social_connect/media/css/style.css");
-  wp_enqueue_style("social_connect");
+  if(!wp_style_is('social_connect', 'registered') ) {
+    wp_register_style("social_connect", plugins_url() . "/wp_social_connect/media/css/style.css");
+    wp_register_style("jquery-ui", 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/themes/smoothness/jquery-ui.css');
+  }
+
+  if (did_action('wp_print_styles')) {
+		wp_print_styles('social_connect');
+    wp_print_styles('jquery-ui');
+	} else {
+		wp_enqueue_style("social_connect");
+    wp_enqueue_style("jquery-ui");
+	}
 }
 
 function add_javascripts()
 {
-  wp_enqueue_script("jquery"); // WordPress already has jquery files
-  wp_enqueue_script('jquery-ui-core');
-  wp_enqueue_script('jquery-ui-dialog');
-  
+  if(!wp_script_is('social_connect', 'registered') ) {
+    wp_register_script("social_connect", plugins_url() . "/wp_social_connect/media/js/connect.js");
+  }
 
-  wp_register_script("social_connect", plugins_url() . "/wp_social_connect/media/js/connect.js");
-  wp_enqueue_script("social_connect");
+  // commented out check below as then the JS files are just not emitted, not sure why
+//  if (did_action('wp_print_scripts')) {
+    wp_print_scripts("jquery");
+    wp_print_scripts('jquery-ui-core');
+    wp_print_scripts('jquery-ui-dialog');
+    wp_print_scripts("social_connect");
+//	} else {
+//    wp_enqueue_script("jquery");
+//    wp_enqueue_script('jquery-ui-core');
+//    wp_enqueue_script('jquery-ui-dialog');
+//    wp_enqueue_script("social_connect");
+//  }
 }
 
-function social_connect_admin_menu() {
+function social_connect_admin_menu()
+{
   add_options_page('Social Connect Settings', 'Social Connect', 'manage_options', 'social-connect-id', 'render_social_connect_settings');
-	add_action( 'admin_init', 'register_social_connect_settings' );
-
+  add_action( 'admin_init', 'register_social_connect_settings' );
 }
 
-function register_social_connect_settings() 
+function register_social_connect_settings()
 {
 	register_setting( 'social-connect-settings-group', 'facebook_api_key' );
 	register_setting( 'social-connect-settings-group', 'facebook_secret_key' );
 }
 
-function render_social_connect_settings() 
+
+function render_social_connect_settings()
 {
 ?>
 <div class="wrap">
@@ -53,24 +73,43 @@ function render_social_connect_settings()
         <th scope="row">Facebook API Key</th>
         <td><input type="text" name="facebook_api_key" value="<?php echo get_option('facebook_api_key'); ?>" /></td>
         </tr>
-         
+
         <tr valign="top">
         <th scope="row">Facebook Secret Key</th>
         <td><input type="text" name="facebook_secret_key" value="<?php echo get_option('facebook_secret_key'); ?>" /></td>
         </tr>
     </table>
-    
+
     <p class="submit">
     <input type="submit" class="button-primary" value="<?php _e('Save Changes') ?>" />
     </p>
 
 </form>
-</div> <?php 
+</div> <?php
+}
+
+function render_login_form_social_connect()
+{
+?>
+
+<p>
+  <a href="javascript://" class="social_connect_login">Social Connect</a>
+</p>
+<br/>
+<div class="social_connect_form" title="Social Connect">
+  <a href="#" class="socal_connect_login_facebook">Facebook</a> <br/>
+  <a href="#" class="socal_connect_login_twitter">Twitter</a> <br/>
+  <a href="#" class="socal_connect_login_google">Google</a> <br/>
+  <a href="#" class="socal_connect_login_wordpress">WordPress</a> <br/>
+</div>
+<?php
 }
 
 
-add_action('wp_print_styles', 'add_stylesheets');
-add_action('wp_print_scripts', 'add_javascripts');
 add_action('admin_menu', 'social_connect_admin_menu');
+add_action('login_head', 'add_stylesheets');
+add_action('login_head', 'add_javascripts');
+
+add_filter('login_form', 'render_login_form_social_connect');
 
 ?>
