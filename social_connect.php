@@ -28,7 +28,49 @@ function add_javascripts()
   wp_enqueue_script("social_connect");
 }
 
+function social_connect_admin_menu() {
+  add_options_page('Social Connect Settings', 'Social Connect', 'manage_options', 'social-connect-id', 'render_social_connect_settings');
+	add_action( 'admin_init', 'register_social_connect_settings' );
+
+}
+
+function register_social_connect_settings() 
+{
+	register_setting( 'social-connect-settings-group', 'facebook_api_key' );
+	register_setting( 'social-connect-settings-group', 'facebook_secret_key' );
+}
+
+function render_social_connect_settings() 
+{
+?>
+<div class="wrap">
+<h2>Social Connect Settings</h2>
+
+<form method="post" action="options.php">
+    <?php settings_fields( 'social-connect-settings-group' ); ?>
+    <table class="form-table">
+        <tr valign="top">
+        <th scope="row">Facebook API Key</th>
+        <td><input type="text" name="facebook_api_key" value="<?php echo get_option('facebook_api_key'); ?>" /></td>
+        </tr>
+         
+        <tr valign="top">
+        <th scope="row">Facebook Secret Key</th>
+        <td><input type="text" name="facebook_secret_key" value="<?php echo get_option('facebook_secret_key'); ?>" /></td>
+        </tr>
+    </table>
+    
+    <p class="submit">
+    <input type="submit" class="button-primary" value="<?php _e('Save Changes') ?>" />
+    </p>
+
+</form>
+</div> <?php 
+}
+
+
 add_action('wp_print_styles', 'add_stylesheets');
 add_action('wp_print_scripts', 'add_javascripts');
+add_action('admin_menu', 'social_connect_admin_menu');
 
 ?>
