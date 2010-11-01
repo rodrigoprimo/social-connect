@@ -104,7 +104,7 @@ function render_login_form_social_connect()
 </div>
 
 <div class="social_connect_facebook_auth" client_id="<?php echo get_option('social_connect_facebook_api_key'); ?>" redirect_uri="<?php 
-  echo urlencode(plugins_url() . '/wp_social_connect/facebook/facebook.php'); ?>">
+  echo urlencode(plugins_url() . '/wp_social_connect/facebook/callback.php'); ?>">
 </div>
 
 

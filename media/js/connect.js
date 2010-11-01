@@ -15,8 +15,12 @@ jQuery.noConflict();
       var client_id = facebook_auth.attr('client_id');
       var redirect_uri = facebook_auth.attr('redirect_uri');
       
-      window.open('https://graph.facebook.com/oauth/authorize?client_id=' + client_id + '&redirect_uri=' + redirect_uri,
-        '','scrollbars=no,menubar=no,height=400,width=800,resizable=yes,toolbar=no,status=no');
+      if(client_id == "") {
+        alert("Social Connect plugin has not been configured for this provider")
+        } else {
+          window.open('https://graph.facebook.com/oauth/authorize?client_id=' + client_id + '&redirect_uri=' + redirect_uri,
+            '','scrollbars=no,menubar=no,height=400,width=800,resizable=yes,toolbar=no,status=no');
+        }
         
     });
   });
