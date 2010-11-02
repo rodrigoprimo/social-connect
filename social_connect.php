@@ -11,7 +11,7 @@ License: GPL2
 ?>
 <?php
 
-function add_stylesheets()
+function sc_add_stylesheets()
 {
   if(!wp_style_is('social_connect', 'registered') ) {
     wp_register_style("social_connect", plugins_url() . "/wp_social_connect/media/css/style.css");
@@ -26,8 +26,9 @@ function add_stylesheets()
     wp_enqueue_style("jquery-ui");
 	}
 }
+add_action('login_head', 'add_stylesheets');
 
-function add_javascripts()
+function sc_add_javascripts()
 {
   if(!wp_script_is('social_connect', 'registered') ) {
     wp_register_script("social_connect", plugins_url() . "/wp_social_connect/media/js/connect.js");
@@ -46,21 +47,23 @@ function add_javascripts()
 //    wp_enqueue_script("social_connect");
 //  }
 }
+add_action('login_head', 'add_javascripts');
 
-function social_connect_admin_menu()
+function sc_social_connect_admin_menu()
 {
   add_options_page('Social Connect Settings', 'Social Connect', 'manage_options', 'social-connect-id', 'render_social_connect_settings');
   add_action( 'admin_init', 'register_social_connect_settings' );
 }
+add_action('admin_menu', 'social_connect_admin_menu');
 
-function register_social_connect_settings()
+function sc_register_social_connect_settings()
 {
 	register_setting( 'social-connect-settings-group', 'social_connect_facebook_api_key' );
 	register_setting( 'social-connect-settings-group', 'social_connect_facebook_secret_key' );
 }
 
 
-function render_social_connect_settings()
+function sc_render_social_connect_settings()
 {
 ?>
 <div class="wrap">
@@ -88,7 +91,7 @@ function render_social_connect_settings()
 </div> <?php
 }
 
-function render_login_form_social_connect()
+function sc_render_login_form_social_connect()
 {
 ?>
 
@@ -110,12 +113,6 @@ function render_login_form_social_connect()
 
 <?php
 }
-
-
-add_action('admin_menu', 'social_connect_admin_menu');
-add_action('login_head', 'add_stylesheets');
-add_action('login_head', 'add_javascripts');
-
 add_filter('login_form', 'render_login_form_social_connect');
 
 ?>
