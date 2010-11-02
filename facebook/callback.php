@@ -1,0 +1,35 @@
+<?php
+require(dirname(dirname(dirname(dirname(dirname(__FILE__))))) . '/wp-load.php');
+require(dirname(__FILE__) . '/facebook.php' );
+
+$client_id = get_option('social_connect_facebook_api_key');
+$secret_key = get_option('social_connect_facebook_secret_key');
+
+if(isset($_GET['code'])) {
+  $code = $_GET['code'];
+  $client_id = get_option('social_connect_facebook_api_key');
+  $secret_key = get_option('social_connect_facebook_secret_key');
+  parse_str(file_get_contents("https://graph.facebook.com/oauth/access_token?" .
+    'client_id=' . $client_id . '&redirect_uri=' . urlencode(plugins_url() . '/wp_social_connect/facebook/callback.php') .
+    '&client_secret=' .  $secret_key .
+    '&code=' . urlencode($code)));
+?>
+<html>
+<head>
+<script>
+function init() {
+  window.opener.wp_social_connect('facebook', {'access_token' : '<?php echo $access_token ?>'});
+  window.close();
+}
+</script>
+</head>
+<body onload="init();">
+</body>
+</html>
+<?php
+
+} else {
+  $redirect_uri = urlencode(plugins_url() . '/wp_social_connect/facebook/callback.php';
+  wp_redirect('https://graph.facebook.com/oauth/authorize?client_id=' . $client_id . '&redirect_uri=' . $redirect_uri);
+}
+?>

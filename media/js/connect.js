@@ -2,6 +2,9 @@ jQuery.noConflict();
 (function($) { 
   $(function() {
     // ready to roll
+    window.wp_social_connect = function(provider, config) {
+      
+    };
     
     // init social connect dialog
     $(".social_connect_form").dialog({ autoOpen: false, modal: true, resizable: false, maxHeight: 400, maxWidth: 600 });
