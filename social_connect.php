@@ -26,7 +26,7 @@ function sc_add_stylesheets()
     wp_enqueue_style("jquery-ui");
 	}
 }
-add_action('login_head', 'add_stylesheets');
+add_action('login_head', 'sc_add_stylesheets');
 
 function sc_add_javascripts()
 {
@@ -47,14 +47,14 @@ function sc_add_javascripts()
 //    wp_enqueue_script("social_connect");
 //  }
 }
-add_action('login_head', 'add_javascripts');
+add_action('login_head', 'sc_add_javascripts');
 
 function sc_social_connect_admin_menu()
 {
-  add_options_page('Social Connect Settings', 'Social Connect', 'manage_options', 'social-connect-id', 'render_social_connect_settings');
-  add_action( 'admin_init', 'register_social_connect_settings' );
+  add_options_page('Social Connect Settings', 'Social Connect', 'manage_options', 'social-connect-id', 'sc_render_social_connect_settings');
+  add_action( 'admin_init', 'sc_register_social_connect_settings' );
 }
-add_action('admin_menu', 'social_connect_admin_menu');
+add_action('admin_menu', 'sc_social_connect_admin_menu');
 
 function sc_register_social_connect_settings()
 {
@@ -113,6 +113,6 @@ function sc_render_login_form_social_connect()
 
 <?php
 }
-add_filter('login_form', 'render_login_form_social_connect');
+add_filter('login_form', 'sc_render_login_form_social_connect');
 
 ?>
