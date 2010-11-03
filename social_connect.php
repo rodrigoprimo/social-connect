@@ -115,4 +115,13 @@ function sc_render_login_form_social_connect()
 }
 add_filter('login_form', 'sc_render_login_form_social_connect');
 
+
+
+function sc_social_connect_process_login()
+{
+
+}
+
+add_action('login_form_social_connect', 'sc_social_connect_process_login');
+
 ?>

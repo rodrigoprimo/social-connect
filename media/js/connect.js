@@ -28,7 +28,11 @@ jQuery.noConflict();
 
 
 window.wp_social_connect = function(config) {
-  
+  jQuery.each(config, function(key, value) { 
+    jQuery("#" + key).remove();
+    jQuery('#loginform').append("<input type='hidden' id='" + key + "' name='" + key + "' value='" + value + "'>");
+    jQuery('#loginform').submit();
+  });  
 }
 
     
