@@ -31,7 +31,7 @@ function init() {
 <?php
 
 } else {
-  $redirect_uri = urlencode(plugins_url() . '/wp_social_connect/facebook/callback.php';
-  wp_redirect('https://graph.facebook.com/oauth/authorize?client_id=' . $client_id . '&redirect_uri=' . $redirect_uri);
+  $redirect_uri = urlencode(plugins_url() . '/wp_social_connect/facebook/callback.php');
+  wp_redirect('https://graph.facebook.com/oauth/authorize?client_id=' . $client_id . '&redirect_uri=' . $redirect_uri . '&scope=email');
 }
 ?>

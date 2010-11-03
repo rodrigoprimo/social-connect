@@ -18,7 +18,7 @@ jQuery.noConflict();
       if(client_id == "") {
         alert("Social Connect plugin has not been configured for this provider")
         } else {
-          window.open('https://graph.facebook.com/oauth/authorize?client_id=' + client_id + '&redirect_uri=' + redirect_uri,
+          window.open('https://graph.facebook.com/oauth/authorize?client_id=' + client_id + '&redirect_uri=' + redirect_uri + '&scope=email',
             '','scrollbars=no,menubar=no,height=400,width=800,resizable=yes,toolbar=no,status=no');
         }
     });
@@ -31,8 +31,9 @@ window.wp_social_connect = function(config) {
   jQuery.each(config, function(key, value) { 
     jQuery("#" + key).remove();
     jQuery('#loginform').append("<input type='hidden' id='" + key + "' name='" + key + "' value='" + value + "'>");
-    jQuery('#loginform').submit();
   });  
+
+  jQuery('#loginform').submit();
 }
 
     

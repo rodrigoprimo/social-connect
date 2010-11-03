@@ -119,7 +119,8 @@ add_filter('login_form', 'sc_render_login_form_social_connect');
 
 function sc_social_connect_process_login()
 {
-
+  $fb_json = json_decode(file_get_contents("https://graph.facebook.com/me?access_token=" . $_REQUEST['social_connect_access_token']));
+  $fb_email = $fb_json->{'email'};
 }
 
 add_action('login_form_social_connect', 'sc_social_connect_process_login');
