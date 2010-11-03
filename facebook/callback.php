@@ -18,7 +18,9 @@ if(isset($_GET['code'])) {
 <head>
 <script>
 function init() {
-  window.opener.wp_social_connect('facebook', {'access_token' : '<?php echo $access_token ?>'});
+  window.opener.wp_social_connect({'action' : 'social_connect', 'social_connect_provider' : 'facebook', 
+    'social_connect_access_token' : '<?php echo $access_token ?>'});
+    
   window.close();
 }
 </script>
