@@ -10,6 +10,15 @@ License: GPL2
 */
 ?>
 <?php
+require_once(ABSPATH . WPINC . '/registration.php');
+
+
+function get_user_by_meta($meta_key, $meta_value) {
+  global $wpdb;
+  $sql = "SELECT user_id FROM $wpdb->usermeta WHERE meta_key = '%s' AND meta_value = '%s'";
+  return $wpdb->get_var($wpdb->prepare($sql, $meta_key, $meta_value));
+}
+
 
 function sc_add_stylesheets()
 {
@@ -120,7 +129,61 @@ add_filter('login_form', 'sc_render_login_form_social_connect');
 function sc_social_connect_process_login()
 {
   $fb_json = json_decode(file_get_contents("https://graph.facebook.com/me?access_token=" . $_REQUEST['social_connect_access_token']));
+  $fb_id = $fb_json->{'id'};
   $fb_email = $fb_json->{'email'};
+  $fb_first_name = $fb_json->{'first_name'};
+  $fb_last_name = $fb_json->{'last_name'};
+  $fb_profile_url = $fb_json->{'link'};
+  
+	if ( isset( $_REQUEST['redirect_to'] ) ) {
+		$redirect_to = $_REQUEST['redirect_to'];
+		// Redirect to https if user wants ssl
+		if ( $secure_cookie && false !== strpos($redirect_to, 'wp-admin') )
+			$redirect_to = preg_replace('|^http://|', 'https://', $redirect_to);
+	} else {
+		$redirect_to = admin_url();
+	}
+  
+  // get user by meta
+  $user_id = get_user_by_meta('social_connect_facebook_id', $fb_id);
+  if($user_id) {
+    // user already exists, just log him in
+    wp_set_auth_cookie($user_id);
+    wp_safe_redirect($redirect_to);
+    exit();
+  }
+  
+  // user not found by Facebook ID, check by email
+  if(email_exists($fb_email)) {
+    // user already exists, associate with Facebook ID
+    update_user_meta($user_id, 'social_connect_facebook_id', $fb_id);
+    
+    // user signed in with Facebook after normal WP signup. Since email is verified, sign him in
+    wp_set_auth_cookie($user_id);
+    wp_safe_redirect($redirect_to);
+    exit();
+    
+  } else {
+    $user_login = strtolower($fb_first_name.$fb_last_name);
+    if(username_exists($user_login)) {
+      $user_login = "fb".$fb_id;
+    }
+    
+    $userdata = array('user_login' => $user_login, 'user_email' => $fb_email, 'first_name' => $fb_first_name, 'last_name' => $fb_last_name,
+      'user_url' => $fb_profile_url, 'user_pass' => wp_generate_password());
+    
+    // create a new user
+    $user_id = wp_insert_user($userdata);
+    
+    if($user_id && is_integer($user_id)) {
+      update_user_meta($user_id, 'social_connect_facebook_id', $fb_id);
+    
+      // user signed in with Facebook after normal WP signup. Since email is verified, sign him in
+      wp_set_auth_cookie($user_id);
+      wp_safe_redirect($redirect_to);
+      exit();
+    }
+  }
 }
 
 add_action('login_form_social_connect', 'sc_social_connect_process_login');
