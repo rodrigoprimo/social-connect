@@ -115,6 +115,21 @@ function sc_render_login_form_social_connect()
   <a href="#" class="socal_connect_login_wordpress">WordPress</a> <br/>
 </div>
 
+<?php 
+$social_connect_provider = $_COOKIE['social_connect_current_provider'];
+$social_connect_user_name = $_COOKIE['social_connect_current_name'];
+
+if($social_connect_provider) {
+?>
+<div class="social_connect_already_connected_form" title="Social Connect">
+  Welcome back <?php echo $social_connect_user_name ?>, <a href="#" class="socal_connect_login_<?php echo $social_connect_provider ?>">continue?</a> <br/><br/>
+  <a href="#" class="social_connect_already_connected_form_not_you">Not you?</a> <br/><br/>
+  <a href="#" class="social_connect_already_connected_user_another">Use another account</a> <br/>
+</div>
+<?php
+}
+?>
+
 <div class="social_connect_facebook_auth" client_id="<?php echo get_option('social_connect_facebook_api_key'); ?>" redirect_uri="<?php 
   echo urlencode(plugins_url() . '/wp_social_connect/facebook/callback.php'); ?>">
 </div>
@@ -134,6 +149,11 @@ function sc_social_connect_process_login()
   $fb_first_name = $fb_json->{'first_name'};
   $fb_last_name = $fb_json->{'last_name'};
   $fb_profile_url = $fb_json->{'link'};
+  $fb_name = $fb_first_name . ' ' . $fb_last_name;
+
+  // cookies used to display welcome message if already signed in recently using some provider
+  setcookie("social_connect_current_provider", 'facebook', time()+3600, SITECOOKIEPATH, COOKIE_DOMAIN, false, true);
+  setcookie("social_connect_current_name", $fb_name, time()+3600, SITECOOKIEPATH, COOKIE_DOMAIN, false, true);
   
 	if ( isset( $_REQUEST['redirect_to'] ) ) {
 		$redirect_to = $_REQUEST['redirect_to'];
@@ -164,6 +184,7 @@ function sc_social_connect_process_login()
     exit();
     
   } else {
+    // create new user and associate Facebook ID
     $user_login = strtolower($fb_first_name.$fb_last_name);
     if(username_exists($user_login)) {
       $user_login = "fb".$fb_id;
@@ -178,7 +199,6 @@ function sc_social_connect_process_login()
     if($user_id && is_integer($user_id)) {
       update_user_meta($user_id, 'social_connect_facebook_id', $fb_id);
     
-      // user signed in with Facebook after normal WP signup. Since email is verified, sign him in
       wp_set_auth_cookie($user_id);
       wp_safe_redirect($redirect_to);
       exit();

@@ -5,11 +5,32 @@ jQuery.noConflict();
 
     // init social connect dialog
     $(".social_connect_form").dialog({ autoOpen: false, modal: true, resizable: false, maxHeight: 400, maxWidth: 600 });
+    $(".social_connect_already_connected_form").dialog({ autoOpen: false, modal: true, resizable: false, maxHeight: 400, maxWidth: 600 });
     
     $(".social_connect_login").click(function() {
+      if($(".social_connect_already_connected_form").length) {
+        $(".social_connect_already_connected_form").dialog('open');
+      } else {
+        $(".social_connect_form").dialog('open');
+      }
+    });
+
+    $(".social_connect_already_connected_form_not_you").click(function() {
+      // delete 'already connected' dialog
+      $(".social_connect_already_connected_form").dialog('close');
+      $(".social_connect_already_connected_form").remove();
+      
+      // show main connect dialog
       $(".social_connect_form").dialog('open');
     });
 
+    $(".social_connect_already_connected_user_another").click(function() {
+      // hide 'already connected' dialog
+      $(".social_connect_already_connected_form").dialog('close');
+      // show main connect dialog
+      $(".social_connect_form").dialog('open');
+    });
+    
     $(".socal_connect_login_facebook").click(function() {
       var facebook_auth = $('.social_connect_facebook_auth');
       var client_id = facebook_auth.attr('client_id');

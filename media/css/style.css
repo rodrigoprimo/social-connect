@@ -2,6 +2,10 @@ div.social_connect_form {
   display:none;
 }
 
+div.social_connect_already_connected_form {
+  display:none;
+}
+
 div.social_connect_facebook_auth {
   display:none;
 }
