@@ -1,5 +1,5 @@
 <?php
-require(dirname(__FILE__) . '/openid.php');
+require(dirname(dirname(__FILE__)) . '/openid/openid.php');
 
 try {
   if(!isset($_GET['openid_mode']) || $_GET['openid_mode'] == 'cancel') {

@@ -192,18 +192,18 @@ function sc_social_connect_process_login()
     exit();
   }
   
-  // user not found by Facebook ID, check by email
-  if(email_exists($sc_email)) {
-    // user already exists, associate with Facebook ID
+  // user not found by provider identity, check by email
+  if(($user_id = email_exists($sc_email))) {
+    // user already exists, associate with provider identity
     update_user_meta($user_id, $sc_provider_identity_key, $sc_provider_identity);
     
-    // user signed in with Facebook after normal WP signup. Since email is verified, sign him in
+    // user signed in with provider identity after normal WP signup. Since email is verified, sign him in
     wp_set_auth_cookie($user_id);
     wp_safe_redirect($redirect_to);
     exit();
     
   } else {
-    // create new user and associate Facebook ID
+    // create new user and associate provider identity
     $user_login = strtolower($sc_first_name.$sc_last_name);
     if(username_exists($user_login)) {
       $user_login = strtolower("sc_". md5($sc_provider_identity));
