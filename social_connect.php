@@ -116,8 +116,8 @@ function sc_render_login_form_social_connect()
 </div>
 
 <?php 
-$social_connect_provider = $_COOKIE['social_connect_current_provider'];
-$social_connect_user_name = $_COOKIE['social_connect_current_name'];
+$social_connect_provider = isset($_COOKIE['social_connect_current_provider']) ? $_COOKIE['social_connect_current_provider'] : '';
+$social_connect_user_name = isset($_COOKIE['social_connect_current_name']) ? $_COOKIE['social_connect_current_name'] : '';
 
 if($social_connect_provider) {
 ?>
