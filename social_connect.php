@@ -146,10 +146,11 @@ add_filter('login_form', 'sc_render_login_form_social_connect');
 function sc_social_connect_process_login()
 {
   $social_connect_provider = $_REQUEST['social_connect_provider'];
+  $sc_provider_identity_key = 'social_connect_' . $social_connect_provider . '_id';
+  
   switch($social_connect_provider) {
     case 'facebook':
       $fb_json = json_decode(file_get_contents("https://graph.facebook.com/me?access_token=" . $_REQUEST['social_connect_access_token']));
-      $sc_provider_identity_key = 'social_connect_facebook_id';
       $sc_provider_identity = $fb_json->{'id'};
       $sc_email = $fb_json->{'email'};
       $sc_first_name = $fb_json->{'first_name'};
@@ -159,7 +160,6 @@ function sc_social_connect_process_login()
     break;
     
     case 'google':
-      $sc_provider_identity_key = 'social_connect_google_id';
       $sc_provider_identity = $_REQUEST['social_connect_openid_identity'];
       $sc_email = $_REQUEST['social_connect_email'];
       $sc_first_name = $_REQUEST['social_connect_first_name'];
@@ -168,8 +168,7 @@ function sc_social_connect_process_login()
       $sc_name = $sc_first_name . ' ' . $sc_last_name;
     break;
   }
-  
-  
+
 
   // cookies used to display welcome message if already signed in recently using some provider
   setcookie("social_connect_current_provider", $social_connect_provider, time()+3600, SITECOOKIEPATH, COOKIE_DOMAIN, false, true);
