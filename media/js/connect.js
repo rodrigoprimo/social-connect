@@ -44,6 +44,13 @@ jQuery.noConflict();
         }
     });
 
+    $(".socal_connect_login_google").click(function() {
+      var google_auth = $('.social_connect_google_auth');
+      var redirect_uri = google_auth.attr('redirect_uri');
+      
+      window.open(redirect_uri,'','scrollbars=no,menubar=no,height=400,width=800,resizable=yes,toolbar=no,status=no');
+    });
+    
   });
 })(jQuery);
 

@@ -11,21 +11,25 @@ try {
     $openid = new LightOpenID;
     if($openid->validate()) {
       $google_id = $openid->identity;
-      
+      $attributes = $openid->getAttributes();
+      $email = $attributes('contact/email');
+      $first_name = $attributes('namePerson/first');
+      $last_name = $attributes('namePerson/last');
       ?>
 <html>
 <head>
 <script>
 function init() {
   window.opener.wp_social_connect({'action' : 'social_connect', 'social_connect_provider' : 'google', 
-    'social_connect_openid_identity' : '<?php echo $google_id ?>'});
+    'social_connect_openid_identity' : '<?php echo $google_id ?>',
+    'social_connect_first_name' : '<?php echo $first_name ?>',
+    'social_connect_last_name' : '<?php echo $last_name ?>'});
     
   window.close();
 }
 </script>
 </head>
 <body onload="init();">
-  <?php print_r($openid->getAttributes())?>
 </body>
 </html>      
       <?php

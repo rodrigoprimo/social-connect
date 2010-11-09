@@ -9,3 +9,7 @@ div.social_connect_already_connected_form {
 div.social_connect_facebook_auth {
   display:none;
 }
+
+div.social_connect_google_auth {
+  display:none;
+}

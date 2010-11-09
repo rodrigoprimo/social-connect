@@ -134,6 +134,8 @@ if($social_connect_provider) {
   echo urlencode(plugins_url() . '/wp_social_connect/facebook/callback.php'); ?>">
 </div>
 
+<div class="social_connect_google_auth" redirect_uri="<?php echo(plugins_url() . '/wp_social_connect/google/connect.php'); ?>">
+</div>
 
 <?php
 }
