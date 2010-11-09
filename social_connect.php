@@ -145,17 +145,35 @@ add_filter('login_form', 'sc_render_login_form_social_connect');
 
 function sc_social_connect_process_login()
 {
-  $fb_json = json_decode(file_get_contents("https://graph.facebook.com/me?access_token=" . $_REQUEST['social_connect_access_token']));
-  $fb_id = $fb_json->{'id'};
-  $fb_email = $fb_json->{'email'};
-  $fb_first_name = $fb_json->{'first_name'};
-  $fb_last_name = $fb_json->{'last_name'};
-  $fb_profile_url = $fb_json->{'link'};
-  $fb_name = $fb_first_name . ' ' . $fb_last_name;
+  $social_connect_provider = $_REQUEST['social_connect_provider'];
+  switch($social_connect_provider) {
+    case 'facebook':
+      $fb_json = json_decode(file_get_contents("https://graph.facebook.com/me?access_token=" . $_REQUEST['social_connect_access_token']));
+      $sc_provider_identity_key = 'social_connect_facebook_id';
+      $sc_provider_identity = $fb_json->{'id'};
+      $sc_email = $fb_json->{'email'};
+      $sc_first_name = $fb_json->{'first_name'};
+      $sc_last_name = $fb_json->{'last_name'};
+      $sc_profile_url = $fb_json->{'link'};
+      $sc_name = $sc_first_name . ' ' . $sc_last_name;
+    break;
+    
+    case 'google':
+      $sc_provider_identity_key = 'social_connect_google_id';
+      $sc_provider_identity = $_REQUEST['social_connect_openid_identity'];
+      $sc_email = $_REQUEST['social_connect_email'];
+      $sc_first_name = $_REQUEST['social_connect_first_name'];
+      $sc_last_name = $_REQUEST['social_connect_last_name'];
+      $sc_profile_url = '';
+      $sc_name = $sc_first_name . ' ' . $sc_last_name;
+    break;
+  }
+  
+  
 
   // cookies used to display welcome message if already signed in recently using some provider
-  setcookie("social_connect_current_provider", 'facebook', time()+3600, SITECOOKIEPATH, COOKIE_DOMAIN, false, true);
-  setcookie("social_connect_current_name", $fb_name, time()+3600, SITECOOKIEPATH, COOKIE_DOMAIN, false, true);
+  setcookie("social_connect_current_provider", $social_connect_provider, time()+3600, SITECOOKIEPATH, COOKIE_DOMAIN, false, true);
+  setcookie("social_connect_current_name", $sc_name, time()+3600, SITECOOKIEPATH, COOKIE_DOMAIN, false, true);
   
 	if ( isset( $_REQUEST['redirect_to'] ) ) {
 		$redirect_to = $_REQUEST['redirect_to'];
@@ -167,7 +185,7 @@ function sc_social_connect_process_login()
 	}
   
   // get user by meta
-  $user_id = get_user_by_meta('social_connect_facebook_id', $fb_id);
+  $user_id = get_user_by_meta($sc_provider_identity_key, $sc_provider_identity);
   if($user_id) {
     // user already exists, just log him in
     wp_set_auth_cookie($user_id);
@@ -176,9 +194,9 @@ function sc_social_connect_process_login()
   }
   
   // user not found by Facebook ID, check by email
-  if(email_exists($fb_email)) {
+  if(email_exists($sc_email)) {
     // user already exists, associate with Facebook ID
-    update_user_meta($user_id, 'social_connect_facebook_id', $fb_id);
+    update_user_meta($user_id, $sc_provider_identity_key, $sc_provider_identity);
     
     // user signed in with Facebook after normal WP signup. Since email is verified, sign him in
     wp_set_auth_cookie($user_id);
@@ -187,19 +205,19 @@ function sc_social_connect_process_login()
     
   } else {
     // create new user and associate Facebook ID
-    $user_login = strtolower($fb_first_name.$fb_last_name);
+    $user_login = strtolower($sc_first_name.$sc_last_name);
     if(username_exists($user_login)) {
-      $user_login = "fb".$fb_id;
+      $user_login = strtolower("sc_". md5($sc_provider_identity));
     }
     
-    $userdata = array('user_login' => $user_login, 'user_email' => $fb_email, 'first_name' => $fb_first_name, 'last_name' => $fb_last_name,
-      'user_url' => $fb_profile_url, 'user_pass' => wp_generate_password());
+    $userdata = array('user_login' => $user_login, 'user_email' => $sc_email, 'first_name' => $sc_first_name, 'last_name' => $sc_last_name,
+      'user_url' => $sc_profile_url, 'user_pass' => wp_generate_password());
     
     // create a new user
     $user_id = wp_insert_user($userdata);
     
     if($user_id && is_integer($user_id)) {
-      update_user_meta($user_id, 'social_connect_facebook_id', $fb_id);
+      update_user_meta($user_id, $sc_provider_identity_key, $sc_provider_identity);
     
       wp_set_auth_cookie($user_id);
       wp_safe_redirect($redirect_to);
