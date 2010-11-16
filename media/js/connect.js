@@ -32,7 +32,7 @@ jQuery.noConflict();
       $(".social_connect_form").dialog('open');
     });
     
-    $(".socal_connect_login_facebook").click(function() {
+    $(".social_connect_login_facebook").click(function() {
       var facebook_auth = $('.social_connect_facebook_auth');
       var client_id = facebook_auth.attr('client_id');
       var redirect_uri = facebook_auth.attr('redirect_uri');
@@ -45,14 +45,21 @@ jQuery.noConflict();
         }
     });
 
-    $(".socal_connect_login_google").click(function() {
+    $(".social_connect_login_twitter").click(function() {
+      var google_auth = $('.social_connect_twitter_auth');
+      var redirect_uri = google_auth.attr('redirect_uri');
+      
+      window.open(redirect_uri,'','scrollbars=no,menubar=no,height=400,width=800,resizable=yes,toolbar=no,status=no');
+    });
+    
+    $(".social_connect_login_google").click(function() {
       var google_auth = $('.social_connect_google_auth');
       var redirect_uri = google_auth.attr('redirect_uri');
       
       window.open(redirect_uri,'','scrollbars=no,menubar=no,height=400,width=800,resizable=yes,toolbar=no,status=no');
     });
 
-    $(".socal_connect_login_wordpress").click(function() {
+    $(".social_connect_login_wordpress").click(function() {
       $(".social_connect_form").dialog('close');
       $(".social_connect_wordpress_form").dialog('open');     
     });

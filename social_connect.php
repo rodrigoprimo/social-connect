@@ -106,7 +106,9 @@ function sc_render_social_connect_settings()
         <td>
           <input type="checkbox" name="social_connect_twitter_enabled" value="1" <?php checked(get_option('social_connect_twitter_enabled'), 1); ?> /><br/>
           Twitter integration requires the generation of dummy email addresses for authenticating users. <br/>
-          Please check with your domain administrator as this may require changes to your mail server.
+          Please check with your domain administrator as this may require changes to your mail server. <br/><br/>
+          When configuring your Twitter application, ensure that the callback URL is <br/>
+          <?php echo plugins_url() . '/wp_social_connect/twitter/callback.php'; ?>
         </td>
         </tr>
 
@@ -131,6 +133,8 @@ function sc_render_social_connect_settings()
 
 function sc_render_login_form_social_connect()
 {
+  $twitter_enabled = get_option('social_connect_twitter_enabled');
+
 ?>
 
 <p>
@@ -138,10 +142,10 @@ function sc_render_login_form_social_connect()
 </p>
 <br/>
 <div class="social_connect_form" title="Social Connect">
-  <a href="#" class="socal_connect_login_facebook">Facebook</a> <br/>
-  <a href="#" class="socal_connect_login_twitter">Twitter</a> <br/>
-  <a href="#" class="socal_connect_login_google">Google</a> <br/>
-  <a href="#" class="socal_connect_login_wordpress">WordPress</a> <br/>
+  <a href="#" class="social_connect_login_facebook">Facebook</a> <br/>
+  <?php if($twitter_enabled) echo '<a href="#" class="social_connect_login_twitter">Twitter</a> <br/>'; ?>
+  <a href="#" class="social_connect_login_google">Google</a> <br/>
+  <a href="#" class="social_connect_login_wordpress">WordPress</a> <br/>
 </div>
 
 <?php 
@@ -162,6 +166,9 @@ if($social_connect_provider) {
 
 <div class="social_connect_facebook_auth" client_id="<?php echo get_option('social_connect_facebook_api_key'); ?>" redirect_uri="<?php 
   echo urlencode(plugins_url() . '/wp_social_connect/facebook/callback.php'); ?>">
+</div>
+
+<div class="social_connect_twitter_auth" redirect_uri="<?php echo(plugins_url() . '/wp_social_connect/twitter/connect.php'); ?>">
 </div>
 
 <div class="social_connect_google_auth" redirect_uri="<?php echo(plugins_url() . '/wp_social_connect/google/connect.php'); ?>">
