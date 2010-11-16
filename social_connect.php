@@ -196,6 +196,26 @@ function sc_social_connect_process_login()
       $sc_profile_url = $fb_json->{'link'};
       $sc_name = $sc_first_name . ' ' . $sc_last_name;
     break;
+
+    case 'twitter':
+      $sc_provider_identity = $_REQUEST['social_connect_twitter_identity'];
+      $sc_name = $_REQUEST['social_connect_name'];
+      $names = explode(" ", $sc_name);
+      $sc_first_name = $names[0];
+      $sc_last_name = $names[1];
+
+      $sc_screen_name = $_REQUEST['social_connect_screen_name'];
+      $sc_profile_url = '';
+
+      // get host name from URL http://in.php.net/preg_match
+      preg_match("/^(http:\/\/)?([^\/]+)/i", site_url(), $matches);
+      $host = $matches[2];
+      preg_match("/[^\.\/]+\.[^\.\/]+$/", $host, $matches);
+      $domain_name = $matches[0];
+
+      $sc_email = 'tw_' . md5($sc_provider_identity) . '@' . $domain_name;
+
+    break;
     
     case 'google':
       $sc_provider_identity = $_REQUEST['social_connect_openid_identity'];
@@ -209,17 +229,15 @@ function sc_social_connect_process_login()
     case 'wordpress':
       $sc_provider_identity = $_REQUEST['social_connect_openid_identity'];
       $sc_email = $_REQUEST['social_connect_email'];
-      $sc_first_name = $_REQUEST['social_connect_first_name'];
-      $sc_last_name = $_REQUEST['social_connect_last_name'];
+      $sc_name = $_REQUEST['social_connect_name'];
       $sc_profile_url = '';
-      $sc_name = $sc_first_name . ' ' . $sc_last_name;
       if(trim($sc_name) == '') {
         $names = explode("@", $sc_email);
         $sc_name = $names[0];
         $sc_first_name = $sc_name;
         $sc_last_name = '';
       } else {
-        $names = explode(" ", $sc_first_name);
+        $names = explode(" ", $sc_name);
         $sc_first_name = $names[0];
         $sc_last_name = $names[1];
       }

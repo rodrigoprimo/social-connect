@@ -21,8 +21,7 @@ try {
       $wordpress_id = $openid->identity;
       $attributes = $openid->getAttributes();
       $email = isset($attributes['contact/email']) ? $attributes['contact/email'] : '';
-      $first_name = isset($attributes['namePerson']) ? $attributes['namePerson'] : '';
-      $last_name = '';
+      $name = isset($attributes['namePerson']) ? $attributes['namePerson'] : '';
       
       if($email == '') {
         ?>
@@ -43,8 +42,8 @@ function init() {
   window.opener.wp_social_connect({'action' : 'social_connect', 'social_connect_provider' : 'wordpress', 
     'social_connect_openid_identity' : '<?php echo $wordpress_id ?>',
     'social_connect_email' : '<?php echo $email ?>',
-    'social_connect_first_name' : '<?php echo $first_name ?>',
-    'social_connect_last_name' : '<?php echo $last_name ?>'});
+    'social_connect_name' : '<?php echo $name ?>'
+  });
     
   window.close();
 }
