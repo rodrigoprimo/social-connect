@@ -118,6 +118,7 @@ function sc_render_login_form_social_connect()
 <?php 
 $social_connect_provider = isset($_COOKIE['social_connect_current_provider']) ? $_COOKIE['social_connect_current_provider'] : '';
 $social_connect_user_name = isset($_COOKIE['social_connect_current_name']) ? $_COOKIE['social_connect_current_name'] : '';
+$social_connect_wordpress_blog_url = isset($_COOKIE['social_connect_wordpress_blog_url']) ? $_COOKIE['social_connect_wordpress_blog_url'] : '';
 
 if($social_connect_provider) {
 ?>
@@ -142,7 +143,7 @@ if($social_connect_provider) {
 
 <div class="social_connect_wordpress_form" title="WordPress">
   <p>Enter your WordPress.com blog URL</p><br/>
-  <p><input class="wordpress_blog_url" /> &nbsp; <a href="#" class="social_connect_wordpress_proceed">Proceed</a></p>
+  <p><input class="wordpress_blog_url" value="<?php echo $social_connect_wordpress_blog_url ?>"/> &nbsp; <a href="#" class="social_connect_wordpress_proceed">Proceed</a></p>
 </div>
 
 <?php
@@ -189,6 +190,7 @@ function sc_social_connect_process_login()
         $sc_first_name = $sc_name;
         $sc_last_name = '';
       }
+      setcookie("social_connect_wordpress_blog_url", $sc_provider_identity, time()+3600, SITECOOKIEPATH, COOKIE_DOMAIN, false, true);
 
     break;
   }
