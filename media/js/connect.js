@@ -61,7 +61,7 @@ jQuery.noConflict();
     $(".social_connect_wordpress_proceed").click(function() {
       var wordpress_auth = $('.social_connect_wordpress_auth');
       var redirect_uri = wordpress_auth.attr('redirect_uri');
-      redirect_uri = redirect_uri + "?wordpress_blog_url=" + $('.wordpress_blog_url').val();
+      redirect_uri = redirect_uri + "?wordpress_blog_url=" + encodeURIComponent($('.wordpress_blog_url').val());
       
       window.open(redirect_uri,'','scrollbars=yes,menubar=no,height=400,width=800,resizable=yes,toolbar=no,status=no');
     });

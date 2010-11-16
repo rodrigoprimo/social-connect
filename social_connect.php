@@ -175,6 +175,22 @@ function sc_social_connect_process_login()
       $sc_profile_url = '';
       $sc_name = $sc_first_name . ' ' . $sc_last_name;
     break;
+
+    case 'wordpress':
+      $sc_provider_identity = $_REQUEST['social_connect_openid_identity'];
+      $sc_email = $_REQUEST['social_connect_email'];
+      $sc_first_name = $_REQUEST['social_connect_first_name'];
+      $sc_last_name = $_REQUEST['social_connect_last_name'];
+      $sc_profile_url = '';
+      $sc_name = $sc_first_name . ' ' . $sc_last_name;
+      if(trim($sc_name) == '') {
+        $names = explode("@", $sc_email);
+        $sc_name = $names[0];
+        $sc_first_name = $sc_name;
+        $sc_last_name = '';
+      }
+
+    break;
   }
 
 
