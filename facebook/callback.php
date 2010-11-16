@@ -1,6 +1,7 @@
 <?php
-require(dirname(dirname(dirname(dirname(dirname(__FILE__))))) . '/wp-load.php');
-require(dirname(__FILE__) . '/facebook.php' );
+require_once(dirname(dirname(dirname(dirname(dirname(__FILE__))))) . '/wp-load.php');
+require_once(dirname(__FILE__) . '/facebook.php' );
+require_once(dirname(dirname(__FILE__)) . '/utils.php' );
 
 $client_id = get_option('social_connect_facebook_api_key');
 $secret_key = get_option('social_connect_facebook_secret_key');
@@ -13,12 +14,15 @@ if(isset($_GET['code'])) {
     'client_id=' . $client_id . '&redirect_uri=' . urlencode(plugins_url() . '/wp_social_connect/facebook/callback.php') .
     '&client_secret=' .  $secret_key .
     '&code=' . urlencode($code)));
+    
+  $signature = social_connect_generate_signature($access_token);  
 ?>
 <html>
 <head>
 <script>
 function init() {
-  window.opener.wp_social_connect({'action' : 'social_connect', 'social_connect_provider' : 'facebook', 
+  window.opener.wp_social_connect({'action' : 'social_connect', 'social_connect_provider' : 'facebook',
+    'social_connect_signature' : '<?php echo $signature ?>',
     'social_connect_access_token' : '<?php echo $access_token ?>'});
     
   window.close();

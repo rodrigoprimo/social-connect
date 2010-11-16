@@ -1,5 +1,6 @@
 <?php
-require(dirname(dirname(__FILE__)) . '/openid/openid.php');
+require_once(dirname(dirname(__FILE__)) . '/openid/openid.php');
+require_once(dirname(dirname(__FILE__)) . '/utils.php' );
 
 try {
   if(!isset($_GET['openid_mode'])) {
@@ -22,6 +23,7 @@ try {
       $attributes = $openid->getAttributes();
       $email = isset($attributes['contact/email']) ? $attributes['contact/email'] : '';
       $name = isset($attributes['namePerson']) ? $attributes['namePerson'] : '';
+      $signature = social_connect_generate_signature($wordpress_id);
       
       if($email == '') {
         ?>
@@ -39,7 +41,8 @@ try {
 <head>
 <script>
 function init() {
-  window.opener.wp_social_connect({'action' : 'social_connect', 'social_connect_provider' : 'wordpress', 
+  window.opener.wp_social_connect({'action' : 'social_connect', 'social_connect_provider' : 'wordpress',
+    'social_connect_signature' : '<?php echo $signature ?>',
     'social_connect_openid_identity' : '<?php echo $wordpress_id ?>',
     'social_connect_email' : '<?php echo $email ?>',
     'social_connect_name' : '<?php echo $name ?>'

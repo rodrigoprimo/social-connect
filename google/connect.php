@@ -1,5 +1,6 @@
 <?php
-require(dirname(dirname(__FILE__)) . '/openid/openid.php');
+require_once(dirname(dirname(__FILE__)) . '/openid/openid.php');
+require_once(dirname(dirname(__FILE__)) . '/utils.php' );
 
 try {
   if(!isset($_GET['openid_mode']) || $_GET['openid_mode'] == 'cancel') {
@@ -15,6 +16,7 @@ try {
       $email = $attributes['contact/email'];
       $first_name = $attributes['namePerson/first'];
       $last_name = $attributes['namePerson/last'];
+      $signature = social_connect_generate_signature($google_id);
       ?>
 <html>
 <head>
@@ -22,6 +24,7 @@ try {
 function init() {
   window.opener.wp_social_connect({'action' : 'social_connect', 'social_connect_provider' : 'google', 
     'social_connect_openid_identity' : '<?php echo $google_id ?>',
+    'social_connect_signature' : '<?php echo $signature ?>',
     'social_connect_email' : '<?php echo $email ?>',
     'social_connect_first_name' : '<?php echo $first_name ?>',
     'social_connect_last_name' : '<?php echo $last_name ?>'});

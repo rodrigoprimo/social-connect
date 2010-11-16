@@ -1,8 +1,8 @@
 <?php
-require(dirname(dirname(dirname(dirname(dirname(__FILE__))))) . '/wp-load.php');
-require(dirname(__FILE__) . '/EpiCurl.php' );
-require(dirname(__FILE__) . '/EpiOAuth.php' );
-require(dirname(__FILE__) . '/EpiTwitter.php' );
+require_once(dirname(dirname(dirname(dirname(dirname(__FILE__))))) . '/wp-load.php');
+require_once(dirname(__FILE__) . '/EpiCurl.php' );
+require_once(dirname(__FILE__) . '/EpiOAuth.php' );
+require_once(dirname(__FILE__) . '/EpiTwitter.php' );
 
 $twitter_enabled = get_option('social_connect_twitter_enabled');
 $consumer_key = get_option('social_connect_twitter_consumer_key');
