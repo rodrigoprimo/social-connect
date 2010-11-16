@@ -6,6 +6,7 @@ jQuery.noConflict();
     // init social connect dialog
     $(".social_connect_form").dialog({ autoOpen: false, modal: true, resizable: false, maxHeight: 400, maxWidth: 600 });
     $(".social_connect_already_connected_form").dialog({ autoOpen: false, modal: true, resizable: false, maxHeight: 400, maxWidth: 600 });
+    $('.social_connect_wordpress_form').dialog({ autoOpen: false, modal: true, resizable: false, maxHeight: 400, maxWidth: 600 });
     
     $(".social_connect_login").click(function() {
       if($(".social_connect_already_connected_form").length) {
@@ -49,6 +50,20 @@ jQuery.noConflict();
       var redirect_uri = google_auth.attr('redirect_uri');
       
       window.open(redirect_uri,'','scrollbars=no,menubar=no,height=400,width=800,resizable=yes,toolbar=no,status=no');
+    });
+
+    $(".socal_connect_login_wordpress").click(function() {
+      $(".social_connect_form").dialog('close');
+      $(".social_connect_wordpress_form").dialog('open');     
+    });
+    
+    
+    $(".social_connect_wordpress_proceed").click(function() {
+      var wordpress_auth = $('.social_connect_wordpress_auth');
+      var redirect_uri = wordpress_auth.attr('redirect_uri');
+      redirect_uri = redirect_uri + "?wordpress_blog_url=" + $('.wordpress_blog_url').val();
+      
+      window.open(redirect_uri,'','scrollbars=yes,menubar=no,height=400,width=800,resizable=yes,toolbar=no,status=no');
     });
     
   });

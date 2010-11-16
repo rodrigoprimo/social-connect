@@ -137,6 +137,14 @@ if($social_connect_provider) {
 <div class="social_connect_google_auth" redirect_uri="<?php echo(plugins_url() . '/wp_social_connect/google/connect.php'); ?>">
 </div>
 
+<div class="social_connect_wordpress_auth" redirect_uri="<?php echo(plugins_url() . '/wp_social_connect/wordpress/connect.php'); ?>">
+</div>
+
+<div class="social_connect_wordpress_form" title="WordPress">
+  <p>Enter your WordPress.com blog URL</p><br/>
+  <p><input class="wordpress_blog_url" /> &nbsp; <a href="#" class="social_connect_wordpress_proceed">Proceed</a></p>
+</div>
+
 <?php
 }
 add_filter('login_form', 'sc_render_login_form_social_connect');
