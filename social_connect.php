@@ -189,7 +189,12 @@ function sc_social_connect_process_login()
         $sc_name = $names[0];
         $sc_first_name = $sc_name;
         $sc_last_name = '';
+      } else {
+        $names = explode(" ", $sc_first_name);
+        $sc_first_name = $names[0];
+        $sc_last_name = $names[1];
       }
+
       setcookie("social_connect_wordpress_blog_url", $sc_provider_identity, time()+3600, SITECOOKIEPATH, COOKIE_DOMAIN, false, true);
 
     break;
