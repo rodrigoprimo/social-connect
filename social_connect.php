@@ -156,7 +156,7 @@ $social_connect_wordpress_blog_url = isset($_COOKIE['social_connect_wordpress_bl
 if($social_connect_provider) {
 ?>
 <div class="social_connect_already_connected_form" title="Social Connect">
-  Welcome back <?php echo $social_connect_user_name ?>, <a href="#" class="socal_connect_login_<?php echo $social_connect_provider ?>">continue?</a> <br/><br/>
+  Welcome back <?php echo $social_connect_user_name ?>, <a href="#" class="social_connect_login_<?php echo $social_connect_provider ?>">continue?</a> <br/><br/>
   <a href="#" class="social_connect_already_connected_form_not_you">Not you?</a> <br/><br/>
   <a href="#" class="social_connect_already_connected_user_another">Use another account</a> <br/>
 </div>
