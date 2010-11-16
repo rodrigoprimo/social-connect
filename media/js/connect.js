@@ -78,6 +78,12 @@ jQuery.noConflict();
 
 
 window.wp_social_connect = function(config) {
+  if(!jQuery('#loginform').length) {
+    var login_uri = jQuery("#social_connect_login_form_uri").attr('href');
+    jQuery('body').append("<form id='loginform' method='post' action='" + login_uri + "'></form>");
+    jQuery('#loginform').append("<input type='hidden' id='redirect_to' name='redirect_to' value='" + window.location.href + "'>");
+  }
+  
   jQuery.each(config, function(key, value) { 
     jQuery("#" + key).remove();
     jQuery('#loginform').append("<input type='hidden' id='" + key + "' name='" + key + "' value='" + value + "'>");
@@ -85,5 +91,3 @@ window.wp_social_connect = function(config) {
 
   jQuery('#loginform').submit();
 }
-
-    

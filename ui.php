@@ -54,4 +54,25 @@ if($social_connect_provider) {
 }
 add_filter('login_form', 'sc_render_login_form_social_connect');
 
+
+function sc_render_comment_form_social_connect()
+{
+  if(comments_open() && !is_user_logged_in()) {
+    sc_render_login_form_social_connect();
+  }
+}
+
+add_filter('comment_form', 'sc_render_comment_form_social_connect');
+
+
+
+function sc_render_login_page_uri()
+{
+?>
+  <div id="social_connect_login_form_uri" href="<?php echo site_url('wp-login.php', 'login_post'); ?>"></div>
+<?php
+}
+
+add_filter('wp_footer', 'sc_render_login_page_uri');
+
 ?>

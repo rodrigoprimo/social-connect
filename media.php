@@ -16,6 +16,7 @@ function sc_add_stylesheets()
 	}
 }
 add_action('login_head', 'sc_add_stylesheets');
+add_action('wp_head', 'sc_add_stylesheets');
 
 function sc_add_javascripts()
 {
@@ -37,6 +38,7 @@ function sc_add_javascripts()
 //  }
 }
 add_action('login_head', 'sc_add_javascripts');
+add_action('wp_head', 'sc_add_javascripts');
 
 
 ?>
