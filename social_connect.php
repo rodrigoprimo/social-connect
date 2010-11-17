@@ -42,6 +42,7 @@ function sc_social_connect_process_login()
       $sc_last_name = $fb_json->{'last_name'};
       $sc_profile_url = $fb_json->{'link'};
       $sc_name = $sc_first_name . ' ' . $sc_last_name;
+      $user_login = strtolower($sc_first_name.$sc_last_name);
     break;
 
     case 'twitter':
@@ -62,7 +63,7 @@ function sc_social_connect_process_login()
       $domain_name = $matches[0];
 
       $sc_email = 'tw_' . md5($sc_provider_identity) . '@' . $domain_name;
-
+      $user_login = $sc_screen_name;
     break;
     
     case 'google':
@@ -73,6 +74,7 @@ function sc_social_connect_process_login()
       $sc_last_name = $_REQUEST['social_connect_last_name'];
       $sc_profile_url = '';
       $sc_name = $sc_first_name . ' ' . $sc_last_name;
+      $user_login = strtolower($sc_first_name.$sc_last_name);
     break;
 
     case 'wordpress':
@@ -91,6 +93,8 @@ function sc_social_connect_process_login()
         $sc_first_name = $names[0];
         $sc_last_name = $names[1];
       }
+      
+      $user_login = strtolower($sc_first_name.$sc_last_name);
 
       setcookie("social_connect_wordpress_blog_url", $sc_provider_identity, time()+3600, SITECOOKIEPATH, COOKIE_DOMAIN, false, true);
 
@@ -123,9 +127,8 @@ function sc_social_connect_process_login()
     
   } else {
     // create new user and associate provider identity
-    $user_login = strtolower($sc_first_name.$sc_last_name);
     if(username_exists($user_login)) {
-      $user_login = strtolower("sc_". md5($sc_provider_identity));
+      $user_login = strtolower("sc_". md5($social_connect_provider . $sc_provider_identity));
     }
     
     $userdata = array('user_login' => $user_login, 'user_email' => $sc_email, 'first_name' => $sc_first_name, 'last_name' => $sc_last_name,
