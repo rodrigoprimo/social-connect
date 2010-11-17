@@ -53,7 +53,7 @@ if($social_connect_provider) {
 <?php
 }
 add_filter('login_form', 'sc_render_login_form_social_connect');
-
+add_filter('register_form', 'sc_render_login_form_social_connect');
 
 function sc_render_comment_form_social_connect()
 {
