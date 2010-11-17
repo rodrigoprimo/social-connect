@@ -10,10 +10,10 @@ function sc_render_login_form_social_connect()
 </p>
 <br/>
 <div class="social_connect_form" title="Social Connect">
-  <a href="#" class="social_connect_login_facebook">Facebook</a> <br/>
-  <?php if($twitter_enabled) echo '<a href="#" class="social_connect_login_twitter">Twitter</a> <br/>'; ?>
-  <a href="#" class="social_connect_login_google">Google</a> <br/>
-  <a href="#" class="social_connect_login_wordpress">WordPress</a> <br/>
+  <a href="javascript://" class="social_connect_login_facebook">Facebook</a> <br/>
+  <?php if($twitter_enabled) echo '<a href="javascript://" class="social_connect_login_twitter">Twitter</a> <br/>'; ?>
+  <a href="javascript://" class="social_connect_login_google">Google</a> <br/>
+  <a href="javascript://" class="social_connect_login_wordpress">WordPress</a> <br/>
 </div>
 
 <?php 
@@ -24,9 +24,9 @@ $social_connect_wordpress_blog_url = isset($_COOKIE['social_connect_wordpress_bl
 if($social_connect_provider) {
 ?>
 <div class="social_connect_already_connected_form" title="Social Connect">
-  Welcome back <?php echo $social_connect_user_name ?>, <a href="#" class="social_connect_login_<?php echo $social_connect_provider ?>">continue?</a> <br/><br/>
-  <a href="#" class="social_connect_already_connected_form_not_you">Not you?</a> <br/><br/>
-  <a href="#" class="social_connect_already_connected_user_another">Use another account</a> <br/>
+  Welcome back <?php echo $social_connect_user_name ?>, <a href="javascript://" class="social_connect_login_<?php echo $social_connect_provider ?>">continue?</a> <br/><br/>
+  <a href="javascript://" class="social_connect_already_connected_form_not_you">Not you?</a> <br/><br/>
+  <a href="javascript://" class="social_connect_already_connected_user_another">Use another account</a> <br/>
 </div>
 <?php
 }
@@ -47,7 +47,7 @@ if($social_connect_provider) {
 
 <div class="social_connect_wordpress_form" title="WordPress">
   <p>Enter your WordPress.com blog URL</p><br/>
-  <p><input class="wordpress_blog_url" value="<?php echo $social_connect_wordpress_blog_url ?>"/> &nbsp; <a href="#" class="social_connect_wordpress_proceed">Proceed</a></p>
+  <p><input class="wordpress_blog_url" value="<?php echo $social_connect_wordpress_blog_url ?>"/> &nbsp; <a href="javascript://" class="social_connect_wordpress_proceed">Proceed</a></p>
 </div>
 
 <?php
