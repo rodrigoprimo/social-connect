@@ -54,6 +54,7 @@ if($social_connect_provider) {
 }
 add_filter('login_form', 'sc_render_login_form_social_connect');
 add_filter('register_form', 'sc_render_login_form_social_connect');
+add_filter('after_signup_form', 'sc_render_login_form_social_connect');
 
 function sc_render_comment_form_social_connect()
 {
