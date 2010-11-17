@@ -3,17 +3,27 @@
 function sc_render_login_form_social_connect()
 {
   $twitter_enabled = get_option('social_connect_twitter_enabled');
+  $images_url = plugins_url() . '/wp_social_connect/media/img/';
 ?>
 
-<p>
-  <a href="javascript://" class="social_connect_login">Social Connect</a>
-</p>
-<br/>
-<div class="social_connect_form" title="Social Connect">
-  <a href="javascript://" class="social_connect_login_facebook">Facebook</a> <br/>
-  <?php if($twitter_enabled) echo '<a href="javascript://" class="social_connect_login_twitter">Twitter</a> <br/>'; ?>
-  <a href="javascript://" class="social_connect_login_google">Google</a> <br/>
-  <a href="javascript://" class="social_connect_login_wordpress">WordPress</a> <br/>
+<div id="social_connect_ui">
+
+<span>Social Connect</span><br/>
+<a href="javascript://" class="social_connect_login">
+  <img title="Facebook" src="<?php echo $images_url . 'facebook.png' ?>" />
+  <img title="Twitter" src="<?php echo $images_url . 'twitter.png' ?>" />
+  <img title="Google" src="<?php echo $images_url . 'google.png' ?>" />
+  <img title="WordPress" src="<?php echo $images_url . 'wordpress.png' ?>" />
+</a>
+
+<div id="social_connect_form" class="social_connect_form" title="Social Connect">
+  <span>Please choose a provider to login</span><br/><br/>
+  <a href="javascript://" title="Facebook" class="social_connect_login_facebook"><img src="<?php echo $images_url . 'facebook.png' ?>" /></a>
+  <?php if($twitter_enabled) { ?>
+    <a href="javascript://" title="Twitter" class="social_connect_login_twitter"><img src="<?php echo $images_url . 'twitter.png' ?>" /></a>
+  <?php } ?>
+  <a href="javascript://" title="Google" class="social_connect_login_google"><img src="<?php echo $images_url . 'google.png' ?>" /></a>
+  <a href="javascript://" title="WordPress" class="social_connect_login_wordpress"><img src="<?php echo $images_url . 'wordpress.png' ?>" /></a>
 </div>
 
 <?php 
@@ -24,8 +34,13 @@ $social_connect_wordpress_blog_url = isset($_COOKIE['social_connect_wordpress_bl
 if($social_connect_provider) {
 ?>
 <div class="social_connect_already_connected_form" title="Social Connect">
-  Welcome back <?php echo $social_connect_user_name ?>, <a href="javascript://" class="social_connect_login_<?php echo $social_connect_provider ?>">continue?</a> <br/><br/>
-  <a href="javascript://" class="social_connect_already_connected_form_not_you">Not you?</a> <br/><br/>
+  <img src="<?php echo $images_url . $social_connect_provider . '.png' ?>" style="float:left; padding-right: 5px;" />
+  Welcome back <?php echo $social_connect_user_name ?>, <a href="javascript://" class="social_connect_login_<?php echo $social_connect_provider ?>">continue?</a>
+  
+  <div style="clear:both;"></div>
+  
+  <br/>
+  <a href="javascript://" class="social_connect_already_connected_form_not_you">Not you?</a> <br/>
   <a href="javascript://" class="social_connect_already_connected_user_another">Use another account</a> <br/>
 </div>
 <?php
@@ -47,9 +62,13 @@ if($social_connect_provider) {
 
 <div class="social_connect_wordpress_form" title="WordPress">
   <p>Enter your WordPress.com blog URL</p><br/>
-  <p><input class="wordpress_blog_url" value="<?php echo $social_connect_wordpress_blog_url ?>"/> &nbsp; <a href="javascript://" class="social_connect_wordpress_proceed">Proceed</a></p>
+  <p>
+    <input class="wordpress_blog_url" size="40" value="<?php echo $social_connect_wordpress_blog_url ?>"/> <br/><br/>
+    <a href="javascript://" class="social_connect_wordpress_proceed">Proceed</a>
+  </p>
 </div>
 
+</div> <!-- End of social_connect_ui div -->
 <?php
 }
 add_filter('login_form', 'sc_render_login_form_social_connect');

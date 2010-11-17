@@ -1,3 +1,25 @@
+#social_connect_ui {
+  color:#777777;
+  font-size:13px;
+}
+
+#social_connect_ui img {
+  border: 0px;
+  height: 36px;
+  width: 36px;
+}
+
+.social_connect_wordpress_form input {
+  height: 18px;
+}
+
+#social_connect_form img {
+  border: 0px;
+  height: 48px;
+  width: 48px;
+}
+
+
 div.social_connect_form {
   display:none;
 }
