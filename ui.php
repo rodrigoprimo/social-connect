@@ -76,4 +76,32 @@ function sc_render_login_page_uri()
 
 add_filter('wp_footer', 'sc_render_login_page_uri');
 
+
+
+function sc_render_social_connect_widget($args)
+{
+	extract($args); // extracts before_widget,before_title,after_title,after_widget
+	echo $before_widget . $before_title . $after_title;
+  sc_render_login_form_social_connect();
+  echo $after_widget;
+}
+
+function social_connect_plugin_loaded()
+{
+  $widget_ops = array('classname' => 'social_connect_widget', 'description' => "Allows users to register and login using their existing Twitter, Facebook, Google and wordpress.com accounts" );
+  wp_register_sidebar_widget('social_connect_widget', 'Social Connect', 'sc_render_social_connect_widget', $widget_ops);
+}
+
+add_action('plugins_loaded','social_connect_plugin_loaded');
+
+
+function sc_social_connect_shortcode_handler($args)
+{
+  if(!is_user_logged_in()) {
+    sc_render_login_form_social_connect();
+  }
+}
+
+add_shortcode('social_connect', 'sc_social_connect_shortcode_handler');
+
 ?>
