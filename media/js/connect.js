@@ -4,32 +4,41 @@ jQuery.noConflict();
     // ready to roll
 
     // init social connect dialog
-    $(".social_connect_form").dialog({ autoOpen: false, modal: true, resizable: false, maxHeight: 400, maxWidth: 600 });
-    $(".social_connect_already_connected_form").dialog({ autoOpen: false, modal: true, resizable: false, maxHeight: 400, maxWidth: 600 });
-    $('.social_connect_wordpress_form').dialog({ autoOpen: false, modal: true, resizable: false, maxHeight: 400, maxWidth: 600 });
+    var _social_connect_form = $($(".social_connect_form")[0]);
+    _social_connect_form.dialog({ autoOpen: false, modal: true, resizable: false, maxHeight: 400, maxWidth: 600 });
+
+    var _social_connect_wordpress_form = $($('.social_connect_wordpress_form')[0]);
+    _social_connect_wordpress_form.dialog({ autoOpen: false, modal: true, resizable: false, maxHeight: 400, width:400, maxWidth: 600 });
+
+    var _is_already_connected = $(".social_connect_already_connected_form")[0];
+    if(_is_already_connected) {
+      var _social_connect_already_connected_form = $(_is_already_connected);
+      _social_connect_already_connected_form.dialog({ autoOpen: false, modal: true, resizable: false, maxHeight: 400, maxWidth: 600 });
+    }
+    
     
     $(".social_connect_login").click(function() {
-      if($(".social_connect_already_connected_form").length) {
-        $(".social_connect_already_connected_form").dialog('open');
+      if(_is_already_connected) {
+        _social_connect_already_connected_form.dialog('open');
       } else {
-        $(".social_connect_form").dialog('open');
+        _social_connect_form.dialog('open');
       }
     });
 
     $(".social_connect_already_connected_form_not_you").click(function() {
       // delete 'already connected' dialog
-      $(".social_connect_already_connected_form").dialog('close');
-      $(".social_connect_already_connected_form").remove();
+      _social_connect_already_connected_form.dialog('close');
+      _social_connect_already_connected_form.remove();
       
       // show main connect dialog
-      $(".social_connect_form").dialog('open');
+      _social_connect_form.dialog('open');
     });
 
     $(".social_connect_already_connected_user_another").click(function() {
       // hide 'already connected' dialog
-      $(".social_connect_already_connected_form").dialog('close');
+      _social_connect_already_connected_form.dialog('close');
       // show main connect dialog
-      $(".social_connect_form").dialog('open');
+      _social_connect_form.dialog('open');
     });
     
     $(".social_connect_login_facebook").click(function() {
@@ -60,15 +69,18 @@ jQuery.noConflict();
     });
 
     $(".social_connect_login_wordpress").click(function() {
-      $(".social_connect_form").dialog('close');
-      $(".social_connect_wordpress_form").dialog('open');     
+      _social_connect_form.dialog('close');
+      _social_connect_wordpress_form.dialog('open');     
     });
     
     
-    $(".social_connect_wordpress_proceed").click(function() {
+    $(".social_connect_wordpress_proceed").click(function(e) {
       var wordpress_auth = $('.social_connect_wordpress_auth');
       var redirect_uri = wordpress_auth.attr('redirect_uri');
-      redirect_uri = redirect_uri + "?wordpress_blog_url=" + encodeURIComponent($('.wordpress_blog_url').val());
+      var context = e.target.parentNode;
+      var blog_url = $('.wordpress_blog_url', context).val();
+      
+      redirect_uri = redirect_uri + "?wordpress_blog_url=" + encodeURIComponent(blog_url);
       
       window.open(redirect_uri,'','scrollbars=yes,menubar=no,height=400,width=800,resizable=yes,toolbar=no,status=no');
     });
