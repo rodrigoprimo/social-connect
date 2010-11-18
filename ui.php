@@ -107,7 +107,7 @@ function sc_social_connect_render_comment_meta($link) {
   $images_url = plugins_url() . '/wp_social_connect/media/img/';
   $social_connect_comment_via_provider = get_comment_meta($comment->comment_ID, 'social_connect_comment_via_provider', true);
   if($social_connect_comment_via_provider) {
-    return $link . "&nbsp;" . "<img id='social_connect_comment_via_provider' src='" . $images_url . $social_connect_comment_via_provider . ".png" . "' />";
+    return $link . "&nbsp;" . "<img id='social_connect_comment_via_provider' src='" . $images_url . $social_connect_comment_via_provider . "_small.png" . "' />";
   } else {
     return $link;
   }
