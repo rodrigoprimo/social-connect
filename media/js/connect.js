@@ -29,6 +29,7 @@ jQuery.noConflict();
       // delete 'already connected' dialog
       _social_connect_already_connected_form.dialog('close');
       _social_connect_already_connected_form.remove();
+      _is_already_connected = false;
       
       // show main connect dialog
       _social_connect_form.dialog('open');
