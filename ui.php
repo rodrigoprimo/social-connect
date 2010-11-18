@@ -61,7 +61,7 @@ if($social_connect_provider) {
 </div>
 
 <div class="social_connect_wordpress_form" title="WordPress">
-  <p>Enter your WordPress.com blog URL</p>
+  <p>Enter your WordPress.com blog URL</p><br/>
   <p>
     <input class="wordpress_blog_url" size="40" value="<?php echo $social_connect_wordpress_blog_url ?>"/> <br/><br/>
     <a href="javascript://" class="social_connect_wordpress_proceed">Proceed</a>
