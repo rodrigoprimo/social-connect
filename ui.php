@@ -34,7 +34,7 @@ $social_connect_wordpress_blog_url = isset($_COOKIE['social_connect_wordpress_bl
 if($social_connect_provider) {
 ?>
 <div class="social_connect_already_connected_form" title="Social Connect">
-  <img src="<?php echo $images_url . $social_connect_provider . '.png' ?>" style="float:left; padding-right: 5px;" />
+  <img id="social_connect_already_connected_logo" src="<?php echo $images_url . $social_connect_provider . '.png' ?>" />
   Welcome back <?php echo $social_connect_user_name ?>, <a href="javascript://" class="social_connect_login_<?php echo $social_connect_provider ?>">continue?</a>
   
   <div style="clear:both;"></div>
