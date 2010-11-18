@@ -13,6 +13,11 @@
   height: 18px;
 }
 
+img#social_connect_comment_via_provider  {
+  width: 18px;
+  height: 18px;
+}
+
 #social_connect_form img {
   border: 0px;
   height: 48px;

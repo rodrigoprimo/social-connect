@@ -75,6 +75,49 @@ add_filter('login_form', 'sc_render_login_form_social_connect');
 add_filter('register_form', 'sc_render_login_form_social_connect');
 add_filter('after_signup_form', 'sc_render_login_form_social_connect');
 
+
+
+function sc_social_connect_add_meta_to_comment_form()
+{
+  $social_connect_provider = isset($_COOKIE['social_connect_current_provider']) ? $_COOKIE['social_connect_current_provider'] : '';
+  if($social_connect_provider != '') {
+    echo "<input type='hidden' name='social_connect_comment_via_provider' value='$social_connect_provider' />";
+  }
+}
+
+add_filter('comment_form', 'sc_social_connect_add_meta_to_comment_form');
+
+
+
+
+function sc_social_connect_add_comment_meta($comment_id) {
+  $social_connect_comment_via_provider = isset($_POST['social_connect_comment_via_provider']) ? $_POST['social_connect_comment_via_provider'] : '';
+  if($social_connect_comment_via_provider != '') {
+  	update_comment_meta($comment_id, 'social_connect_comment_via_provider', $social_connect_comment_via_provider);
+  }
+}
+
+add_action ('comment_post', 'sc_social_connect_add_comment_meta');
+
+
+
+
+function sc_social_connect_render_comment_meta($link) {
+  global $comment;
+  $images_url = plugins_url() . '/wp_social_connect/media/img/';
+  $social_connect_comment_via_provider = get_comment_meta($comment->comment_ID, 'social_connect_comment_via_provider', true);
+  if($social_connect_comment_via_provider) {
+    return $link . "&nbsp;" . "<img id='social_connect_comment_via_provider' src='" . $images_url . $social_connect_comment_via_provider . ".png" . "' />";
+  } else {
+    return $link;
+  }
+}
+
+add_action ('get_comment_author_link', 'sc_social_connect_render_comment_meta');
+
+
+
+
 function sc_render_comment_form_social_connect()
 {
   if(comments_open() && !is_user_logged_in()) {
