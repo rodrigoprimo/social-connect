@@ -31,6 +31,16 @@ $social_connect_provider = isset($_COOKIE['social_connect_current_provider']) ? 
 $social_connect_user_name = isset($_COOKIE['social_connect_current_name']) ? $_COOKIE['social_connect_current_name'] : '';
 $social_connect_wordpress_blog_url = isset($_COOKIE['social_connect_wordpress_blog_url']) ? $_COOKIE['social_connect_wordpress_blog_url'] : '';
 
+if($social_connect_wordpress_blog_url == '') {
+  $social_connect_wordpress_blog_name = '';
+} else {
+  preg_match("/^(http:\/\/)?([^\/]+)/i", $social_connect_wordpress_blog_url, $matches);
+  $host = $matches[2];  
+  $subdomains = explode('.', $host);
+  $social_connect_wordpress_blog_name = $subdomains[0];
+}
+
+
 if($social_connect_provider) {
 ?>
 <div class="social_connect_already_connected_form" title="Social Connect">
@@ -63,7 +73,7 @@ if($social_connect_provider) {
 <div class="social_connect_wordpress_form" title="WordPress">
   <p>Enter your WordPress.com blog URL</p><br/>
   <p>
-    <input class="wordpress_blog_url" size="40" value="<?php echo $social_connect_wordpress_blog_url ?>"/> <br/><br/>
+    <span>http://</span><input class="wordpress_blog_url" size="15" value="<?php echo $social_connect_wordpress_blog_name ?>"/><span>.wordpress.com</span> <br/><br/>
     <a href="javascript://" class="social_connect_wordpress_proceed">Proceed</a>
   </p>
 </div>

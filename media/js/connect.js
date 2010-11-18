@@ -8,7 +8,7 @@ jQuery.noConflict();
     _social_connect_form.dialog({ autoOpen: false, modal: true, resizable: false, maxHeight: 400, maxWidth: 600 });
 
     var _social_connect_wordpress_form = $($('.social_connect_wordpress_form')[0]);
-    _social_connect_wordpress_form.dialog({ autoOpen: false, modal: true, resizable: false, maxHeight: 400, width:400, maxWidth: 600 });
+    _social_connect_wordpress_form.dialog({ autoOpen: false, modal: true, resizable: false, maxHeight: 400, maxWidth: 600 });
 
     var _is_already_connected = $(".social_connect_already_connected_form")[0];
     if(_is_already_connected) {
@@ -79,7 +79,8 @@ jQuery.noConflict();
       var wordpress_auth = $('.social_connect_wordpress_auth');
       var redirect_uri = wordpress_auth.attr('redirect_uri');
       var context = e.target.parentNode;
-      var blog_url = $('.wordpress_blog_url', context).val();
+      var blog_name = $('.wordpress_blog_url', context).val();
+      var blog_url = "http://" + blog_name + ".wordpress.com";
       
       redirect_uri = redirect_uri + "?wordpress_blog_url=" + encodeURIComponent(blog_url);
       
