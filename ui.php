@@ -2,8 +2,10 @@
 
 function sc_render_login_form_social_connect()
 {
-  $twitter_enabled = get_option('social_connect_twitter_enabled');
   $images_url = plugins_url() . '/wp_social_connect/media/img/';
+  
+  $twitter_enabled = get_option('social_connect_twitter_enabled') && get_option('social_connect_twitter_consumer_key') && get_option('social_connect_twitter_consumer_secret');
+  $facebook_enabled = get_option('social_connect_facebook_api_key') && get_option('social_connect_facebook_secret_key');
 ?>
 
 <div id="social_connect_ui">
@@ -18,7 +20,9 @@ function sc_render_login_form_social_connect()
 
 <div id="social_connect_form" class="social_connect_form" title="Social Connect">
   <span>Please choose a provider to login</span><br/><br/>
+  <?php if($facebook_enabled) { ?>
   <a href="javascript://" title="Facebook" class="social_connect_login_facebook"><img src="<?php echo $images_url . 'facebook.png' ?>" /></a>
+  <?php } ?>
   <?php if($twitter_enabled) { ?>
     <a href="javascript://" title="Twitter" class="social_connect_login_twitter"><img src="<?php echo $images_url . 'twitter.png' ?>" /></a>
   <?php } ?>
