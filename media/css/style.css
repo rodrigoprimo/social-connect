@@ -23,17 +23,6 @@ img#social_connect_already_connected_logo {
   padding-right: 10px;
 }
 
-#social_connect_form img {
-  border: 0px;
-  height: 48px;
-  width: 48px;
-}
-
-
-div.social_connect_form {
-  display:none;
-}
-
 div.social_connect_wordpress_form {
   display:none;
 }

@@ -11,15 +11,7 @@ function sc_render_login_form_social_connect()
 <div id="social_connect_ui">
 
 <span>Social Connect</span><br/>
-<a href="javascript://" class="social_connect_login">
-  <img title="Facebook" src="<?php echo $images_url . 'facebook.png' ?>" />
-  <img title="Twitter" src="<?php echo $images_url . 'twitter.png' ?>" />
-  <img title="Google" src="<?php echo $images_url . 'google.png' ?>" />
-  <img title="WordPress" src="<?php echo $images_url . 'wordpress.png' ?>" />
-</a>
-
 <div id="social_connect_form" class="social_connect_form" title="Social Connect">
-  <span>Please choose a provider to login</span><br/><br/>
   <?php if($facebook_enabled) { ?>
   <a href="javascript://" title="Facebook" class="social_connect_login_facebook"><img src="<?php echo $images_url . 'facebook.png' ?>" /></a>
   <?php } ?>
@@ -46,10 +38,16 @@ if($social_connect_wordpress_blog_url == '') {
 
 
 if($social_connect_provider) {
+  $social_connect_login_continue = 'social_connect_login_continue_' . $social_connect_provider;
+  if($social_connect_provider == 'wordpress') {
+    // trigger the wordpress URL form instead
+    $social_connect_login_continue = 'social_connect_wordpress_proceed';
+  }
+  
 ?>
-<div class="social_connect_already_connected_form" title="Social Connect">
+<div class="social_connect_already_connected_form" title="Social Connect" provider="<?php echo $social_connect_provider ?>">
   <img id="social_connect_already_connected_logo" src="<?php echo $images_url . $social_connect_provider . '.png' ?>" />
-  Welcome back <?php echo $social_connect_user_name ?>, <a href="javascript://" class="social_connect_login_<?php echo $social_connect_provider ?>">continue?</a>
+  Welcome back <?php echo $social_connect_user_name ?>, <a href="javascript://" class="<?php echo $social_connect_login_continue ?>">continue?</a>
   
   <div style="clear:both;"></div>
   
