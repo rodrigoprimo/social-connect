@@ -45,7 +45,7 @@ function sc_render_login_form_social_connect()
 ?>
 <div class="social_connect_already_connected_form" title="Social Connect" provider="<?php echo $social_connect_provider ?>">
   <img id="social_connect_already_connected_logo" src="<?php echo $images_url . $social_connect_provider . '.png' ?>" />
-  <?php printf( __( 'Welcome back %s, %scontinue?%s', 'social_connect' ), $social_connect_user_name, '<a href="javascript://" class="<?php echo $social_connect_login_continue ?>">',  '</a>', 'social_connect' ); ?>
+  <?php printf( __( 'Welcome back %s, %scontinue?%s', 'social_connect' ), $social_connect_user_name, '<a href="javascript://" class="'.$social_connect_login_continue.'">',  '</a>', 'social_connect' ); ?>
   
   <div style="clear:both;"></div>
   
