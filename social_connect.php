@@ -161,4 +161,12 @@ function sc_social_connect_process_login( $is_ajax = false )
 // Hook to 'login_form_' . $action
 add_action('login_form_social_connect', 'sc_social_connect_process_login');
 
+// Handle calls from plugins that use an Ajax for login
+function sc_ajax_login(){
+	if( isset( $_POST[ 'login_submit' ] ) && $_POST[ 'login_submit' ] == 'ajax' && // Plugins will need to pass this param
+		isset( $_POST[ 'action' ] ) && $_POST[ 'action' ] == 'social_connect' )
+		sc_social_connect_process_login( true );
+}
+add_action('init', 'sc_ajax_login');
+
 ?>
