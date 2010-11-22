@@ -111,6 +111,7 @@ function sc_social_connect_process_login()
   if($user_id) {
     // user already exists, just log him in
     wp_set_auth_cookie($user_id);
+    do_action('social_connect_login', $user_id);
     wp_safe_redirect($redirect_to);
     exit();
   }
@@ -122,6 +123,7 @@ function sc_social_connect_process_login()
     
     // user signed in with provider identity after normal WP signup. Since email is verified, sign him in
     wp_set_auth_cookie($user_id);
+    do_action('social_connect_login', $user_id);
     wp_safe_redirect($redirect_to);
     exit();
     
@@ -141,6 +143,7 @@ function sc_social_connect_process_login()
       update_user_meta($user_id, $sc_provider_identity_key, $sc_provider_identity);
     
       wp_set_auth_cookie($user_id);
+      do_action('social_connect_login', $user_id);
       wp_safe_redirect($redirect_to);
       exit();
     }
