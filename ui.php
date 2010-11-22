@@ -10,7 +10,7 @@ function sc_render_login_form_social_connect()
 
 <div id="social_connect_ui">
 
-<span>Social Connect</span><br/>
+<span><?php _e( 'Connect with:' ); ?></span><br/>
 <div id="social_connect_form" class="social_connect_form" title="Social Connect">
   <?php if($facebook_enabled) { ?>
   <a href="javascript://" title="Facebook" class="social_connect_login_facebook"><img src="<?php echo $images_url . 'facebook.png' ?>" /></a>
@@ -23,40 +23,38 @@ function sc_render_login_form_social_connect()
 </div>
 
 <?php 
-$social_connect_provider = isset($_COOKIE['social_connect_current_provider']) ? $_COOKIE['social_connect_current_provider'] : '';
-$social_connect_user_name = isset($_COOKIE['social_connect_current_name']) ? $_COOKIE['social_connect_current_name'] : '';
-$social_connect_wordpress_blog_url = isset($_COOKIE['social_connect_wordpress_blog_url']) ? $_COOKIE['social_connect_wordpress_blog_url'] : '';
+	$social_connect_provider = isset($_COOKIE['social_connect_current_provider']) ? $_COOKIE['social_connect_current_provider'] : '';
+	$social_connect_user_name = isset($_COOKIE['social_connect_current_name']) ? $_COOKIE['social_connect_current_name'] : '';
+	$social_connect_wordpress_blog_url = isset($_COOKIE['social_connect_wordpress_blog_url']) ? $_COOKIE['social_connect_wordpress_blog_url'] : '';
 
-if($social_connect_wordpress_blog_url == '') {
-  $social_connect_wordpress_blog_name = '';
-} else {
-  preg_match("/^(http:\/\/)?([^\/]+)/i", $social_connect_wordpress_blog_url, $matches);
-  $host = $matches[2];  
-  $subdomains = explode('.', $host);
-  $social_connect_wordpress_blog_name = $subdomains[0];
-}
+	if($social_connect_wordpress_blog_url == '') {
+		$social_connect_wordpress_blog_name = '';
+	} else {
+		preg_match("/^(http:\/\/)?([^\/]+)/i", $social_connect_wordpress_blog_url, $matches);
+		$host = $matches[2];  
+		$subdomains = explode('.', $host);
+		$social_connect_wordpress_blog_name = $subdomains[0];
+	}
 
-
-if($social_connect_provider) {
-  $social_connect_login_continue = 'social_connect_login_continue_' . $social_connect_provider;
-  if($social_connect_provider == 'wordpress') {
-    // trigger the wordpress URL form instead
-    $social_connect_login_continue = 'social_connect_wordpress_proceed';
-  }
-  
+	if($social_connect_provider) {
+		$social_connect_login_continue = 'social_connect_login_continue_' . $social_connect_provider;
+		if($social_connect_provider == 'wordpress') {
+			// trigger the wordpress URL form instead
+			$social_connect_login_continue = 'social_connect_wordpress_proceed';
+		}
 ?>
 <div class="social_connect_already_connected_form" title="Social Connect" provider="<?php echo $social_connect_provider ?>">
   <img id="social_connect_already_connected_logo" src="<?php echo $images_url . $social_connect_provider . '.png' ?>" />
-  Welcome back <?php echo $social_connect_user_name ?>, <a href="javascript://" class="<?php echo $social_connect_login_continue ?>">continue?</a>
+  <?php printf( __( 'Welcome back %s, %scontinue?%s', 'social_connect' ), $social_connect_user_name, '<a href="javascript://" class="<?php echo $social_connect_login_continue ?>">',  '</a>', 'social_connect' ); ?>
   
   <div style="clear:both;"></div>
   
   <br/>
-  <a href="javascript://" class="social_connect_already_connected_form_not_you">Not you?</a> <br/>
-  <a href="javascript://" class="social_connect_already_connected_user_another">Use another account</a> <br/>
+  <a href="javascript://" class="social_connect_already_connected_form_not_you"><?php _e( 'Not you?', 'social_connect' ); ?></a> <br/>
+  <a href="javascript://" class="social_connect_already_connected_user_another"><?php _e( 'Use another account', 'social_connect' ); ?></a> <br/>
 </div>
 <?php
-}
+	}
 ?>
 
 <div class="social_connect_facebook_auth" client_id="<?php echo get_option('social_connect_facebook_api_key'); ?>" redirect_uri="<?php 
@@ -73,10 +71,10 @@ if($social_connect_provider) {
 </div>
 
 <div class="social_connect_wordpress_form" title="WordPress">
-  <p>Enter your WordPress.com blog URL</p><br/>
+  <p><?php _e( 'Enter your WordPress.com blog URL', 'social_connect' ); ?></p><br/>
   <p>
     <span>http://</span><input class="wordpress_blog_url" size="15" value="<?php echo $social_connect_wordpress_blog_name ?>"/><span>.wordpress.com</span> <br/><br/>
-    <a href="javascript://" class="social_connect_wordpress_proceed">Proceed</a>
+    <a href="javascript://" class="social_connect_wordpress_proceed"><?php _e( 'Proceed', 'social_connect' ); ?></a>
   </p>
 </div>
 
