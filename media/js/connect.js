@@ -2,15 +2,25 @@ jQuery.noConflict();
 (function($) { 
   $(function() {
     // ready to roll
-
     var _social_connect_wordpress_form = $($('.social_connect_wordpress_form')[0]);
-    _social_connect_wordpress_form.dialog({ autoOpen: false, modal: true, resizable: false, maxHeight: 400, width:350, maxWidth: 600 });
+    _social_connect_wordpress_form.dialog({ autoOpen: false, modal: true, dialogClass: 'social-connect-dialog', resizable: false, maxHeight: 400, width:350, maxWidth: 600 });
 
+	var closedialog;
     var _is_already_connected = $(".social_connect_already_connected_form")[0];
     if(_is_already_connected) {
       var _social_connect_already_connected_form = $(_is_already_connected);
       var _already_connected_provider = _social_connect_already_connected_form.attr('provider');
-      _social_connect_already_connected_form.dialog({ autoOpen: false, modal: true, resizable: false, maxHeight: 400, maxWidth: 600 });
+      _social_connect_already_connected_form.dialog({ 
+							autoOpen: false, 
+							modal: true, 
+							dialogClass: 'social-connect-dialog', 
+							resizable: false, 
+							maxHeight: 400, 
+							maxWidth: 600,
+					        open: function(){closedialog = 1;$(document).bind('click', overlay_click_close);},
+					        focus: function(){closedialog = 0;},
+					        close: function(){$(document).unbind('click', overlay_click_close);},
+						});
     }
     
     var _do_google_connect = function() {
@@ -51,8 +61,15 @@ jQuery.noConflict();
             '','scrollbars=no,menubar=no,height=400,width=800,resizable=yes,toolbar=no,status=no');
       }
     };
-    
-    
+
+	// Close dialog if open and user clicks anywhere outside of it
+	function overlay_click_close() {
+		if (closedialog) {
+			_social_connect_already_connected_form.dialog('close');
+		}
+		closedialog = 1;
+	}
+
     $(".social_connect_already_connected_form_not_you").click(function() {
       _is_already_connected = false;
       _social_connect_already_connected_form.dialog('close');
@@ -68,6 +85,7 @@ jQuery.noConflict();
     $(".social_connect_login_facebook").click(function() {
       if(_is_already_connected) {
         _social_connect_already_connected_form.dialog('open');
+		closedialog = 0;
       } else {
         _do_facebook_connect();
       }
@@ -80,6 +98,7 @@ jQuery.noConflict();
     $(".social_connect_login_twitter").click(function() {
       if(_is_already_connected) {
         _social_connect_already_connected_form.dialog('open');
+		closedialog = 0;
       } else {
         _do_twitter_connect();
       }  
@@ -92,6 +111,7 @@ jQuery.noConflict();
     $(".social_connect_login_google").click(function() {
       if(_is_already_connected) {
         _social_connect_already_connected_form.dialog('open');
+		closedialog = 0;
       } else {
         _do_google_connect();
       }
@@ -104,6 +124,7 @@ jQuery.noConflict();
     $(".social_connect_login_wordpress").click(function() {
       if(_is_already_connected) {
         _social_connect_already_connected_form.dialog('open');
+		closedialog = 0;
       } else {
         _social_connect_wordpress_form.dialog('open');     
       }
