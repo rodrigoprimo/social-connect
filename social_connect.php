@@ -17,7 +17,7 @@ require_once(dirname(__FILE__) . '/admin.php' );
 require_once(dirname(__FILE__) . '/ui.php' );
 
 
-function sc_social_connect_process_login()
+function sc_social_connect_process_login( $is_ajax = false )
 {
 	if ( isset( $_REQUEST['redirect_to'] ) && $_REQUEST['redirect_to'] != '' ) {
 		$redirect_to = $_REQUEST['redirect_to'];
@@ -111,8 +111,11 @@ function sc_social_connect_process_login()
   if($user_id) {
     // user already exists, just log him in
     wp_set_auth_cookie($user_id);
-    do_action('social_connect_login', $user_id);
-    wp_safe_redirect($redirect_to);
+    do_action('social_connect_login', $user_login );
+	if( $is_ajax )
+		echo '{"redirect":"' . $redirect_to . '"}';
+	else
+		wp_safe_redirect($redirect_to);
     exit();
   }
   
@@ -123,8 +126,11 @@ function sc_social_connect_process_login()
     
     // user signed in with provider identity after normal WP signup. Since email is verified, sign him in
     wp_set_auth_cookie($user_id);
-    do_action('social_connect_login', $user_id);
-    wp_safe_redirect($redirect_to);
+    do_action('social_connect_login', $user_login );
+	if( $is_ajax )
+		echo '{"redirect":"' . $redirect_to . '"}';
+	else
+		wp_safe_redirect($redirect_to);
     exit();
     
   } else {
@@ -132,7 +138,7 @@ function sc_social_connect_process_login()
     if(username_exists($user_login)) {
       $user_login = strtolower("sc_". md5($social_connect_provider . $sc_provider_identity));
     }
-    
+
     $userdata = array('user_login' => $user_login, 'user_email' => $sc_email, 'first_name' => $sc_first_name, 'last_name' => $sc_last_name,
       'user_url' => $sc_profile_url, 'user_pass' => wp_generate_password());
     
@@ -143,13 +149,16 @@ function sc_social_connect_process_login()
       update_user_meta($user_id, $sc_provider_identity_key, $sc_provider_identity);
     
       wp_set_auth_cookie($user_id);
-      do_action('social_connect_login', $user_id);
-      wp_safe_redirect($redirect_to);
+      do_action('social_connect_login', $user_login );
+	if( $is_ajax )
+		echo '{"redirect":"' . $redirect_to . '"}';
+	else
+		wp_safe_redirect($redirect_to);
       exit();
     }
   }
 }
-
+// Hook to 'login_form_' . $action
 add_action('login_form_social_connect', 'sc_social_connect_process_login');
 
 ?>
