@@ -28,14 +28,14 @@ jQuery.noConflict();
     };
 
     var _do_wordpress_connect = function(e) {
+
       var wordpress_auth = $('.social_connect_wordpress_auth');
       var redirect_uri = wordpress_auth.attr('redirect_uri');
-      var context = $(e.target).parents('#social_connect_ui')[0];
+      var context = $(e.target).parents('.social_connect_wordpress_form')[0];
       var blog_name = $('.wordpress_blog_url', context).val();
       var blog_url = "http://" + blog_name + ".wordpress.com";
-      
       redirect_uri = redirect_uri + "?wordpress_blog_url=" + encodeURIComponent(blog_url);
-      
+	
       window.open(redirect_uri,'','scrollbars=yes,menubar=no,height=400,width=800,resizable=yes,toolbar=no,status=no');
     };
     
