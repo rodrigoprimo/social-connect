@@ -1,4 +1,4 @@
-Contributors: thenbrent
+Contributors: thenbrent, ashwinphatak
 Tags: facebook, wordpress.com, twitter, google, social, login, register
 Requires at least: 3.0
 Tested up to: 3.0.1
