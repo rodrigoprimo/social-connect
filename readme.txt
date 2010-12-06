@@ -8,10 +8,9 @@ Allows your visitors to register and login using their existing Twitter, Faceboo
 
 == Description ==
 
-Social Connect adds register and login buttons for Twitter, Facebook, Google and wordpress.com.
+Social Connect adds register and login buttons for Twitter, Facebook, Google and wordpress.com on the login, register and comment forms of a WordPress site.
 
-It makes it safe and easy for new members to register and login to your site.
-
+It makes it safe and easy for new members to register with your site and existing members to login to your site.
 
 == Installation ==
 
@@ -34,7 +33,6 @@ Yes.
 = Do I need to add template tags to my theme? =
 
 No social connect works with the default WordPress login and registration forms. 
-
 
 If you have a question not answered here, please ask in the [Support Forums](http://wordpress.org/tags/social-connect).
 
