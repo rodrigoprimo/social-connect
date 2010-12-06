@@ -1,4 +1,6 @@
-Allow your visitors to your WordPress site to register and login using their existing Twitter, Facebook, Google or wordpress.com account.
+# WordPress Social Connect
+
+Allow visitors to your WordPress site to register and login using their existing Twitter, Facebook, Google or wordpress.com account.
 
 ## Description
 
