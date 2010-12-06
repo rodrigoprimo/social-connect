@@ -81,9 +81,9 @@ function sc_render_login_form_social_connect()
 </div> <!-- End of social_connect_ui div -->
 <?php
 }
-add_filter('login_form', 'sc_render_login_form_social_connect');
-add_filter('register_form', 'sc_render_login_form_social_connect');
-add_filter('after_signup_form', 'sc_render_login_form_social_connect');
+add_action('login_form', 'sc_render_login_form_social_connect');
+add_action('register_form', 'sc_render_login_form_social_connect');
+add_action('after_signup_form', 'sc_render_login_form_social_connect');
 
 
 
@@ -95,7 +95,7 @@ function sc_social_connect_add_meta_to_comment_form()
   }
 }
 
-add_filter('comment_form', 'sc_social_connect_add_meta_to_comment_form');
+add_action('comment_form', 'sc_social_connect_add_meta_to_comment_form');
 
 
 
@@ -107,7 +107,7 @@ function sc_social_connect_add_comment_meta($comment_id) {
   }
 }
 
-add_action ('comment_post', 'sc_social_connect_add_comment_meta');
+add_action('comment_post', 'sc_social_connect_add_comment_meta');
 
 
 
@@ -135,7 +135,7 @@ function sc_render_comment_form_social_connect()
   }
 }
 
-add_filter('comment_form', 'sc_render_comment_form_social_connect');
+add_action('comment_form', 'sc_render_comment_form_social_connect');
 
 
 
@@ -146,7 +146,7 @@ function sc_render_login_page_uri()
 <?php
 }
 
-add_filter('wp_footer', 'sc_render_login_page_uri');
+add_action('wp_footer', 'sc_render_login_page_uri');
 
 
 
