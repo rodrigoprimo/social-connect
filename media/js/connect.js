@@ -161,5 +161,11 @@ window.wp_social_connect = function(config) {
     jQuery(form_id).append("<input type='hidden' id='" + key + "' name='" + key + "' value='" + value + "'>");
   });  
 
+  if(jQuery("#simplemodal-login-form").length) {
+    var current_url = window.location.href;
+    jQuery("#redirect_to").remove();
+    jQuery(form_id).append("<input type='hidden' id='redirect_to' name='redirect_to' value='" + current_url + "'>");
+  }
+
   jQuery(form_id).submit();
 }
