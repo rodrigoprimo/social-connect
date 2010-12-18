@@ -140,6 +140,8 @@ jQuery.noConflict();
 
 
 window.wp_social_connect = function(config) {
+  jQuery('#loginform').unbind('submit.simplemodal-login');
+
   var form_id = '#loginform';
   
   if(!jQuery('#loginform').length) {
