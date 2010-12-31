@@ -13,20 +13,24 @@ function sc_render_login_form_social_connect()
 <span><?php _e( 'Connect with:' ); ?></span><br/>
 <div id="social_connect_form" class="social_connect_form" title="Social Connect">
   <?php if($facebook_enabled) { ?>
-  <a href="javascript://" title="Facebook" class="social_connect_login_facebook"><img src="<?php echo $images_url . 'facebook.png' ?>" /></a>
+  <a href="javascript://" title="Facebook" class="social_connect_login_facebook"><img src="<?php echo $images_url . 'facebook_32.png' ?>" /></a>
   <?php } ?>
   <?php if($twitter_enabled) { ?>
-    <a href="javascript://" title="Twitter" class="social_connect_login_twitter"><img src="<?php echo $images_url . 'twitter.png' ?>" /></a>
+    <a href="javascript://" title="Twitter" class="social_connect_login_twitter"><img src="<?php echo $images_url . 'twitter_32.png' ?>" /></a>
   <?php } ?>
-  <a href="javascript://" title="Google" class="social_connect_login_google"><img src="<?php echo $images_url . 'google.png' ?>" /></a>
-  <a href="javascript://" title="WordPress" class="social_connect_login_wordpress"><img src="<?php echo $images_url . 'wordpress.png' ?>" /></a>
+  <a href="javascript://" title="Google" class="social_connect_login_google"><img src="<?php echo $images_url . 'google_32.png' ?>" /></a>
+  <a href="javascript://" title="Yahoo" class="social_connect_login_yahoo"><img src="<?php echo $images_url . 'yahoo_32.png' ?>" /></a>
+  <a href="javascript://" title="OpenID" class="social_connect_login_openid"><img src="<?php echo $images_url . 'openid_32.png' ?>" /></a>
+  <a href="javascript://" title="WordPress" class="social_connect_login_wordpress"><img src="<?php echo $images_url . 'wordpress_32.png' ?>" /></a>
 </div>
 
 <?php 
 	$social_connect_provider = isset($_COOKIE['social_connect_current_provider']) ? $_COOKIE['social_connect_current_provider'] : '';
 	$social_connect_user_name = isset($_COOKIE['social_connect_current_name']) ? $_COOKIE['social_connect_current_name'] : '';
 	$social_connect_wordpress_blog_url = isset($_COOKIE['social_connect_wordpress_blog_url']) ? $_COOKIE['social_connect_wordpress_blog_url'] : '';
-
+	$social_connect_openid_url = isset($_COOKIE['social_connect_openid_url']) ? $_COOKIE['social_connect_openid_url'] : '';
+   
+	
 	if($social_connect_wordpress_blog_url == '') {
 		$social_connect_wordpress_blog_name = '';
 	} else {
@@ -44,7 +48,7 @@ function sc_render_login_form_social_connect()
 		}
 ?>
 <div class="social_connect_already_connected_form" title="Social Connect" provider="<?php echo $social_connect_provider ?>">
-  <img id="social_connect_already_connected_logo" src="<?php echo $images_url . $social_connect_provider . '.png' ?>" />
+  <img id="social_connect_already_connected_logo" src="<?php echo $images_url . $social_connect_provider . '_32.png' ?>" />
   <?php printf( __( 'Welcome back %s, %scontinue?%s', 'social_connect' ), $social_connect_user_name, '<a href="javascript://" class="'.$social_connect_login_continue.'">',  '</a>', 'social_connect' ); ?>
   
   <div style="clear:both;"></div>
@@ -67,7 +71,21 @@ function sc_render_login_form_social_connect()
 <div class="social_connect_google_auth" redirect_uri="<?php echo(plugins_url() . '/wp_social_connect/google/connect.php'); ?>">
 </div>
 
+<div class="social_connect_yahoo_auth" redirect_uri="<?php echo(plugins_url() . '/wp_social_connect/yahoo/connect.php'); ?>">
+</div>
+
+<div class="social_connect_openid_auth" redirect_uri="<?php echo(plugins_url() . '/wp_social_connect/openid/connect.php'); ?>">
+</div>
+
 <div class="social_connect_wordpress_auth" redirect_uri="<?php echo(plugins_url() . '/wp_social_connect/wordpress/connect.php'); ?>">
+</div>
+
+<div class="social_connect_openid_form" title="OpenID">
+  <p><?php _e( 'Enter your OpenID URL', 'social_connect' ); ?></p><br/>
+  <p>
+    <span>http://</span><input class="openid_url" size="15" value="<?php echo $social_connect_openid_url ?>"/> <br/><br/>
+    <a href="javascript://" class="social_connect_openid_proceed"><?php _e( 'Proceed', 'social_connect' ); ?></a>
+  </p>
 </div>
 
 <div class="social_connect_wordpress_form" title="WordPress">
@@ -117,7 +135,7 @@ function sc_social_connect_render_comment_meta($link) {
   $images_url = plugins_url() . '/wp_social_connect/media/img/';
   $social_connect_comment_via_provider = get_comment_meta($comment->comment_ID, 'social_connect_comment_via_provider', true);
   if($social_connect_comment_via_provider) {
-    return $link . "&nbsp;" . "<img id='social_connect_comment_via_provider' src='" . $images_url . $social_connect_comment_via_provider . "_small.png" . "' />";
+    return $link . "&nbsp;" . "<img id='social_connect_comment_via_provider' src='" . $images_url . $social_connect_comment_via_provider . "_16.png" . "' />";
   } else {
     return $link;
   }

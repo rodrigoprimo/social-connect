@@ -5,6 +5,9 @@ jQuery.noConflict();
     var _social_connect_wordpress_form = $($('.social_connect_wordpress_form')[0]);
     _social_connect_wordpress_form.dialog({ autoOpen: false, modal: true, dialogClass: 'social-connect-dialog', resizable: false, maxHeight: 400, width:350, maxWidth: 600 });
 
+    var _social_connect_openid_form = $($('.social_connect_openid_form')[0]);
+    _social_connect_openid_form.dialog({ autoOpen: false, modal: true, dialogClass: 'social-connect-dialog', resizable: false, maxHeight: 400, width:350, maxWidth: 600 });
+
 	var closedialog;
     var _is_already_connected = $(".social_connect_already_connected_form")[0];
     if(_is_already_connected) {
@@ -30,6 +33,24 @@ jQuery.noConflict();
       window.open(redirect_uri,'','scrollbars=no,menubar=no,height=400,width=800,resizable=yes,toolbar=no,status=no');
     };
 
+    var _do_yahoo_connect = function() {
+      var yahoo_auth = $('.social_connect_yahoo_auth');
+      var redirect_uri = yahoo_auth.attr('redirect_uri');
+      
+      window.open(redirect_uri,'','scrollbars=no,menubar=no,height=400,width=800,resizable=yes,toolbar=no,status=no');
+    };
+
+    var _do_openid_connect = function(e) {
+      var openid_auth = $('.social_connect_openid_auth');
+      var redirect_uri = openid_auth.attr('redirect_uri');
+      var context = $(e.target).parents('.social_connect_openid_form')[0];
+      var blog_name = $('.openid_url', context).val();
+      var blog_url = "http://" + blog_name;
+      redirect_uri = redirect_uri + "?openid_url=" + encodeURIComponent(blog_url);
+	
+      window.open(redirect_uri,'','scrollbars=yes,menubar=no,height=400,width=800,resizable=yes,toolbar=no,status=no');
+    };
+
     var _do_twitter_connect = function() {
       var twitter_auth = $('.social_connect_twitter_auth');
       var redirect_uri = twitter_auth.attr('redirect_uri');
@@ -43,7 +64,7 @@ jQuery.noConflict();
       var redirect_uri = wordpress_auth.attr('redirect_uri');
       var context = $(e.target).parents('.social_connect_wordpress_form')[0];
       var blog_name = $('.wordpress_blog_url', context).val();
-      var blog_url = "http://" + blog_name + ".wordpress.com";
+      var blog_url = "http://" + blog_name + ".com";
       redirect_uri = redirect_uri + "?wordpress_blog_url=" + encodeURIComponent(blog_url);
 	
       window.open(redirect_uri,'','scrollbars=yes,menubar=no,height=400,width=800,resizable=yes,toolbar=no,status=no');
@@ -119,6 +140,32 @@ jQuery.noConflict();
 
     $(".social_connect_login_continue_google").click(function() {
       _do_google_connect();
+    });
+
+    $(".social_connect_login_yahoo").click(function() {
+      if(_is_already_connected) {
+        _social_connect_already_connected_form.dialog('open');
+		closedialog = 0;
+      } else {
+        _do_yahoo_connect();
+      }
+    });
+
+    $(".social_connect_login_continue_yahoo").click(function() {
+      _do_yahoo_connect();
+    });
+
+    $(".social_connect_login_openid").click(function() {
+      if(_is_already_connected) {
+        _social_connect_already_connected_form.dialog('open');
+		closedialog = 0;
+      } else {
+        _social_connect_openid_form.dialog('open');
+      }
+    });
+
+    $(".social_connect_openid_proceed").click(function(e) {  
+      _do_openid_connect(e);
     });
     
     $(".social_connect_login_wordpress").click(function() {
