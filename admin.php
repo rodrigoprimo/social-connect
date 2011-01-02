@@ -9,11 +9,16 @@ add_action('admin_menu', 'sc_social_connect_admin_menu');
 
 function sc_register_social_connect_settings()
 {
-	register_setting( 'social-connect-settings-group', 'social_connect_facebook_api_key' );
-	register_setting( 'social-connect-settings-group', 'social_connect_facebook_secret_key' );
+  register_setting( 'social-connect-settings-group', 'social_connect_facebook_api_key' );
+  register_setting( 'social-connect-settings-group', 'social_connect_facebook_secret_key' );
   register_setting( 'social-connect-settings-group', 'social_connect_twitter_enabled');
   register_setting( 'social-connect-settings-group', 'social_connect_twitter_consumer_key');
   register_setting( 'social-connect-settings-group', 'social_connect_twitter_consumer_secret');
+  register_setting( 'social-connect-settings-group', 'social_connect_liveid_appid_key' );
+  register_setting( 'social-connect-settings-group', 'social_connect_liveid_secret_key' );
+  register_setting( 'social-connect-settings-group', 'social_connect_liveid_security_algorithm' );
+  register_setting( 'social-connect-settings-group', 'social_connect_liveid_return_url' );    
+  register_setting( 'social-connect-settings-group', 'social_connect_liveid_policy_url' );
 }
 
 
@@ -74,6 +79,38 @@ function sc_render_social_connect_settings()
         <td><input type="text" name="social_connect_twitter_consumer_secret" value="<?php echo get_option('social_connect_twitter_consumer_secret'); ?>" /></td>
         </tr>
     </table>
+
+    <h3>Windows Live Settings</h3>
+	<p>To offer login via Windows Live, you need to register your site as a Windows Live Application and get a <strong>Client ID</strong>, a <strong>Secret</strong>.</p>
+	<p>Already registered? Find your keys in your <a href="https://manage.dev.live.com/default.aspx">Windows Live Application List</a></p>
+	<p>Need to register? <a href="https://manage.dev.live.com/AddApplication.aspx">Register an Application</a> and fill the form with the details below:
+	<ol>
+		<li>Application Type: <strong>Web application</strong></li>
+	</ol>
+    <table class="form-table">
+        
+        <tr valign="top">
+        <th scope="row">Client ID</th>
+        <td><input type="text" name="social_connect_liveid_appid_key" value="<?php echo get_option('social_connect_liveid_appid_key'); ?>" /></td>
+        </tr>
+        <tr valign="top">
+        <th scope="row">Secret Key</th>
+        <td><input type="text" name="social_connect_liveid_secret_key" value="<?php echo get_option('social_connect_liveid_secret_key'); ?>" /></td>
+        </tr>
+        <tr valign="top">
+        <th scope="row">Security Algorithm</th>
+        <td><input type="text" name="social_connect_liveid_security_algorithm" value="<?php echo get_option('social_connect_liveid_security_algorithm'); ?>" /></td>
+        </tr>
+        <tr valign="top">
+        <th scope="row">Return URL</th>
+        <td><input type="text" name="social_connect_liveid_return_url" value="<?php echo get_option('social_connect_liveid_return_url'); ?>" /></td>
+        </tr>
+        <tr valign="top">
+        <th scope="row">Policy URL</th>
+        <td><input type="text" name="social_connect_liveid_policy_url" value="<?php echo get_option('social_connect_liveid_policy_url'); ?>" /></td>
+        </tr>
+    </table>
+    
     <p class="submit">
     <input type="submit" class="button-primary" value="<?php _e('Save Changes') ?>" />
     </p>

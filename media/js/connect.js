@@ -58,6 +58,20 @@ jQuery.noConflict();
       window.open(redirect_uri,'','scrollbars=no,menubar=no,height=400,width=800,resizable=yes,toolbar=no,status=no');
     };
 
+    var _do_liveid_connect = function() {
+      var liveid_auth = $('.social_connect_liveid_auth');
+      var appid = liveid_auth.attr('appid');      
+      var sec_algo = liveid_auth.attr('sec_algo');
+      var redirect_uri = liveid_auth.attr('redirect_uri');
+    
+      if(appid == "" || sec_algo == "") {
+        alert("Social Connect plugin has not been configured for this provider")
+      } else {
+        window.open('http://login.live.com/wlogin.srf?appid=' + appid + '&alg=' + sec_algo,
+            '','scrollbars=no,menubar=no,height=500,width=900,resizable=yes,toolbar=no,status=no');
+      }
+    };
+
     var _do_wordpress_connect = function(e) {
 
       var wordpress_auth = $('.social_connect_wordpress_auth');
@@ -127,6 +141,19 @@ jQuery.noConflict();
     
     $(".social_connect_login_continue_twitter").click(function() {
       _do_twitter_connect();
+    });
+
+    $(".social_connect_login_liveid").click(function() {
+      if(_is_already_connected) {
+        _social_connect_already_connected_form.dialog('open');
+		closedialog = 0;
+      } else {
+        _do_liveid_connect();
+      }  
+    });
+    
+    $(".social_connect_login_continue_liveid").click(function() {
+      _do_liveid_connect();
     });
     
     $(".social_connect_login_google").click(function() {

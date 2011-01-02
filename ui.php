@@ -6,6 +6,7 @@ function sc_render_login_form_social_connect()
   
   $twitter_enabled = get_option('social_connect_twitter_enabled') && get_option('social_connect_twitter_consumer_key') && get_option('social_connect_twitter_consumer_secret');
   $facebook_enabled = get_option('social_connect_facebook_api_key') && get_option('social_connect_facebook_secret_key');
+  $liveid_enabled = get_option('social_connect_liveid_appid_key') && get_option('social_connect_liveid_secret_key');
 ?>
 
 <div id="social_connect_ui">
@@ -17,6 +18,9 @@ function sc_render_login_form_social_connect()
   <?php } ?>
   <?php if($twitter_enabled) { ?>
     <a href="javascript://" title="Twitter" class="social_connect_login_twitter"><img src="<?php echo $images_url . 'twitter_32.png' ?>" /></a>
+  <?php } ?>
+  <?php if($liveid_enabled) { ?>
+    <a href="javascript://" title="LiveID" class="social_connect_login_liveid"><img src="<?php echo $images_url . 'windows_32.png' ?>" /></a>
   <?php } ?>
   <a href="javascript://" title="Google" class="social_connect_login_google"><img src="<?php echo $images_url . 'google_32.png' ?>" /></a>
   <a href="javascript://" title="Yahoo" class="social_connect_login_yahoo"><img src="<?php echo $images_url . 'yahoo_32.png' ?>" /></a>
@@ -66,6 +70,9 @@ function sc_render_login_form_social_connect()
 </div>
 
 <div class="social_connect_twitter_auth" redirect_uri="<?php echo(plugins_url() . '/wp_social_connect/twitter/connect.php'); ?>">
+</div>
+
+<div class="social_connect_liveid_auth" appid="<?php echo get_option('social_connect_liveid_appid_key'); ?>" sec_algo="<?php echo get_option('social_connect_liveid_security_algorithm'); ?>" redirect_uri="<?php echo(plugins_url() . '/wp_social_connect/liveid/connect.php'); ?>">
 </div>
 
 <div class="social_connect_google_auth" redirect_uri="<?php echo(plugins_url() . '/wp_social_connect/google/connect.php'); ?>">
@@ -178,7 +185,7 @@ function sc_render_social_connect_widget($args)
 
 function social_connect_plugin_loaded()
 {
-  $widget_ops = array('classname' => 'social_connect_widget', 'description' => "Allows users to register and login using their existing Twitter, Facebook, Google and wordpress.com accounts" );
+  $widget_ops = array('classname' => 'social_connect_widget', 'description' => "Allows users to register and login using their existing Twitter, Facebook, Windows Live ID, Google, Yahoo, OpenID and wordpress.com accounts" );
   wp_register_sidebar_widget('social_connect_widget', 'Social Connect', 'sc_render_social_connect_widget', $widget_ops);
 }
 

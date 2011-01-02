@@ -65,6 +65,17 @@ function sc_social_connect_process_login( $is_ajax = false )
       $sc_email = 'tw_' . md5($sc_provider_identity) . '@' . $domain_name;
       $user_login = $sc_screen_name;
     break;
+
+    case 'liveid':
+      $sc_provider_identity = $_REQUEST['social_connect_liveid_identity'];
+      social_connect_verify_signature($sc_provider_identity, $sc_provided_signature, $redirect_to);
+      $sc_email = $_REQUEST['social_connect_email'];
+      $sc_first_name = $_REQUEST['social_connect_first_name'];
+      $sc_last_name = $_REQUEST['social_connect_last_name'];
+      $sc_profile_url = '';
+      $sc_name = $sc_first_name . ' ' . $sc_last_name;
+      $user_login = strtolower($sc_first_name.$sc_last_name);
+    break;
     
     case 'google':
       $sc_provider_identity = $_REQUEST['social_connect_openid_identity'];
