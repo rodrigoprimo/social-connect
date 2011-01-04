@@ -97,6 +97,8 @@ switch ($action) {
         //$tokens  = new TokenDB($TOKENDB);
         //$tokens->setToken($user->getId(), $consent->getToken());  
         update_option($user->getId(),$consent->getToken());        
+      } else {
+        update_option($user->getId(),""); 
       }
     }
         header("Location: $LOGIN");

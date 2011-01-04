@@ -6,7 +6,7 @@ function sc_render_login_form_social_connect()
   
   $twitter_enabled = get_option('social_connect_twitter_enabled') && get_option('social_connect_twitter_consumer_key') && get_option('social_connect_twitter_consumer_secret');
   $facebook_enabled = get_option('social_connect_facebook_api_key') && get_option('social_connect_facebook_secret_key');
-  $liveid_enabled = get_option('social_connect_liveid_appid_key') && get_option('social_connect_liveid_secret_key');
+  $liveid_enabled = get_option('social_connect_liveid_appid_key') && get_option('social_connect_liveid_secret_key') && get_option('social_connect_liveid_security_algorithm') && get_option('social_connect_liveid_return_url') && get_option('social_connect_liveid_policy_url');
 ?>
 
 <div id="social_connect_ui">

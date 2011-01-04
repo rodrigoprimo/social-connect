@@ -60,8 +60,8 @@ if($liveid_appid && $liveid_secret && $liveid_secalgo) {
     
       $consenturl = $wll->getConsentUrl($OFFERS);
       
-      $consent_html = "<p>Please <a href=\"$consenturl\">click here</a> to grant consent so that we may access your Windows Live data.</p>";
-
+      $consent_html = "<p>Please <a href=\"$consenturl\">click here</a> to grant consent so that we may access your Windows Live data.</p>";      
+      
       // Attempt to get the raw consent token from persistent store for the 
       // current user ID.
       //$tokens  = new TokenDB($TOKENDB);
@@ -69,6 +69,11 @@ if($liveid_appid && $liveid_secret && $liveid_secalgo) {
       $token = get_option($userid);
     
       $consenttoken = $wll->processConsentToken($token);
+
+      if (!$consenttoken) {
+        wp_redirect($consenturl);
+      }
+
     
       // If a consent token is found and is stale, try to refresh it and store  
       // it in persistent storage.
@@ -98,7 +103,7 @@ if($liveid_appid && $liveid_secret && $liveid_secalgo) {
 <tr><td>Token</td><td>{$consenttoken->getToken()}</td></tr>
 </table>
 END;
-            $consent_html = "";
+            
           }   
       }
   }
@@ -123,11 +128,9 @@ END;
 
 if ($consenttoken) {
 
-  $dt = $consenttoken->getDelegationToken();
-  //$header = "Authorization: DelegatedToken dt=$dt\r\n";
+  $dt = $consenttoken->getDelegationToken();  
   $header = array("Authorization: DelegatedToken dt=\"$dt\"\r\n");
-
-  //$dt = $consenttoken->getRefreshToken();
+  
   $opts = array(
     'http'=>array(
       'method'=>'GET',
@@ -146,6 +149,7 @@ if ($consenttoken) {
     $owner = $oSimpleXML->Owner;
     $liveid = $owner->WindowsLiveID;
     $email = $owner->Emails->Email->Address;
+    if (trim($email) == "") {$email = $liveid;}
     $first_name = $owner->Profiles->Personal->FirstName;
     $last_name = $owner->Profiles->Personal->LastName;
     $signature = social_connect_generate_signature($liveid);
@@ -170,13 +174,6 @@ function init() {
 </script>
 </head>
 <body onload="init();">
-<?php //echo $control_html; ?>
-
-<?php //echo $login_html; ?>
-
-<?php echo $consent_html; ?>
-
-
 </body>
 </html>
 

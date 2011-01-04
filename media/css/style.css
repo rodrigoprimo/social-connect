@@ -34,7 +34,19 @@ div.social_connect_twitter_auth {
   display:none;
 }
 
+div.social_connect_liveid_auth {
+  display:none;
+}
+
 div.social_connect_google_auth {
+  display:none;
+}
+
+div.social_connect_yahoo_auth {
+  display:none;
+}
+
+div.social_connect_openid_auth {
   display:none;
 }
 
