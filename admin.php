@@ -81,9 +81,9 @@ function sc_render_social_connect_settings()
     </table>
 
     <h3>Windows Live Settings</h3>
-	<p>To offer login via Windows Live, you need to register your site as a Windows Live Application and get a <strong>Client ID</strong>, a <strong>Secret</strong>.</p>
+	<p>To offer login via Windows Live, you need to register your site as a Windows Live Application and get a <strong>Client ID</strong> and <strong>Secret</strong>.</p>
 	<p>Already registered? Find your keys in your <a href="https://manage.dev.live.com/default.aspx">Windows Live Application List</a></p>
-	<p>Need to register? <a href="https://manage.dev.live.com/AddApplication.aspx">Register an Application</a> and fill the form with the details below:
+	<p>Need to register? <a href="https://manage.dev.live.com/AddApplication.aspx">Register an Application</a> and fill the form below with the details of the application:
 	<ol>
 		<li>Application Type: <strong>Web application</strong></li>
 	</ol>
