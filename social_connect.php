@@ -92,10 +92,25 @@ function sc_social_connect_process_login( $is_ajax = false )
       $sc_provider_identity = $_REQUEST['social_connect_openid_identity'];
       social_connect_verify_signature($sc_provider_identity, $sc_provided_signature, $redirect_to);
       $sc_email = $_REQUEST['social_connect_email'];
-      $sc_first_name = $_REQUEST['social_connect_first_name'];
-      $sc_last_name = $_REQUEST['social_connect_last_name'];
+      $sc_name = $_REQUEST['social_connect_name'];
+      $sc_username = $_REQUEST['social_connect_username'];
       $sc_profile_url = '';
-      $sc_name = $sc_first_name . ' ' . $sc_last_name;
+      if($sc_name == '') {
+        if($sc_username == '') {
+          $names = explode("@", $sc_email);
+          $sc_name = $names[0];
+          $sc_first_name = $sc_name;
+          $sc_last_name = '';
+        } else {
+          $names = explode(" ", $sc_username);
+          $sc_first_name = $names[0];
+          $sc_last_name = $names[1];
+        }
+      } else {
+        $names = explode(" ", $sc_name);
+        $sc_first_name = $names[0];
+        $sc_last_name = $names[1];
+      }
       $user_login = strtolower($sc_first_name.$sc_last_name);
     break;
 
@@ -149,7 +164,11 @@ function sc_social_connect_process_login( $is_ajax = false )
 
   // cookies used to display welcome message if already signed in recently using some provider
   setcookie("social_connect_current_provider", $social_connect_provider, time()+3600, SITECOOKIEPATH, COOKIE_DOMAIN, false, true);
-  setcookie("social_connect_current_name", $sc_name, time()+3600, SITECOOKIEPATH, COOKIE_DOMAIN, false, true);
+  if ($sc_name == '') {
+    setcookie("social_connect_current_name", $user_login, time()+3600, SITECOOKIEPATH, COOKIE_DOMAIN, false, true);
+  } else {
+    setcookie("social_connect_current_name", $sc_name, time()+3600, SITECOOKIEPATH, COOKIE_DOMAIN, false, true);
+  }
   
   // get user by meta
   $user_id = social_connect_get_user_by_meta($sc_provider_identity_key, $sc_provider_identity);

@@ -6,7 +6,7 @@ try {
   if(!isset($_GET['openid_mode']) || $_GET['openid_mode'] == 'cancel') {
     $openid = new LightOpenID;
     $openid->identity = 'me.yahoo.com';
-    $openid->required = array('namePerson/first', 'namePerson/last', 'contact/email');
+    $openid->required = array('namePerson', 'namePerson/friendly', 'contact/email');
     header('Location: ' . $openid->authUrl());
   } else {
     $openid = new LightOpenID;
@@ -14,8 +14,8 @@ try {
       $yahoo_id = $openid->identity;
       $attributes = $openid->getAttributes();
       $email = $attributes['contact/email'];
-      $first_name = $attributes['namePerson/first'];
-      $last_name = $attributes['namePerson/last'];
+      $name = $attributes['namePerson'];
+      $username = $attributes['namePerson/friendly'];
       $signature = social_connect_generate_signature($yahoo_id);
       ?>
 <html>
@@ -26,8 +26,8 @@ function init() {
     'social_connect_openid_identity' : '<?php echo $yahoo_id ?>',
     'social_connect_signature' : '<?php echo $signature ?>',
     'social_connect_email' : '<?php echo $email ?>',
-    'social_connect_first_name' : '<?php echo $first_name ?>',
-    'social_connect_last_name' : '<?php echo $last_name ?>'});
+    'social_connect_name' : '<?php echo $name ?>',
+    'social_connect_username' : '<?php echo $username ?>'});
     
   window.close();
 }
