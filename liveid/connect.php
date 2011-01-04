@@ -69,9 +69,11 @@ if($liveid_appid && $liveid_secret && $liveid_secalgo) {
       $token = get_option($userid);
     
       $consenttoken = $wll->processConsentToken($token);
-
-      if (!$consenttoken) {
-        wp_redirect($consenturl);
+      
+      if ($consenttoken) {
+        if (!$consenttoken->isValid()) {      
+            wp_redirect($consenturl);
+        }
       }
 
     
