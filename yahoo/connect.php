@@ -5,7 +5,7 @@ require_once(dirname(dirname(__FILE__)) . '/utils.php' );
 try {
   if(!isset($_GET['openid_mode']) || $_GET['openid_mode'] == 'cancel') {
     $openid = new LightOpenID;
-    $openid->identity = 'yahoo.com';
+    $openid->identity = 'https://open.login.yahooapis.com/openid/op/auth';
     $openid->required = array('namePerson/first', 'namePerson/last', 'contact/email');
     header('Location: ' . $openid->authUrl());
   } else {
