@@ -2,8 +2,8 @@
 /*
 Plugin Name: Social Connect
 Plugin URI: http://github.com/ashwinphatak/wp_social_connect
-Description: Allow users to register and login using their existing Twitter, Facebook, Google and wordpress.com accounts
-Version: 1.0
+Description: Allow users to register and login using their existing Twitter, Facebook, Google, Yahoo, WordPress.com or other OpenID accounts.
+Version: 0.1
 Author: Ashwin Phatak, Brent Shepherd
 Author URI: http://app2technologies.com/
 License: GPL2
