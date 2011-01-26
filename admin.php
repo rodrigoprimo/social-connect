@@ -9,16 +9,25 @@ add_action('admin_menu', 'sc_social_connect_admin_menu');
 
 function sc_register_social_connect_settings()
 {
+  register_setting( 'social-connect-settings-group', 'social_connect_facebook_enabled');
   register_setting( 'social-connect-settings-group', 'social_connect_facebook_api_key' );
   register_setting( 'social-connect-settings-group', 'social_connect_facebook_secret_key' );
+
   register_setting( 'social-connect-settings-group', 'social_connect_twitter_enabled');
   register_setting( 'social-connect-settings-group', 'social_connect_twitter_consumer_key');
   register_setting( 'social-connect-settings-group', 'social_connect_twitter_consumer_secret');
+  
+  register_setting( 'social-connect-settings-group', 'social_connect_liveid_enabled');
   register_setting( 'social-connect-settings-group', 'social_connect_liveid_appid_key' );
   register_setting( 'social-connect-settings-group', 'social_connect_liveid_secret_key' );
   register_setting( 'social-connect-settings-group', 'social_connect_liveid_security_algorithm' );
   register_setting( 'social-connect-settings-group', 'social_connect_liveid_return_url' );    
   register_setting( 'social-connect-settings-group', 'social_connect_liveid_policy_url' );
+
+  register_setting( 'social-connect-settings-group', 'social_connect_google_enabled');
+  register_setting( 'social-connect-settings-group', 'social_connect_yahoo_enabled');
+  register_setting( 'social-connect-settings-group', 'social_connect_openid_enabled');
+  register_setting( 'social-connect-settings-group', 'social_connect_wordpress_enabled');
 }
 
 
@@ -29,9 +38,9 @@ function sc_render_social_connect_settings()
 <h2>Social Connect Settings</h2>
 
 <form method="post" action="options.php">
-    <?php settings_fields( 'social-connect-settings-group' ); ?>
+  <?php settings_fields( 'social-connect-settings-group' ); ?>
 
-    <h3>Facebook Settings</h3>
+  <h3>Facebook Settings</h3>
 	<p>To connect your site to Facebook, you need a Facebook Application. If you have already created one, please insert your API & Secret key below.</p>
 	<p>Already registered? Find your keys in your <a target="_blank" href="http://www.facebook.com/developers/apps.php">Facebook Application List</a></li>
 	<p>Need to register?</p>
@@ -41,6 +50,12 @@ function sc_render_social_connect_settings()
 	<li>Select the application you created, then copy and paste the API key & Application Secret from there.</li>
 	</ol>
     <table class="form-table">
+        <tr valign="top">
+        <th scope="row">Enable?</th>
+        <td>
+          <input type="checkbox" name="social_connect_facebook_enabled" value="1" <?php checked(get_option('social_connect_facebook_enabled'), 1); ?> />
+        </td>
+        </tr>
         <tr valign="top">
         <th scope="row">API Key</th>
         <td><input type="text" name="social_connect_facebook_api_key" value="<?php echo get_option('social_connect_facebook_api_key'); ?>" /></td>
@@ -52,7 +67,8 @@ function sc_render_social_connect_settings()
         </tr>
     </table>
 
-    <h3>Twitter Settings</h3>
+  <br />
+  <h3>Twitter Settings</h3>
 	<p>To offer login via Twitter, you need to register your site as a Twitter Application and get a <strong>Consumer Key</strong>, a <strong>Consumer Secret</strong>, an <strong>Access Token</strong> and an <strong>Access Token Secret</strong>.</p>
 	<p>Already registered? Find your keys in your <a href="http://dev.twitter.com/apps">Twitter Application List</a></p>
 	<p>Need to register? <a href="http://dev.twitter.com/apps/new">Register an Application</a> and fill the form with the details below:
@@ -80,7 +96,8 @@ function sc_render_social_connect_settings()
         </tr>
     </table>
 
-    <h3>Windows Live Settings</h3>
+  <br />
+  <h3>Windows Live Settings</h3>
 	<p>To offer login via Windows Live, you need to register your site as a Windows Live Application and get a <strong>Client ID</strong> and <strong>Secret</strong>.</p>
 	<p>Already registered? Find your keys in your <a href="https://manage.dev.live.com/default.aspx">Windows Live Application List</a></p>
 	<p>Need to register? <a href="https://manage.dev.live.com/AddApplication.aspx">Register an Application</a> and the fill the form with the details below. 
@@ -91,7 +108,12 @@ function sc_render_social_connect_settings()
 		<li>From the application you created, copy and paste the following details. Note that all fields are required. </li>
 	</ol>
     <table class="form-table">
-        
+        <tr valign="top">
+        <th scope="row">Enable?</th>
+        <td>
+          <input type="checkbox" name="social_connect_liveid_enabled" value="1" <?php checked(get_option('social_connect_liveid_enabled'), 1); ?> />
+        </td>
+        </tr>
         <tr valign="top">
         <th scope="row">Client ID</th>
         <td><input type="text" name="social_connect_liveid_appid_key" value="<?php echo get_option('social_connect_liveid_appid_key'); ?>" /></td>
@@ -113,11 +135,50 @@ function sc_render_social_connect_settings()
         <td><input type="text" name="social_connect_liveid_policy_url" value="<?php echo get_option('social_connect_liveid_policy_url'); ?>" /></td>
         </tr>
     </table>
-    
-    <p class="submit">
-    <input type="submit" class="button-primary" value="<?php _e('Save Changes') ?>" />
-    </p>
 
+  <br />
+  <h3>Google Settings</h3>
+  <table class="form-table">
+    <tr valign="top">
+    <th scope="row">Enable?</th>
+    <td>
+      <input type="checkbox" name="social_connect_google_enabled" value="1" <?php checked(get_option('social_connect_google_enabled'), 1); ?> />
+    </td>
+  </table>
+
+  <br />
+  <h3>Yahoo Settings</h3>
+  <table class="form-table">
+    <tr valign="top">
+    <th scope="row">Enable?</th>
+    <td>
+      <input type="checkbox" name="social_connect_yahoo_enabled" value="1" <?php checked(get_option('social_connect_yahoo_enabled'), 1); ?> />
+    </td>
+  </table>
+
+  <br />
+  <h3>OpenID Settings</h3>
+  <table class="form-table">
+    <tr valign="top">
+    <th scope="row">Enable?</th>
+    <td>
+      <input type="checkbox" name="social_connect_openid_enabled" value="1" <?php checked(get_option('social_connect_openid_enabled'), 1); ?> />
+    </td>
+  </table>
+  
+  <br />
+  <h3>WordPress.com Settings</h3>
+  <table class="form-table">
+    <tr valign="top">
+    <th scope="row">Enable?</th>
+    <td>
+      <input type="checkbox" name="social_connect_wordpress_enabled" value="1" <?php checked(get_option('social_connect_wordpress_enabled'), 1); ?> />
+    </td>
+  </table>
+  
+  <p class="submit">
+  <input type="submit" class="button-primary" value="<?php _e('Save Changes') ?>" />
+  </p>
 </form>
 </div> <?php
 }
