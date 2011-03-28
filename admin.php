@@ -155,7 +155,7 @@ function sc_render_social_connect_settings()
       <input type="checkbox" name="social_connect_yahoo_enabled" value="1" <?php checked(get_option('social_connect_yahoo_enabled'), 1); ?> />
     </td>
   </table>
-
+<?php /* Removed for security: http://wordpress.org/support/topic/plugin-social-connect-social-connect-wp-admin-user-login-through-a-third-party-identity-provider
   <br />
   <h3>OpenID Settings</h3>
   <table class="form-table">
@@ -165,7 +165,7 @@ function sc_render_social_connect_settings()
       <input type="checkbox" name="social_connect_openid_enabled" value="1" <?php checked(get_option('social_connect_openid_enabled'), 1); ?> />
     </td>
   </table>
-  
+*/ ?>
   <br />
   <h3>WordPress.com Settings</h3>
   <table class="form-table">

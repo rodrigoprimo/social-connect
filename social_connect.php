@@ -114,6 +114,7 @@ function sc_social_connect_process_login( $is_ajax = false )
       $user_login = strtolower($sc_first_name.$sc_last_name);
     break;
 
+/* Removed for security: http://wordpress.org/support/topic/plugin-social-connect-social-connect-wp-admin-user-login-through-a-third-party-identity-provider
     case 'openid':
       $sc_provider_identity = $_REQUEST['social_connect_openid_identity'];
       social_connect_verify_signature($sc_provider_identity, $sc_provided_signature, $redirect_to);
@@ -136,7 +137,7 @@ function sc_social_connect_process_login( $is_ajax = false )
       setcookie("social_connect_openid_blog_url", $sc_provider_identity, time()+3600, SITECOOKIEPATH, COOKIE_DOMAIN, false, true);
 
     break;
-
+*/
     case 'wordpress':
       $sc_provider_identity = $_REQUEST['social_connect_openid_identity'];
       social_connect_verify_signature($sc_provider_identity, $sc_provided_signature, $redirect_to);
