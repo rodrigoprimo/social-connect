@@ -42,5 +42,9 @@ If you have a question not answered here, please ask in the [Support Forums](htt
 
 == Changelog ==
 
+= 0.4 =
+* Removing generic OpenID for security http://wordpress.org/support/topic/545420
+* Only calling deprecated registration.php file if WP < 3.1 http://wordpress.org/support/topic/540156
+
 = 0.1 =
 * Initial beta release. 
