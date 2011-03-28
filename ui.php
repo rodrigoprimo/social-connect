@@ -32,9 +32,13 @@ function sc_render_login_form_social_connect()
   <?php if($yahoo_enabled) { ?>
   <a href="javascript://" title="Yahoo" class="social_connect_login_yahoo"><img src="<?php echo $images_url . 'yahoo_32.png' ?>" /></a>
   <?php } ?>
+  <?php
+/* 
   <?php if($openid_enabled) { ?>
   <a href="javascript://" title="OpenID" class="social_connect_login_openid"><img src="<?php echo $images_url . 'openid_32.png' ?>" /></a>
   <?php } ?>
+*/   
+?>
   <?php if($wordpress_enabled) { ?>
   <a href="javascript://" title="WordPress" class="social_connect_login_wordpress"><img src="<?php echo $images_url . 'wordpress_32.png' ?>" /></a>
   <?php } ?>
