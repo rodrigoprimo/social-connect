@@ -39,19 +39,10 @@ function sc_add_javascripts()
   if(!wp_script_is('social_connect', 'registered') ) {
     wp_register_script("social_connect", SOCIAL_CONNECT_PLUGIN_URL . "/media/js/connect.js");
   }
-
-  // commented out check below as then the JS files are just not emitted, not sure why
-//  if (did_action('wp_print_scripts')) {
     wp_print_scripts("jquery");
     wp_print_scripts('jquery-ui-core');
     wp_print_scripts('jquery-ui-dialog');
     wp_print_scripts("social_connect");
-//	} else {
-//    wp_enqueue_script("jquery");
-//    wp_enqueue_script('jquery-ui-core');
-//    wp_enqueue_script('jquery-ui-dialog');
-//    wp_enqueue_script("social_connect");
-//  }
 }
 add_action('login_head', 'sc_add_javascripts');
 add_action('wp_head', 'sc_add_javascripts');

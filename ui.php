@@ -11,7 +11,6 @@ function sc_render_login_form_social_connect()
   $yahoo_enabled = get_option('social_connect_yahoo_enabled', 1);
   $openid_enabled = get_option('social_connect_openid_enabled', 1);
   $wordpress_enabled = get_option('social_connect_wordpress_enabled', 1);
-  
 ?>
 
 <div id="social_connect_ui">

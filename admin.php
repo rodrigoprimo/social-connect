@@ -4,7 +4,7 @@ function sc_social_connect_admin_menu()
 {
   add_menu_page('Social Connect Settings', 'Social Connect', 'manage_options', 'social-connect-id', 'sc_render_social_connect_settings');
   add_submenu_page('social-connect-id', 'Settings', 'Settings', 'manage_options', 'social-connect-id', 'sc_render_social_connect_settings');
-	add_submenu_page('social-connect-id','Diagnostics','Diagnostics','manage_options','social-connect-diagnostics-id','sc_render_social_connect_diagnostics');  
+  add_submenu_page('social-connect-id','Diagnostics','Diagnostics','manage_options','social-connect-diagnostics-id','sc_render_social_connect_diagnostics');  
   add_action( 'admin_init', 'sc_register_social_connect_settings' );
 }
 add_action('admin_menu', 'sc_social_connect_admin_menu');
@@ -14,13 +14,16 @@ function sc_register_social_connect_settings()
   register_setting( 'social-connect-settings-group', 'social_connect_facebook_enabled');  
   register_setting( 'social-connect-settings-group', 'social_connect_facebook_api_key' );
   register_setting( 'social-connect-settings-group', 'social_connect_facebook_secret_key' );
+
   register_setting( 'social-connect-settings-group', 'social_connect_twitter_enabled');
   register_setting( 'social-connect-settings-group', 'social_connect_twitter_consumer_key');
   register_setting( 'social-connect-settings-group', 'social_connect_twitter_consumer_secret');
+
   register_setting( 'social-connect-settings-group', 'social_connect_liveid_enabled');    
   register_setting( 'social-connect-settings-group', 'social_connect_liveid_appid_key' );
   register_setting( 'social-connect-settings-group', 'social_connect_liveid_secret_key' );
   register_setting( 'social-connect-settings-group', 'social_connect_liveid_policy_url' );  
+
   register_setting( 'social-connect-settings-group', 'social_connect_google_enabled');      
   register_setting( 'social-connect-settings-group', 'social_connect_yahoo_enabled');      
   register_setting( 'social-connect-settings-group', 'social_connect_openid_enabled');    
@@ -35,7 +38,6 @@ function sc_render_social_connect_settings()
 
 <form method="post" action="options.php">
     <?php settings_fields( 'social-connect-settings-group' ); ?>
-
     <h3>Facebook Settings</h3>
 	<p>To connect your site to Facebook, you need a Facebook Application. If you have already created one, please insert your API & Secret key below.</p>
 	<p>Already registered? Find your keys in your <a target="_blank" href="http://www.facebook.com/developers/apps.php">Facebook Application List</a></li>
@@ -108,7 +110,6 @@ function sc_render_social_connect_settings()
           Check this box to enable register/login using Windows Live ID.
         </td>
         </tr>
-        
         <tr valign="top">
         <th scope="row">Client ID</th>
         <td><input type="text" name="social_connect_liveid_appid_key" value="<?php echo get_option('social_connect_liveid_appid_key'); ?>" /></td>
@@ -117,7 +118,6 @@ function sc_render_social_connect_settings()
         <th scope="row">Secret Key</th>
         <td><input type="text" name="social_connect_liveid_secret_key" value="<?php echo get_option('social_connect_liveid_secret_key'); ?>" /></td>
         </tr>
-        
         <tr valign="top">
         <th scope="row">Policy URL</th>
         <td><input type="text" name="social_connect_liveid_policy_url" value="<?php echo get_option('social_connect_liveid_policy_url'); ?>" /></td>

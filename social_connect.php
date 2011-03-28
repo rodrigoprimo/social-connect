@@ -8,11 +8,20 @@ Author: APP2 Technologies, Brent Shepherd
 Author URI: http://www.app2technologies.com/
 License: GPL2
 */
-?>
-<?php
 
 require_once(ABSPATH . WPINC . '/registration.php');
 require_once(dirname(__FILE__) . '/constants.php' );
+
+/*
+ * Notice: registration.php is deprecated since version 3.1 with no alternative available.
+ * registration.php functions moved to user.php, everything is now included by default
+ * This file only need to be included for versions before 3.1.
+ */
+global $wp_version;
+if (version_compare($wp_version, '3.1', '< ')) {
+    require_once(ABSPATH . WPINC . '/registration.php');
+}
+
 require_once(dirname(__FILE__) . '/utils.php' );
 require_once(dirname(__FILE__) . '/media.php' );
 require_once(dirname(__FILE__) . '/admin.php' );
@@ -116,6 +125,7 @@ function sc_social_connect_process_login( $is_ajax = false )
       $user_login = strtolower($sc_first_name.$sc_last_name);
     break;
 
+/* Removed for security: http://wordpress.org/support/topic/plugin-social-connect-social-connect-wp-admin-user-login-through-a-third-party-identity-provider
     case 'openid':
       $sc_provider_identity = $_REQUEST['social_connect_openid_identity'];
       social_connect_verify_signature($sc_provider_identity, $sc_provided_signature, $redirect_to);
@@ -138,6 +148,7 @@ function sc_social_connect_process_login( $is_ajax = false )
       setcookie("social_connect_openid_blog_url", $sc_provider_identity, time()+3600, SITECOOKIEPATH, COOKIE_DOMAIN, false, true);
 
     break;
+*/
 
     case 'wordpress':
       $sc_provider_identity = $_REQUEST['social_connect_openid_identity'];

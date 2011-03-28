@@ -1,5 +1,9 @@
 <?php
+<<<<<<< HEAD
 require_once(dirname(dirname(__FILE__)) . '/constants.php' );
+=======
+require_once(dirname(dirname(dirname(dirname(dirname(__FILE__))))) . '/wp-load.php');
+>>>>>>> github/master
 require_once(dirname(__FILE__) . '/facebook.php' );
 require_once(dirname(dirname(__FILE__)) . '/utils.php' );
 
@@ -11,7 +15,11 @@ if(isset($_GET['code'])) {
   $client_id = get_option('social_connect_facebook_api_key');
   $secret_key = get_option('social_connect_facebook_secret_key');
   parse_str(file_get_contents("https://graph.facebook.com/oauth/access_token?" .
+<<<<<<< HEAD
     'client_id=' . $client_id . '&redirect_uri=' . urlencode(SOCIAL_CONNECT_PLUGIN_URL . '/facebook/callback.php') .
+=======
+    'client_id=' . $client_id . '&redirect_uri=' . urlencode(plugins_url() . '/wp_social_connect/facebook/callback.php') .
+>>>>>>> github/master
     '&client_secret=' .  $secret_key .
     '&code=' . urlencode($code)));
     
@@ -35,7 +43,11 @@ function init() {
 <?php
 
 } else {
+<<<<<<< HEAD
   $redirect_uri = urlencode(SOCIAL_CONNECT_PLUGIN_URL . '/facebook/callback.php');
+=======
+  $redirect_uri = urlencode(plugins_url() . '/wp_social_connect/facebook/callback.php');
+>>>>>>> github/master
   wp_redirect('https://graph.facebook.com/oauth/authorize?client_id=' . $client_id . '&redirect_uri=' . $redirect_uri . '&scope=email');
 }
 ?>
