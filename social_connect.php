@@ -10,7 +10,15 @@ License: GPL2
 */
 ?>
 <?php
-require_once(ABSPATH . WPINC . '/registration.php');
+/*
+ * Notice: registration.php is deprecated since version 3.1 with no alternative available.
+ * registration.php functions moved to user.php, everything is now included by default
+ * This file only need to be included for versions before 3.1.
+ */
+global $wp_version;
+if (version_compare($wp_version, '3.1', '< ')) {
+    require_once(ABSPATH . WPINC . '/registration.php');
+}
 require_once(dirname(__FILE__) . '/utils.php' );
 require_once(dirname(__FILE__) . '/media.php' );
 require_once(dirname(__FILE__) . '/admin.php' );
