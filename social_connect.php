@@ -2,15 +2,12 @@
 /*
 Plugin Name: Social Connect
 Plugin URI: http://wordpress.org/extend/plugins/social-connect/
-Description: Allow users to register and login using their existing Twitter, Facebook, Google, Yahoo, Windows Live, WordPress.com or OpenID accounts.
+Description: Allow users to register and login using their existing Twitter, Facebook, Google, Yahoo, Windows Live or WordPress.com account.
 Version: 0.3
 Author: APP2 Technologies, Brent Shepherd
 Author URI: http://www.app2technologies.com/
 License: GPL2
 */
-
-require_once(ABSPATH . WPINC . '/registration.php');
-require_once(dirname(__FILE__) . '/constants.php' );
 
 /*
  * Notice: registration.php is deprecated since version 3.1 with no alternative available.
@@ -18,10 +15,11 @@ require_once(dirname(__FILE__) . '/constants.php' );
  * This file only need to be included for versions before 3.1.
  */
 global $wp_version;
-if (version_compare($wp_version, '3.1', '< ')) {
+if( version_compare($wp_version, '3.1', '< ') ) {
     require_once(ABSPATH . WPINC . '/registration.php');
 }
 
+require_once(dirname(__FILE__) . '/constants.php' );
 require_once(dirname(__FILE__) . '/utils.php' );
 require_once(dirname(__FILE__) . '/media.php' );
 require_once(dirname(__FILE__) . '/admin.php' );
