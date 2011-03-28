@@ -146,6 +146,7 @@ function sc_render_social_connect_settings()
         </tr>        
     </table>
 
+<?php /* Removed for security: http://wordpress.org/support/topic/plugin-social-connect-social-connect-wp-admin-user-login-through-a-third-party-identity-provider
     <h3>OpenID Settings</h3>
     <table class="form-table">
         <tr valign="top">
@@ -156,6 +157,7 @@ function sc_render_social_connect_settings()
         </td>
         </tr>        
     </table>
+*/ ?>
 
     <h3>WordPress Settings</h3>
     <table class="form-table">
