@@ -35,8 +35,6 @@ Yes.
 
 No social connect works with the default WordPress login and registration forms. 
 
-If you have a question not answered here, please ask in the [Support Forums](http://wordpress.org/tags/social-connect).
-
 = Why doesn't Social Connect Work? =
 
 If you have White Label CMS installed, its javascript breaks all plugins which run javascript on the login form. 

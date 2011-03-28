@@ -23,13 +23,8 @@ $CONTROLSTYLE = urlencode('font-size: 10pt; font-family: verdana; background: wh
 
 $liveid_appid = get_option('social_connect_liveid_appid_key');
 $liveid_secret = get_option('social_connect_liveid_secret_key');
-<<<<<<< HEAD
 $liveid_secalgo = "wsignin1.0";
 $liveid_return = SOCIAL_CONNECT_PLUGIN_URL . '/liveid/callback.php';
-=======
-$liveid_secalgo = get_option('social_connect_liveid_security_algorithm');
-$liveid_return = get_option('social_connect_liveid_return_url');
->>>>>>> github/master
 $liveid_policy = get_option('social_connect_liveid_policy_url');
 
 $liveid_settings = array("appid"=>$liveid_appid,"secret"=>$liveid_secret,"securityalgorithm"=>$liveid_secalgo,"returnurl"=>$liveid_return,"policyurl"=>$liveid_policy);
