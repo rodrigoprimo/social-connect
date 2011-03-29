@@ -54,10 +54,10 @@ echo "Exporting the HEAD of master from git to the trunk of SVN"
 git checkout-index -a -f --prefix=$SVNPATH/trunk/
 
 echo "Ignoring github specific files and deployment script"
-svn propset svn:ignore "deploy.sh" "$SVNPATH/"
-svn propset svn:ignore "readme.md" "$SVNPATH/"
-svn propset svn:ignore ".git" "$SVNPATH/"
-svn propset svn:ignore ".gitignore" "$SVNPATH/"
+svn propset svn:ignore "deploy.sh" "$SVNPATH/trunk/"
+svn propset svn:ignore "README.md" "$SVNPATH/trunk/"
+svn propset svn:ignore ".git" "$SVNPATH/trunk/"
+svn propset svn:ignore ".gitignore" "$SVNPATH/trunk/"
 
 echo "Changing directory to SVN and committing to trunk"
 cd $SVNPATH/trunk/
@@ -66,8 +66,8 @@ svn commit --username=$SVNUSER -m "$COMMITMSG"
 
 echo "Creating new SVN tag & committing it"
 cd $SVNPATH
-svn copy trunk/ tags/$NEWVERSION1
-cd $SVNPATH/tags/$NEWVERSION1/
+svn copy trunk/ tags/$NEWVERSION1/
+cd $SVNPATH/tags/$NEWVERSION1
 svn commit --username=$SVNUSER -m "Tagging version $NEWVERSION1"
 
 echo "Removing temporary directory $SVNPATH"
