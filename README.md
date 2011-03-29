@@ -1,6 +1,6 @@
 # WordPress Social Connect
 
-Allow visitors to your WordPress site to register and login using their existing Twitter, Facebook, Google, Windows Live, OpenID, Yahoo or wordpress.com account.
+Give visitors to your WordPress site the option to register and login using their existing Twitter, Facebook, Google, Windows Live, OpenID, Yahoo or wordpress.com account.
 
 ## Description
 
