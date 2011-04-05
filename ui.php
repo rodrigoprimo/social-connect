@@ -6,7 +6,7 @@ function sc_render_login_form_social_connect()
   
   $twitter_enabled = get_option('social_connect_twitter_enabled') && get_option('social_connect_twitter_consumer_key') && get_option('social_connect_twitter_consumer_secret');
   $facebook_enabled = get_option('social_connect_facebook_enabled', 1) && get_option('social_connect_facebook_api_key') && get_option('social_connect_facebook_secret_key');  
-  $liveid_enabled = get_option('social_connect_liveid_enabled', 1) && get_option('social_connect_liveid_appid_key') && get_option('social_connect_liveid_secret_key') && get_option('social_connect_liveid_security_algorithm') && get_option('social_connect_liveid_return_url') && get_option('social_connect_liveid_policy_url');
+  $liveid_enabled = get_option('social_connect_liveid_enabled', 1) && get_option('social_connect_liveid_appid_key') && get_option('social_connect_liveid_secret_key') && get_option('social_connect_liveid_policy_url');
   $google_enabled = get_option('social_connect_google_enabled', 1);
   $yahoo_enabled = get_option('social_connect_yahoo_enabled', 1);
   $openid_enabled = get_option('social_connect_openid_enabled', 1);
@@ -89,7 +89,7 @@ function sc_render_login_form_social_connect()
 <div class="social_connect_twitter_auth" redirect_uri="<?php echo(SOCIAL_CONNECT_PLUGIN_URL . '/twitter/connect.php'); ?>">
 </div>
 
-<div class="social_connect_liveid_auth" appid="<?php echo get_option('social_connect_liveid_appid_key'); ?>" sec_algo="<?php echo get_option('social_connect_liveid_security_algorithm'); ?>" redirect_uri="<?php echo(SOCIAL_CONNECT_PLUGIN_URL . '/liveid/connect.php'); ?>">
+<div class="social_connect_liveid_auth" appid="<?php echo get_option('social_connect_liveid_appid_key'); ?>" sec_algo="wsignin1.0" redirect_uri="<?php echo(SOCIAL_CONNECT_PLUGIN_URL . '/liveid/connect.php'); ?>">
 </div>
 
 <div class="social_connect_google_auth" redirect_uri="<?php echo(SOCIAL_CONNECT_PLUGIN_URL . '/google/connect.php'); ?>">

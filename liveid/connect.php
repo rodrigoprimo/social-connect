@@ -21,11 +21,12 @@ $CONTROLURL = 'http://login.live.com/controls/WebAuth.htm';
 // The CSS style string to pass in to the Web Authentication control.
 $CONTROLSTYLE = urlencode('font-size: 10pt; font-family: verdana; background: white;');
 
-$liveid_appid = get_option('social_connect_liveid_appid_key');
-$liveid_secret = get_option('social_connect_liveid_secret_key');
-$liveid_secalgo = "wsignin1.0";
-$liveid_return = SOCIAL_CONNECT_PLUGIN_URL . '/liveid/callback.php';
-$liveid_policy = get_option('social_connect_liveid_policy_url');
+$liveid_appid	= get_option('social_connect_liveid_appid_key');
+$liveid_secret	= get_option('social_connect_liveid_secret_key');
+$liveid_secalgo	= 'wsignin1.0';
+$liveid_return	= SOCIAL_CONNECT_PLUGIN_URL . '/liveid/callback.php';
+$liveid_policy	= get_option('social_connect_liveid_policy_url');
+
 
 $liveid_settings = array("appid"=>$liveid_appid,"secret"=>$liveid_secret,"securityalgorithm"=>$liveid_secalgo,"returnurl"=>$liveid_return,"policyurl"=>$liveid_policy);
 
