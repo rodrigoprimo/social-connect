@@ -18,5 +18,3 @@ function social_connect_verify_signature($data, $signature, $redirect_to) {
     exit();
   }
 }
-
-?>
