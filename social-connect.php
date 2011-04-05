@@ -9,14 +9,33 @@ Author URI: http://www.app2technologies.com/
 License: GPL2
 */
 
+
+/** 
+ * Check technical requirements are fulfilled before activating.
+ **/
+function sc_activate(){
+	if ( !function_exists( 'register_post_status' ) || !function_exists( 'curl_version' ) || version_compare( PHP_VERSION, '5.1.2', '<' ) ) {
+		deactivate_plugins( basename( dirname( __FILE__ ) ) . '/' . basename( __FILE__ ) );
+		if( !function_exists( 'register_post_status' ) )
+			wp_die(__( "Sorry, but you can not run Social Connect. It requires WordPress 3.0 or newer. Consider <a href='http://codex.wordpress.org/Updating_WordPress'>upgrading</a> your WordPress installation, it's worth the effort.<br/><a href=" . admin_url( 'plugins.php' ) . ">Return to Plugins Admin page &raquo;</a>"), 'prospress' );
+		elseif( !function_exists( 'curl_version' ) )
+			wp_die(__( "Sorry, but you can not run Social Connect. It requires the <a href='http://www.php.net/manual/en/intro.curl.php'>PHP libcurl extension</a> be installed. Please contact your web host and request libcurl be <a href='http://www.php.net/manual/en/intro.curl.php'>installed</a>.<br/><a href=" . admin_url( 'plugins.php' ) . ">Return to Plugins Admin page &raquo;</a>"), 'prospress' );
+		else
+			wp_die(__( "Sorry, but you can not run Social Connect. It requires PHP 5.1.2 or newer. Please contact your web host and request they <a href='http://www.php.net/manual/en/migration5.php'>migrate</a> your PHP installation to run Social Connect.<br/><a href=" . admin_url( 'plugins.php' ) . ">Return to Plugins Admin page &raquo;</a>"), 'prospress' );
+	}
+	do_action( 'sc_activation' );
+}
+register_activation_hook( __FILE__, 'sc_activate' );
+
+
 /*
- * Notice: registration.php is deprecated since version 3.1 with no alternative available.
+ * Registration.php is deprecated since version 3.1 with no alternative available.
  * registration.php functions moved to user.php, everything is now included by default
  * This file only need to be included for versions before 3.1.
  */
 global $wp_version;
-if( version_compare($wp_version, '3.1', '< ') ) {
-    require_once(ABSPATH . WPINC . '/registration.php');
+if( version_compare( $wp_version, '3.1', '< ' ) ) {
+	require_once( ABSPATH . WPINC . '/registration.php' );
 }
 
 require_once(dirname(__FILE__) . '/constants.php' );
