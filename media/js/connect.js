@@ -22,7 +22,7 @@ jQuery.noConflict();
 							maxWidth: 600,
 					        open: function(){closedialog = 1;$(document).bind('click', overlay_click_close);},
 					        focus: function(){closedialog = 0;},
-					        close: function(){$(document).unbind('click', overlay_click_close);},
+					        close: function(){$(document).unbind('click', overlay_click_close);}
 						});
     }
     
