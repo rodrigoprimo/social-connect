@@ -1,17 +1,17 @@
 === Social Connect ===
 Contributors: app2technologies, thenbrent
-Tags: facebook, wordpress.com, twitter, google, yahoo, openid, windows live, social, login, register
+Tags: facebook, wordpress.com, twitter, google, yahoo, openid, social, login, register
 Requires at least: 3.0
 Tested up to: 3.1
-Stable tag: 0.4
+Stable tag: 0.5
 
-Give your visitors a way to comment, login and register with their Twitter, Facebook, Google, Yahoo, Windows Live or WordPress.com account.
+Give your visitors a way to comment, login and register with their Twitter, Facebook, Google, Yahoo or WordPress.com account.
 
 == Description ==
 
 Social Connect adds social login buttons on the login, register and comment forms of your WordPress site.
 
-The buttons offer login and registration using a Twitter, Facebook, Google, Yahoo, Windows Live or WordPress.com account.
+The buttons offer login and registration using a Twitter, Facebook, Google, Yahoo or WordPress.com account.
 
 It makes it super easy for new members to register with your site and existing members to login.
 
@@ -49,11 +49,13 @@ If you don't have White Label CMS installed, please double check your settings t
 
 == Changelog ==
 
-= 0.1 =
-* Initial beta release. 
+= 0.5 =
+* Removing Windows Live due to broken implementation
+* Fixing IE7 Bug reported here: http://wordpress.org/support/topic/plugin-social-connect-social-connect-fails-on-ie7?replies=9
 
-= 0.2 =
-* Fix for directory name
+= 0.4 =
+* Removing generic OpenID for security concerns: http://wordpress.org/support/topic/545420
+* Only calling deprecated registration.php file if WP < 3.1 http://wordpress.org/support/topic/540156
 
 = 0.3 =
 * Social Connect moved to it's own top level menu in wp-admin.
@@ -61,7 +63,13 @@ If you don't have White Label CMS installed, please double check your settings t
 * Simplified setup for Windows Live.
 * Introduced diagnostics to check for required cryptographic extensions and server rewrite rules.
 
-= 0.4 =
-* Removing generic OpenID for security concerns: http://wordpress.org/support/topic/545420
-* Only calling deprecated registration.php file if WP < 3.1 http://wordpress.org/support/topic/540156
+= 0.2 =
+* Fix for directory name
 
+= 0.1 =
+* Initial beta release. 
+
+== Upgrade Notice ==
+
+= 0.5 =
+Important upgrade to fix a bug in version of Internet Explorer prior to version 8.

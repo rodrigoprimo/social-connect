@@ -3,7 +3,7 @@
 Plugin Name: Social Connect
 Plugin URI: http://wordpress.org/extend/plugins/social-connect/
 Description: Allow users to register and login using their existing Twitter, Facebook, Google, Yahoo, Windows Live or WordPress.com account.
-Version: 0.4
+Version: 0.t
 Author: APP2 Technologies, Brent Shepherd
 Author URI: http://www.app2technologies.com/
 License: GPL2
@@ -93,17 +93,6 @@ function sc_social_connect_process_login( $is_ajax = false )
       $sc_email = 'tw_' . md5($sc_provider_identity) . '@' . $domain_name;
       $user_login = $sc_screen_name;
     break;
-
-    case 'liveid':
-      $sc_provider_identity = $_REQUEST['social_connect_liveid_identity'];
-      social_connect_verify_signature($sc_provider_identity, $sc_provided_signature, $redirect_to);
-      $sc_email = $_REQUEST['social_connect_email'];
-      $sc_first_name = $_REQUEST['social_connect_first_name'];
-      $sc_last_name = $_REQUEST['social_connect_last_name'];
-      $sc_profile_url = '';
-      $sc_name = $sc_first_name . ' ' . $sc_last_name;
-      $user_login = strtolower($sc_first_name.$sc_last_name);
-    break;
     
     case 'google':
       $sc_provider_identity = $_REQUEST['social_connect_openid_identity'];
@@ -141,31 +130,6 @@ function sc_social_connect_process_login( $is_ajax = false )
       }
       $user_login = strtolower($sc_first_name.$sc_last_name);
     break;
-
-/* Removed for security: http://wordpress.org/support/topic/plugin-social-connect-social-connect-wp-admin-user-login-through-a-third-party-identity-provider
-    case 'openid':
-      $sc_provider_identity = $_REQUEST['social_connect_openid_identity'];
-      social_connect_verify_signature($sc_provider_identity, $sc_provided_signature, $redirect_to);
-      $sc_email = $_REQUEST['social_connect_email'];
-      $sc_name = $_REQUEST['social_connect_name'];
-      $sc_profile_url = '';
-      if(trim($sc_name) == '') {
-        $names = explode("@", $sc_email);
-        $sc_name = $names[0];
-        $sc_first_name = $sc_name;
-        $sc_last_name = '';
-      } else {
-        $names = explode(" ", $sc_name);
-        $sc_first_name = $names[0];
-        $sc_last_name = $names[1];
-      }
-      
-      $user_login = strtolower($sc_first_name.$sc_last_name);
-
-      setcookie("social_connect_openid_blog_url", $sc_provider_identity, time()+3600, SITECOOKIEPATH, COOKIE_DOMAIN, false, true);
-
-    break;
-*/
 
     case 'wordpress':
       $sc_provider_identity = $_REQUEST['social_connect_openid_identity'];
@@ -262,5 +226,3 @@ function sc_ajax_login(){
 		sc_social_connect_process_login( true );
 }
 add_action('init', 'sc_ajax_login');
-
-?>

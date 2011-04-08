@@ -19,11 +19,6 @@ function sc_register_social_connect_settings()
   register_setting( 'social-connect-settings-group', 'social_connect_twitter_consumer_key');
   register_setting( 'social-connect-settings-group', 'social_connect_twitter_consumer_secret');
 
-  register_setting( 'social-connect-settings-group', 'social_connect_liveid_enabled');    
-  register_setting( 'social-connect-settings-group', 'social_connect_liveid_appid_key' );
-  register_setting( 'social-connect-settings-group', 'social_connect_liveid_secret_key' );
-  register_setting( 'social-connect-settings-group', 'social_connect_liveid_policy_url' );  
-
   register_setting( 'social-connect-settings-group', 'social_connect_google_enabled');      
   register_setting( 'social-connect-settings-group', 'social_connect_yahoo_enabled');      
   register_setting( 'social-connect-settings-group', 'social_connect_openid_enabled');    
@@ -94,78 +89,25 @@ function sc_render_social_connect_settings()
         </tr>
     </table>
 
-    <h3>Windows Live Settings</h3>
-	<p>To offer login via Windows Live, you need to register your site as a Windows Live Application and get a <strong>Client ID</strong> and <strong>Secret</strong>.</p>
-	<p>Already registered? Find your keys in your <a target="_blank" href="https://manage.dev.live.com/default.aspx">Windows Live Application List</a></p>
-	<p>Need to register? <a target="_blank" href="https://manage.dev.live.com/AddApplication.aspx">Register an Application</a> and the fill the form with the details below. 
-	<ol>
-		<li>Application Type: <strong>Web application</strong></li>		
-		<li>From the application you created, copy and paste the following details. Note that all fields are required. </li>
-	</ol>
+    <h3>OpenID Providers</h3>
+	<p>Choose the OpenID providers your visitors can use to register, comment and login.</p>
     <table class="form-table">
         <tr valign="top">
-        <th scope="row">Enable?</th>
+        <th scope="row">Google</th>
         <td>
-          <input type="checkbox" name="social_connect_liveid_enabled" value="1" <?php checked(get_option('social_connect_liveid_enabled', 1), 1); ?> /><br/>
-          Check this box to enable register/login using Windows Live ID.
-        </td>
-        </tr>
-        <tr valign="top">
-        <th scope="row">Client ID</th>
-        <td><input type="text" name="social_connect_liveid_appid_key" value="<?php echo get_option('social_connect_liveid_appid_key'); ?>" /></td>
-        </tr>
-        <tr valign="top">
-        <th scope="row">Secret Key</th>
-        <td><input type="text" name="social_connect_liveid_secret_key" value="<?php echo get_option('social_connect_liveid_secret_key'); ?>" /></td>
-        </tr>
-        <tr valign="top">
-        <th scope="row">Policy URL</th>
-        <td><input type="text" name="social_connect_liveid_policy_url" value="<?php echo get_option('social_connect_liveid_policy_url'); ?>" /></td>
-        </tr>
-    </table>
-
-    <h3>Google Settings</h3>
-    <table class="form-table">
-        <tr valign="top">
-        <th scope="row">Enable?</th>
-        <td>
-          <input type="checkbox" name="social_connect_google_enabled" value="1" <?php checked(get_option('social_connect_google_enabled', 1), 1); ?> /><br/>
-          Check this box to enable register/login using Google.
+          <input type="checkbox" name="social_connect_google_enabled" value="1" <?php checked(get_option('social_connect_google_enabled', 1), 1); ?> />
         </td>
         </tr>        
-    </table>
-
-    <h3>Yahoo Settings</h3>
-    <table class="form-table">
         <tr valign="top">
-        <th scope="row">Enable?</th>
+        <th scope="row">Yahoo</th>
         <td>
-          <input type="checkbox" name="social_connect_yahoo_enabled" value="1" <?php checked(get_option('social_connect_yahoo_enabled', 1), 1); ?> /><br/>
-          Check this box to enable register/login using Yahoo.
+          <input type="checkbox" name="social_connect_yahoo_enabled" value="1" <?php checked(get_option('social_connect_yahoo_enabled', 1), 1); ?> />
         </td>
         </tr>        
-    </table>
-
-<?php /* Removed for security: http://wordpress.org/support/topic/plugin-social-connect-social-connect-wp-admin-user-login-through-a-third-party-identity-provider
-    <h3>OpenID Settings</h3>
-    <table class="form-table">
         <tr valign="top">
-        <th scope="row">Enable?</th>
+        <th scope="row">WordPress.com</th>
         <td>
-          <input type="checkbox" name="social_connect_openid_enabled" value="1" <?php checked(get_option('social_connect_openid_enabled', 1), 1); ?> /><br/>
-          Check this box to enable register/login using OpenID.
-        </td>
-        </tr>        
-    </table>
-*/ ?>
-
-    <h3>WordPress Settings</h3>
-    <table class="form-table">
-        <tr valign="top">
-        <th scope="row">Enable?</th>
-        <td>
-          <input type="checkbox" name="social_connect_wordpress_enabled" value="1" <?php checked(get_option('social_connect_wordpress_enabled', 1), 1); ?> /><br/>
-          Check this box to enable register/login using WordPress.
+          <input type="checkbox" name="social_connect_wordpress_enabled" value="1" <?php checked(get_option('social_connect_wordpress_enabled', 1), 1); ?> />
         </td>
         </tr>        
     </table>
