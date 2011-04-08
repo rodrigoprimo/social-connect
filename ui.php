@@ -3,12 +3,11 @@
 function sc_render_login_form_social_connect()
 {
   $images_url = SOCIAL_CONNECT_PLUGIN_URL . '/media/img/';
-  
+
   $twitter_enabled = get_option('social_connect_twitter_enabled') && get_option('social_connect_twitter_consumer_key') && get_option('social_connect_twitter_consumer_secret');
   $facebook_enabled = get_option('social_connect_facebook_enabled', 1) && get_option('social_connect_facebook_api_key') && get_option('social_connect_facebook_secret_key');  
   $google_enabled = get_option('social_connect_google_enabled', 1);
   $yahoo_enabled = get_option('social_connect_yahoo_enabled', 1);
-  $openid_enabled = get_option('social_connect_openid_enabled', 1);
   $wordpress_enabled = get_option('social_connect_wordpress_enabled', 1);
 ?>
 
@@ -185,7 +184,7 @@ function sc_render_social_connect_widget($args)
 
 function social_connect_plugin_loaded()
 {
-  $widget_ops = array('classname' => 'social_connect_widget', 'description' => "Allows users to register and login using their existing Twitter, Facebook, Windows Live ID, Google, Yahoo, OpenID and wordpress.com accounts" );
+  $widget_ops = array('classname' => 'social_connect_widget', 'description' => "Social Connect register/login buttons." );
   wp_register_sidebar_widget('social_connect_widget', 'Social Connect', 'sc_render_social_connect_widget', $widget_ops);
 }
 
@@ -198,7 +197,4 @@ function sc_social_connect_shortcode_handler($args)
     sc_render_login_form_social_connect();
   }
 }
-
 add_shortcode('social_connect', 'sc_social_connect_shortcode_handler');
-
-?>
