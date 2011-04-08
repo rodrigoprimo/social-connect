@@ -1,32 +1,26 @@
 <?php
 
-function sc_social_connect_admin_menu()
-{
-  add_menu_page('Social Connect Settings', 'Social Connect', 'manage_options', 'social-connect-id', 'sc_render_social_connect_settings');
-  add_submenu_page('social-connect-id', 'Settings', 'Settings', 'manage_options', 'social-connect-id', 'sc_render_social_connect_settings');
-  add_submenu_page('social-connect-id','Diagnostics','Diagnostics','manage_options','social-connect-diagnostics-id','sc_render_social_connect_diagnostics');  
-  add_action( 'admin_init', 'sc_register_social_connect_settings' );
+function sc_social_connect_admin_menu(){
+	add_options_page('Social Connect', 'Social Connect', 'manage_options', 'social-connect-id', 'sc_render_social_connect_settings');
+	add_action( 'admin_init', 'sc_register_social_connect_settings' );
 }
 add_action('admin_menu', 'sc_social_connect_admin_menu');
 
-function sc_register_social_connect_settings()
-{
-  register_setting( 'social-connect-settings-group', 'social_connect_facebook_enabled');  
-  register_setting( 'social-connect-settings-group', 'social_connect_facebook_api_key' );
-  register_setting( 'social-connect-settings-group', 'social_connect_facebook_secret_key' );
+function sc_register_social_connect_settings(){
+	register_setting( 'social-connect-settings-group', 'social_connect_facebook_enabled');  
+	register_setting( 'social-connect-settings-group', 'social_connect_facebook_api_key' );
+	register_setting( 'social-connect-settings-group', 'social_connect_facebook_secret_key' );
 
-  register_setting( 'social-connect-settings-group', 'social_connect_twitter_enabled');
-  register_setting( 'social-connect-settings-group', 'social_connect_twitter_consumer_key');
-  register_setting( 'social-connect-settings-group', 'social_connect_twitter_consumer_secret');
+	register_setting( 'social-connect-settings-group', 'social_connect_twitter_enabled');
+	register_setting( 'social-connect-settings-group', 'social_connect_twitter_consumer_key');
+	register_setting( 'social-connect-settings-group', 'social_connect_twitter_consumer_secret');
 
-  register_setting( 'social-connect-settings-group', 'social_connect_google_enabled');      
-  register_setting( 'social-connect-settings-group', 'social_connect_yahoo_enabled');      
-  register_setting( 'social-connect-settings-group', 'social_connect_openid_enabled');    
-  register_setting( 'social-connect-settings-group', 'social_connect_wordpress_enabled');    
+	register_setting( 'social-connect-settings-group', 'social_connect_google_enabled');      
+	register_setting( 'social-connect-settings-group', 'social_connect_yahoo_enabled');      
+	register_setting( 'social-connect-settings-group', 'social_connect_wordpress_enabled');    
 }
 
-function sc_render_social_connect_settings()
-{
+function sc_render_social_connect_settings(){
 ?>
 <div class="wrap">
 <h2>Social Connect Settings</h2>
@@ -116,67 +110,10 @@ function sc_render_social_connect_settings()
     <input type="submit" class="button-primary" value="<?php _e('Save Changes') ?>" />
     </p>
 
+	<h2>Rewrite Diagnostics</h2>
+	<p>Click on the link below to confirm your URL rewriting and query string parameter passing are setup correctly on your server. If you see a 'Test was successful' message after clicking the link then you are good to go. If you see a 404 error or some other error then you need to update rewrite rules or ask your service provider to configure your server settings such that the below URL works correctly.</p>
+	<p><a href='<?php echo SOCIAL_CONNECT_PLUGIN_URL ?>/diagnostics/test.php?testing=http://www.example.com' target='_blank'>Test server redirection settings</a></p>
+
 </form>
 </div> <?php
-}
-
-
-function sc_render_social_connect_diagnostics() {
-  $mcrypt_exists = false;
-  $mhash_exists = false;  
-  $live_id_enabled = false;
-
-  if (get_option('social_connect_liveid_enabled', 0)) {
-    $live_id_enabled = true;
-
-    if (function_exists("mcrypt_decrypt")) {
-      $mcrypt_exists = true;
-    } else {
-      update_option ('social_connect_liveid_enabled', 0);
-    }
-
-    if (function_exists("mhash")) {
-      $mhash_exists = true;
-    } else {
-      update_option ('social_connect_liveid_enabled', 0);
-    }    
-  }
-  
-  ?>
-  <div class="wrap">
-  <h2>Social Connect Diagnostics</h2>
-  <?php
-  
-  echo "
-  <p><b>Windows Live ID: Checking for required <a href='http://php.net/manual/en/book.mhash.php' target='_blank' >mhash</a> and <a href='http://www.php.net/manual/en/book.mcrypt.php' target='_blank' >mcrypt</a> cryptographic extensions.</b></p>
-  <p>If you are not using Windows Live ID, ignore this diagnostic.</p> <br />
-  ";
-  
-  if (!$mcrypt_exists || !$mhash_exists) {
-    if (!$mcrypt_exists) {
-      echo "
-      <p>Windows Live ID requires the mcrypt extension. You do not seem to have this installed. Please install this extension or ask your service provider to install it.<br /><br />Diagnostics has disabled Windows Live integration for Social Connect for now. Once you install the extension, enable Windows Live ID through the settings page and then run this diagnostic again.</p><br />
-      ";
-    } 
-
-    if(!$mhash_exists) {
-      echo "
-      <p>Windows Live ID requires the mhash extension. You do not seem to have this installed. Please install this extension or ask your service provider to install it.<br /><br />Diagnostics has disabled Windows Live integration for Social Connect for now. Once you install the extension, enable Windows Live ID through the settings page and then run this diagnostic again.</p><br />
-      ";
-    }      
-  } else {
-    echo "
-    <p>Required mcrypt and mhash extensions are installed.</p><br />
-    ";
-  }
-  echo "
-  <p><b>Checking for server re-write rules.</b></p>
-  ";
-  echo "
-  <p>Click on the link below to test if URL re-writing and query string parameter passing are setup correctly on your server. If you see a 'Test was successful' message after clicking the link then you are good to go. If you see a 404 error or some other error then you need to update re-write rules or ask your service provider to configure your server settings such that the below URL works correctly.<br /><br />
-  <a href='" . SOCIAL_CONNECT_PLUGIN_URL . "/diagnostics/test.php?testing=http://www.example.com' target='_blank'>Test server redirection settings</a>
-  </p>";
-  ?>
-  </div>
-  <?php  
 }
