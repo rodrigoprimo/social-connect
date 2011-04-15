@@ -2,8 +2,8 @@
 /*
 Plugin Name: Social Connect
 Plugin URI: http://wordpress.org/extend/plugins/social-connect/
-Description: Give your visitors a way to comment, login and register with their Twitter, Facebook, Google, Yahoo or WordPress.com account.
-Version: 0.5
+Description: Allow your visitors to comment, login and register with their Twitter, Facebook, Google, Yahoo or WordPress.com account.
+Version: 0.6
 Author: APP2 Technologies, Brent Shepherd
 Author URI: http://www.app2technologies.com/
 License: GPL2
@@ -34,9 +34,8 @@ register_activation_hook( __FILE__, 'sc_activate' );
  * This file only need to be included for versions before 3.1.
  */
 global $wp_version;
-if( version_compare( $wp_version, '3.1', '< ' ) ) {
+if( !function_exists( 'email_exists' ) )
 	require_once( ABSPATH . WPINC . '/registration.php' );
-}
 
 require_once(dirname(__FILE__) . '/constants.php' );
 require_once(dirname(__FILE__) . '/utils.php' );
@@ -178,7 +177,7 @@ function sc_social_connect_process_login( $is_ajax = false )
   }
   
   // user not found by provider identity, check by email
-  if(($user_id = email_exists($sc_email))) {
+  if( ( $user_id = email_exists( $sc_email ) ) ) {
     // user already exists, associate with provider identity
     update_user_meta($user_id, $sc_provider_identity_key, $sc_provider_identity);
     
