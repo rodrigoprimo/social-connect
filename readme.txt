@@ -3,9 +3,9 @@ Contributors: app2technologies, thenbrent
 Tags: facebook, wordpress.com, twitter, google, yahoo, openid, social, login, register
 Requires at least: 3.0
 Tested up to: 3.1
-Stable tag: 0.5
+Stable tag: 0.6
 
-Give your visitors a way to comment, login and register with their Twitter, Facebook, Google, Yahoo or WordPress.com account.
+Allow your visitors to comment, login and register with their Twitter, Facebook, Google, Yahoo or WordPress.com account.
 
 == Description ==
 
@@ -35,13 +35,23 @@ Yes.
 
 No social connect works with the default WordPress login and registration forms. 
 
-= Why doesn't Social Connect Work? =
+If you want to add the social connect login or registration forms to another location in your theme, you can insert the following code in that location:
 
-If you have White Label CMS installed, the javascript it adds to your login page breaks all other plugins which run javascript on the login form. 
+`<?php if( 'sc_render_login_form_social_connect' ) sc_render_login_form_social_connect(); ?>`
 
-For a quick fix and for more information see here: http://wordpress.org/support/topic/social-connect-does-not-work-at-all?replies=7#post-2029255
+= Where can I get support? =
 
-If you don't have White Label CMS installed, please double check your settings then post a question in the [Support Forums](http://wordpress.org/tags/social-connect?forum_id=10#postform). 
+Firstly, a few caveats on support. 
+
+This is free software, no financial reward is received for the countless hours put into it - especially the many hours spent replying to support requests each week. I have to eat, so I prioritise paid work.
+
+Please be patient and please search the support forum before asking a question - duplicate questions do not receive a reply.
+
+All reasonable questions will be answered, but do not expect an answer within hours or on the same day due to the reasons outlined above. 
+
+Polite and descriptive questions will always be given priority. 
+
+With those caveats in mind, you can ask questions in the [Support Forums](http://wordpress.org/tags/social-connect?forum_id=10#postform).
 
 To help me diagnose the issue, please include the following information in your post on the [Forums](http://wordpress.org/tags/social-connect?forum_id=10#postform):
 
@@ -52,11 +62,24 @@ To help me diagnose the issue, please include the following information in your 
 * list of other plugins installed
 * error messages you receive (if any)
 
+= Why doesn't Social Connect Work? =
+
+Please make sure you are running the latest version of Social Connect and the latest version of WordPress. 
+
+If you have White Label CMS installed, the javascript it adds to your login page breaks all other plugins which run javascript on the login form. 
+
+For a quick fix and for more information see here: http://wordpress.org/support/topic/social-connect-does-not-work-at-all?replies=7#post-2029255
+
+If you don't have White Label CMS installed, please double check your settings then post a question in the [Support Forums](http://wordpress.org/tags/social-connect?forum_id=10#postform). 
+
 == Screenshots ==
 
 1. **Register** - On the registration form, buttons for 3rd party services are provided.
 
 == Changelog ==
+
+= 0.6 =
+* Fixing 'email_exists' bug
 
 = 0.5 =
 * Removing Windows Live due to broken implementation
@@ -81,5 +104,8 @@ To help me diagnose the issue, please include the following information in your 
 
 == Upgrade Notice ==
 
+= 0.6 =
+* Important Upgrade: If you are running WordPress 3.0, you must upgrade. For versions 3.1 and above, this is an optional upgrade.
+
 = 0.5 =
-Important upgrade to fix a bug in version of Internet Explorer prior to version 8.
+Important upgrade to fix a bug in versions of Internet Explorer prior to version 8.
