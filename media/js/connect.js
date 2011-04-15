@@ -224,7 +224,7 @@ window.wp_social_connect = function(config) {
       form_id = '#registerform';
     } else {
       // create the login form
-      var login_uri = jQuery("#social_connect_login_form_uri").attr('href');
+      var login_uri = jQuery("#social_connect_login_form_uri").val();
       jQuery('body').append("<form id='loginform' method='post' action='" + login_uri + "'></form>");
       jQuery('#loginform').append("<input type='hidden' id='redirect_to' name='redirect_to' value='" + window.location.href + "'>");
     }

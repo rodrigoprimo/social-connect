@@ -13,22 +13,22 @@ function sc_render_login_form_social_connect()
 
 <div id="social_connect_ui">
 
-<span><?php _e( 'Connect with:' ); ?></span><br/>
+<div style="margin-bottom: 3px;"><label><?php _e( 'Connect with:', 'social_connect' ); ?></label></div>
 <div id="social_connect_form" class="social_connect_form" title="Social Connect">
   <?php if($facebook_enabled) { ?>
-  <a href="javascript://" title="Facebook" class="social_connect_login_facebook"><img src="<?php echo $images_url . 'facebook_32.png' ?>" /></a>
+  <a href="javascript:void(0);" title="Facebook" class="social_connect_login_facebook"><img alt="Facebook" src="<?php echo $images_url . 'facebook_32.png' ?>" /></a>
   <?php } ?>
   <?php if($twitter_enabled) { ?>
-    <a href="javascript://" title="Twitter" class="social_connect_login_twitter"><img src="<?php echo $images_url . 'twitter_32.png' ?>" /></a>
+    <a href="javascript:void(0);" title="Twitter" class="social_connect_login_twitter"><img alt="Twitter" src="<?php echo $images_url . 'twitter_32.png' ?>" /></a>
   <?php } ?>
   <?php if($google_enabled) { ?>
-  <a href="javascript://" title="Google" class="social_connect_login_google"><img src="<?php echo $images_url . 'google_32.png' ?>" /></a>
+  <a href="javascript:void(0);" title="Google" class="social_connect_login_google"><img alt="Google" src="<?php echo $images_url . 'google_32.png' ?>" /></a>
   <?php } ?>
   <?php if($yahoo_enabled) { ?>
-  <a href="javascript://" title="Yahoo" class="social_connect_login_yahoo"><img src="<?php echo $images_url . 'yahoo_32.png' ?>" /></a>
+  <a href="javascript:void(0);" title="Yahoo" class="social_connect_login_yahoo"><img alt="Yahoo" src="<?php echo $images_url . 'yahoo_32.png' ?>" /></a>
   <?php } ?>
   <?php if($wordpress_enabled) { ?>
-  <a href="javascript://" title="WordPress" class="social_connect_login_wordpress"><img src="<?php echo $images_url . 'wordpress_32.png' ?>" /></a>
+  <a href="javascript:void(0);" title="WordPress.com" class="social_connect_login_wordpress"><img alt="Wordpress.com" src="<?php echo $images_url . 'wordpress_32.png' ?>" /></a>
   <?php } ?>
 </div>
 <br />
@@ -58,13 +58,13 @@ function sc_render_login_form_social_connect()
 ?>
 <div class="social_connect_already_connected_form" title="Social Connect" provider="<?php echo $social_connect_provider ?>">
   <img id="social_connect_already_connected_logo" src="<?php echo $images_url . $social_connect_provider . '_32.png' ?>" />
-  <?php printf( __( 'Welcome back %s, %scontinue?%s', 'social_connect' ), $social_connect_user_name, '<a href="javascript://" class="'.$social_connect_login_continue.'">',  '</a>', 'social_connect' ); ?>
+  <?php printf( __( 'Welcome back %s, %scontinue?%s', 'social_connect' ), $social_connect_user_name, '<a href="javascript:void(0);" class="'.$social_connect_login_continue.'">',  '</a>' ); ?>
   
   <div style="clear:both;"></div>
   
   <br/>
-  <a href="javascript://" class="social_connect_already_connected_form_not_you"><?php _e( 'Not you?', 'social_connect' ); ?></a> <br/>
-  <a href="javascript://" class="social_connect_already_connected_user_another"><?php _e( 'Use another account', 'social_connect' ); ?></a> <br/>
+  <a href="javascript:void(0);" class="social_connect_already_connected_form_not_you"><?php _e( 'Not you?', 'social_connect' ); ?></a> <br/>
+  <a href="javascript:void(0);" class="social_connect_already_connected_user_another"><?php _e( 'Use another account', 'social_connect' ); ?></a> <br/>
 </div>
 <?php
 	}
@@ -90,7 +90,7 @@ function sc_render_login_form_social_connect()
   <p><?php _e( 'Enter your OpenID URL', 'social_connect' ); ?></p><br/>
   <p>
     <span>http://</span><input class="openid_url" size="15" value="<?php echo $social_connect_openid_url ?>"/> <br/><br/>
-    <a href="javascript://" class="social_connect_openid_proceed"><?php _e( 'Proceed', 'social_connect' ); ?></a>
+    <a href="javascript:void(0);" class="social_connect_openid_proceed"><?php _e( 'Proceed', 'social_connect' ); ?></a>
   </p>
 </div>
 
@@ -98,7 +98,7 @@ function sc_render_login_form_social_connect()
   <p><?php _e( 'Enter your WordPress.com blog URL', 'social_connect' ); ?></p><br/>
   <p>
     <span>http://</span><input class="wordpress_blog_url" size="15" value="<?php echo $social_connect_wordpress_blog_name ?>"/><span>.wordpress.com</span> <br/><br/>
-    <a href="javascript://" class="social_connect_wordpress_proceed"><?php _e( 'Proceed', 'social_connect' ); ?></a>
+    <a href="javascript:void(0);" class="social_connect_wordpress_proceed"><?php _e( 'Proceed', 'social_connect' ); ?></a>
   </p>
 </div>
 
@@ -140,13 +140,12 @@ function sc_social_connect_render_comment_meta($link) {
   global $comment;
   $images_url = SOCIAL_CONNECT_PLUGIN_URL . '/media/img/';
   $social_connect_comment_via_provider = get_comment_meta($comment->comment_ID, 'social_connect_comment_via_provider', true);
-  if($social_connect_comment_via_provider) {
-    return $link . "&nbsp;" . "<img id='social_connect_comment_via_provider' src='" . $images_url . $social_connect_comment_via_provider . "_16.png" . "' />";
+  if($social_connect_comment_via_provider && current_user_can('manage_options')) {
+    return $link . '&nbsp;<img class="social_connect_comment_via_provider" alt="'.$social_connect_comment_via_provider.'" src="' . $images_url . $social_connect_comment_via_provider . '_16.png"  />';
   } else {
     return $link;
   }
 }
-
 add_action ('get_comment_author_link', 'sc_social_connect_render_comment_meta');
 
 
@@ -166,7 +165,7 @@ add_action('comment_form', 'sc_render_comment_form_social_connect');
 function sc_render_login_page_uri()
 {
 ?>
-  <div id="social_connect_login_form_uri" href="<?php echo site_url('wp-login.php', 'login_post'); ?>"></div>
+  <input type="hidden" id="social_connect_login_form_uri" value="<?php echo site_url('wp-login.php', 'login_post'); ?>" />
 <?php
 }
 
