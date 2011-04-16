@@ -27,15 +27,15 @@ jQuery.noConflict();
     }
     
     var _do_google_connect = function() {
-      var google_auth = $('.social_connect_google_auth');
-      var redirect_uri = google_auth.attr('redirect_uri');
+      var google_auth = $('#social_connect_google_auth');
+      var redirect_uri = google_auth.find('input[type=hidden][name=redirect_uri]').val();
       
       window.open(redirect_uri,'','scrollbars=no,menubar=no,height=400,width=800,resizable=yes,toolbar=no,status=no');
     };
 
     var _do_yahoo_connect = function() {
-      var yahoo_auth = $('.social_connect_yahoo_auth');
-      var redirect_uri = yahoo_auth.attr('redirect_uri');
+      var yahoo_auth = $('#social_connect_yahoo_auth');
+      var redirect_uri = yahoo_auth.find('input[type=hidden][name=redirect_uri]').val();
       
       window.open(redirect_uri,'','scrollbars=no,menubar=no,height=400,width=800,resizable=yes,toolbar=no,status=no');
     };
@@ -52,8 +52,8 @@ jQuery.noConflict();
     };
 
     var _do_twitter_connect = function() {
-      var twitter_auth = $('.social_connect_twitter_auth');
-      var redirect_uri = twitter_auth.attr('redirect_uri');
+      var twitter_auth = $('#social_connect_twitter_auth');
+      var redirect_uri = twitter_auth.find('input[type=hidden][name=redirect_uri]').val();
     
       window.open(redirect_uri,'','scrollbars=no,menubar=no,height=400,width=800,resizable=yes,toolbar=no,status=no');
     };
@@ -73,9 +73,8 @@ jQuery.noConflict();
     };
 
     var _do_wordpress_connect = function(e) {
-
-      var wordpress_auth = $('.social_connect_wordpress_auth');
-      var redirect_uri = wordpress_auth.attr('redirect_uri');
+      var wordpress_auth = $('#social_connect_wordpress_auth');
+      var redirect_uri = wordpress_auth.find('input[type=hidden][name=redirect_uri]').val();
       var context = $(e.target).parents('.social_connect_wordpress_form')[0];
       var blog_name = $('.wordpress_blog_url', context).val();
       var blog_url = "http://" + blog_name + ".wordpress.com";
@@ -85,9 +84,9 @@ jQuery.noConflict();
     };
     
     var _do_facebook_connect = function() {
-      var facebook_auth = $('.social_connect_facebook_auth');
-      var client_id = facebook_auth.attr('client_id');
-      var redirect_uri = facebook_auth.attr('redirect_uri');
+      var facebook_auth = $('#social_connect_facebook_auth');
+      var client_id = facebook_auth.find('input[type=hidden][name=client_id]').val();
+      var redirect_uri = facebook_auth.find('input[type=hidden][name=redirect_uri]').val();
     
       if(client_id == "") {
         alert("Social Connect plugin has not been configured for this provider")

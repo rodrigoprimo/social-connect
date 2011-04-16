@@ -40,11 +40,11 @@ if( !function_exists( 'email_exists' ) )
 /**
  * Internationalization of the plugin
  **/
-function sc_social_connect_i18n() {
+function sc_social_connect_l10n() {
 	$plugin_dir = basename(dirname(__FILE__));
 	load_plugin_textdomain( 'social_connect', null, "$plugin_dir/languages" );
 }
-add_action( 'init', 'sc_social_connect_i18n' );
+add_action( 'init', 'sc_social_connect_l10n', -1000);
 
 require_once(dirname(__FILE__) . '/constants.php' );
 require_once(dirname(__FILE__) . '/utils.php' );
