@@ -1,6 +1,6 @@
 <?php
 
-function sc_render_login_form_social_connect($display_label = true) {
+function sc_render_login_form_social_connect($no_args, $display_label=true) {
 	$images_url = SOCIAL_CONNECT_PLUGIN_URL . '/media/img/';
 
 	$twitter_enabled = get_option('social_connect_twitter_enabled') && get_option('social_connect_twitter_consumer_key') && get_option('social_connect_twitter_consumer_secret');
@@ -11,7 +11,7 @@ function sc_render_login_form_social_connect($display_label = true) {
 	?>
 
 	<div id="social_connect_ui">
-		<?php if($display_label) : ?>
+		<?php if($display_label!==false) : ?>
 		<div style="margin-bottom: 3px;"><label><?php _e( 'Connect with', 'social_connect' ); ?>:</label></div>
 		<?php endif; ?>
 		<div id="social_connect_form" class="social_connect_form" title="Social Connect">
@@ -30,74 +30,73 @@ function sc_render_login_form_social_connect($display_label = true) {
 		<?php if($wordpress_enabled) { ?>
 		<a href="javascript:void(0);" title="WordPress.com" class="social_connect_login_wordpress"><img alt="Wordpress.com" src="<?php echo $images_url . 'wordpress_32.png' ?>" /></a>
 		<?php } ?>
-	</div>
+		</div>
 
-	<?php
-	$social_connect_provider = isset($_COOKIE['social_connect_current_provider']) ? $_COOKIE['social_connect_current_provider'] : '';
-	$social_connect_user_name = isset($_COOKIE['social_connect_current_name']) ? $_COOKIE['social_connect_current_name'] : '';
-	$social_connect_wordpress_blog_url = isset($_COOKIE['social_connect_wordpress_blog_url']) ? $_COOKIE['social_connect_wordpress_blog_url'] : '';
-	$social_connect_openid_url = isset($_COOKIE['social_connect_openid_url']) ? $_COOKIE['social_connect_openid_url'] : '';
-   
-	
-	if($social_connect_wordpress_blog_url == '') {
-		$social_connect_wordpress_blog_name = '';
-	} else {
-		preg_match("/^(http:\/\/)?([^\/]+)/i", $social_connect_wordpress_blog_url, $matches);
-		$host = $matches[2];  
-		$subdomains = explode('.', $host);
-		$social_connect_wordpress_blog_name = $subdomains[0];
-	}
+		<?php
+		$social_connect_provider = isset($_COOKIE['social_connect_current_provider']) ? $_COOKIE['social_connect_current_provider'] : '';
+		$social_connect_user_name = isset($_COOKIE['social_connect_current_name']) ? $_COOKIE['social_connect_current_name'] : '';
+		$social_connect_wordpress_blog_url = isset($_COOKIE['social_connect_wordpress_blog_url']) ? $_COOKIE['social_connect_wordpress_blog_url'] : '';
+		$social_connect_openid_url = isset($_COOKIE['social_connect_openid_url']) ? $_COOKIE['social_connect_openid_url'] : '';
 
-	if($social_connect_provider) {
-		$social_connect_login_continue = 'social_connect_login_continue_' . $social_connect_provider;
-		if($social_connect_provider == 'wordpress') {
-			// trigger the wordpress URL form instead
-			$social_connect_login_continue = 'social_connect_wordpress_proceed';
+
+		if($social_connect_wordpress_blog_url == '') {
+			$social_connect_wordpress_blog_name = '';
+		} else {
+			preg_match("/^(http:\/\/)?([^\/]+)/i", $social_connect_wordpress_blog_url, $matches);
+			$host = $matches[2];
+			$subdomains = explode('.', $host);
+			$social_connect_wordpress_blog_name = $subdomains[0];
+		}
+
+		if($social_connect_provider) {
+			$social_connect_login_continue = 'social_connect_login_continue_' . $social_connect_provider;
+			if($social_connect_provider == 'wordpress') {
+				// trigger the wordpress URL form instead
+				$social_connect_login_continue = 'social_connect_wordpress_proceed';
+			}
+			?>
+			<div class="social_connect_already_connected_form" title="Social Connect" provider="<?php echo $social_connect_provider ?>">
+				<img alt="<?php echo $social_connect_provider; ?>" id="social_connect_already_connected_logo" src="<?php echo $images_url . $social_connect_provider . '_32.png' ?>" />
+				<?php printf( __( 'Welcome back %s, %scontinue?%s', 'social_connect' ), $social_connect_user_name, '<a href="javascript:void(0);" class="'.$social_connect_login_continue.'">',  '</a>' ); ?>
+				<div style="clear:both;"></div>
+				<br/>
+				<a href="javascript:void(0);" class="social_connect_already_connected_form_not_you"><?php _e( 'Not you?', 'social_connect' ); ?></a> <br/>
+				<a href="javascript:void(0);" class="social_connect_already_connected_user_another"><?php _e( 'Use another account', 'social_connect' ); ?></a> <br/>
+			</div>
+			<?php
 		}
 		?>
-		<div class="social_connect_already_connected_form" title="Social Connect" provider="<?php echo $social_connect_provider ?>">
-			<img alt="<?php echo $social_connect_provider; ?>" id="social_connect_already_connected_logo" src="<?php echo $images_url . $social_connect_provider . '_32.png' ?>" />
-			<?php printf( __( 'Welcome back %s, %scontinue?%s', 'social_connect' ), $social_connect_user_name, '<a href="javascript:void(0);" class="'.$social_connect_login_continue.'">',  '</a>' ); ?>
-			<div style="clear:both;"></div>
-			<br/>
-			<a href="javascript:void(0);" class="social_connect_already_connected_form_not_you"><?php _e( 'Not you?', 'social_connect' ); ?></a> <br/>
-			<a href="javascript:void(0);" class="social_connect_already_connected_user_another"><?php _e( 'Use another account', 'social_connect' ); ?></a> <br/>
+
+		<div id="social_connect_facebook_auth">
+			<input type="hidden" name="client_id" value="<?php echo get_option('social_connect_facebook_api_key'); ?>" />
+			<input type="hidden" name="redirect_uri" value="<?php echo urlencode(SOCIAL_CONNECT_PLUGIN_URL . '/facebook/callback.php'); ?>" />
 		</div>
-		<?php
-	}
-	?>
+		<div id="social_connect_twitter_auth"><input type="hidden" name="redirect_uri" value="<?php echo(SOCIAL_CONNECT_PLUGIN_URL . '/twitter/connect.php'); ?>" /></div>
+		<div id="social_connect_google_auth"><input type="hidden" name="redirect_uri" value="<?php echo(SOCIAL_CONNECT_PLUGIN_URL . '/google/connect.php'); ?>" /></div>
+		<div id="social_connect_yahoo_auth"><input type="hidden" name="redirect_uri" value="<?php echo(SOCIAL_CONNECT_PLUGIN_URL . '/yahoo/connect.php'); ?>" /></div>
+		<div id="social_connect_wordpress_auth"><input type="hidden" name="redirect_uri" value="<?php echo(SOCIAL_CONNECT_PLUGIN_URL . '/wordpress/connect.php'); ?>" /></div>
 
-	<div id="social_connect_facebook_auth">
-		<input type="hidden" name="client_id" value="<?php echo get_option('social_connect_facebook_api_key'); ?>" />
-		<input type="hidden" name="redirect_uri" value="<?php echo urlencode(SOCIAL_CONNECT_PLUGIN_URL . '/facebook/callback.php'); ?>" />
-	</div>
-	<div id="social_connect_twitter_auth"><input type="hidden" name="redirect_uri" value="<?php echo(SOCIAL_CONNECT_PLUGIN_URL . '/twitter/connect.php'); ?>" /></div>
-	<div id="social_connect_google_auth"><input type="hidden" name="redirect_uri" value="<?php echo(SOCIAL_CONNECT_PLUGIN_URL . '/google/connect.php'); ?>" /></div>
-	<div id="social_connect_yahoo_auth"><input type="hidden" name="redirect_uri" value="<?php echo(SOCIAL_CONNECT_PLUGIN_URL . '/yahoo/connect.php'); ?>" /></div>
-	<div id="social_connect_wordpress_auth"><input type="hidden" name="redirect_uri" value="<?php echo(SOCIAL_CONNECT_PLUGIN_URL . '/wordpress/connect.php'); ?>" /></div>
+		<div class="social_connect_openid_form" title="OpenID">
+		  <p><?php _e( 'Enter your OpenID URL', 'social_connect' ); ?></p><br/>
+		  <p>
+			<span>http://</span><input class="openid_url" size="15" value="<?php echo $social_connect_openid_url ?>"/> <br/><br/>
+			<a href="javascript:void(0);" class="social_connect_openid_proceed"><?php _e( 'Proceed', 'social_connect' ); ?></a>
+		  </p>
+		</div>
 
-	<div class="social_connect_openid_form" title="OpenID">
-	  <p><?php _e( 'Enter your OpenID URL', 'social_connect' ); ?></p><br/>
-	  <p>
-		<span>http://</span><input class="openid_url" size="15" value="<?php echo $social_connect_openid_url ?>"/> <br/><br/>
-		<a href="javascript:void(0);" class="social_connect_openid_proceed"><?php _e( 'Proceed', 'social_connect' ); ?></a>
-	  </p>
-	</div>
-
-	<div class="social_connect_wordpress_form" title="WordPress">
-	  <p><?php _e( 'Enter your WordPress.com blog URL', 'social_connect' ); ?></p><br/>
-	  <p>
-		<span>http://</span><input class="wordpress_blog_url" size="15" value="<?php echo $social_connect_wordpress_blog_name ?>"/><span>.wordpress.com</span> <br/><br/>
-		<a href="javascript:void(0);" class="social_connect_wordpress_proceed"><?php _e( 'Proceed', 'social_connect' ); ?></a>
-	  </p>
-	</div>
-
+		<div class="social_connect_wordpress_form" title="WordPress">
+		  <p><?php _e( 'Enter your WordPress.com blog URL', 'social_connect' ); ?></p><br/>
+		  <p>
+			<span>http://</span><input class="wordpress_blog_url" size="15" value="<?php echo $social_connect_wordpress_blog_name ?>"/><span>.wordpress.com</span> <br/><br/>
+			<a href="javascript:void(0);" class="social_connect_wordpress_proceed"><?php _e( 'Proceed', 'social_connect' ); ?></a>
+		  </p>
+		</div>
 	</div> <!-- End of social_connect_ui div -->
 <?php
 }
-add_action('login_form', 'sc_render_login_form_social_connect');
-add_action('register_form', 'sc_render_login_form_social_connect');
-add_action('after_signup_form', 'sc_render_login_form_social_connect');
+add_action('login_form', 'sc_render_login_form_social_connect', null, 2);
+add_action('register_form', 'sc_render_login_form_social_connect', null, 2);
+add_action('after_signup_form', 'sc_render_login_form_social_connect', null, 2);
 
 
 
@@ -176,7 +175,7 @@ class SocialConnectWidget extends WP_Widget {
 		echo $before_widget;
 		if ( $title ) echo $before_title . $title . $after_title;
 		echo $instance['before_widget_content'];
-		sc_render_login_form_social_connect(false);
+		sc_render_login_form_social_connect(null, false);
 		echo $instance['after_widget_content'];
 		echo $after_widget;
 	}
