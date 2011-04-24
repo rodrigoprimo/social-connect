@@ -33,7 +33,6 @@ register_activation_hook( __FILE__, 'sc_activate' );
  * registration.php functions moved to user.php, everything is now included by default
  * This file only need to be included for versions before 3.1.
  */
-global $wp_version;
 if( !function_exists( 'email_exists' ) )
 	require_once( ABSPATH . WPINC . '/registration.php' );
 
