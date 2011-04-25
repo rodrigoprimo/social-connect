@@ -52,8 +52,7 @@ require_once( dirname( __FILE__ ) . '/admin.php' );
 require_once( dirname( __FILE__ ) . '/ui.php' );
 
 
-function sc_social_connect_process_login( $is_ajax = false )
-{
+function sc_social_connect_process_login( $is_ajax = false ){
 	if ( isset( $_REQUEST[ 'redirect_to' ] ) && $_REQUEST[ 'redirect_to' ] != '' ) {
 		$redirect_to = $_REQUEST[ 'redirect_to' ];
 		// Redirect to https if user wants ssl
@@ -160,7 +159,6 @@ function sc_social_connect_process_login( $is_ajax = false )
 
 		break;
 	}
-
 
 	// cookies used to display welcome message if already signed in recently using some provider
 	setcookie("social_connect_current_provider", $social_connect_provider, time()+3600, SITECOOKIEPATH, COOKIE_DOMAIN, false, true );
