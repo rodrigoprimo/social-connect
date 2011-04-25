@@ -4,8 +4,8 @@ Plugin Name: Social Connect
 Plugin URI: http://wordpress.org/extend/plugins/social-connect/
 Description: Allow your visitors to comment, login and register with their Twitter, Facebook, Google, Yahoo or WordPress.com account.
 Version: 0.6
-Author: APP2 Technologies, Brent Shepherd
-Author URI: http://www.app2technologies.com/
+Author: Brent Shepherd
+Author URI: http://wordpress.org/extend/plugins/social-connect/
 License: GPL2
 */
 
