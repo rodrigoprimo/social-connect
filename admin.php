@@ -1,23 +1,23 @@
 <?php
 
 function sc_social_connect_admin_menu(){
-	add_options_page('Social Connect', 'Social Connect', 'manage_options', 'social-connect-id', 'sc_render_social_connect_settings');
+	add_options_page('Social Connect', 'Social Connect', 'manage_options', 'social-connect-id', 'sc_render_social_connect_settings' );
 	add_action( 'admin_init', 'sc_register_social_connect_settings' );
 }
-add_action('admin_menu', 'sc_social_connect_admin_menu');
+add_action('admin_menu', 'sc_social_connect_admin_menu' );
 
 function sc_register_social_connect_settings(){
-	register_setting( 'social-connect-settings-group', 'social_connect_facebook_enabled');  
+	register_setting( 'social-connect-settings-group', 'social_connect_facebook_enabled' );  
 	register_setting( 'social-connect-settings-group', 'social_connect_facebook_api_key' );
 	register_setting( 'social-connect-settings-group', 'social_connect_facebook_secret_key' );
 
-	register_setting( 'social-connect-settings-group', 'social_connect_twitter_enabled');
-	register_setting( 'social-connect-settings-group', 'social_connect_twitter_consumer_key');
-	register_setting( 'social-connect-settings-group', 'social_connect_twitter_consumer_secret');
+	register_setting( 'social-connect-settings-group', 'social_connect_twitter_enabled' );
+	register_setting( 'social-connect-settings-group', 'social_connect_twitter_consumer_key' );
+	register_setting( 'social-connect-settings-group', 'social_connect_twitter_consumer_secret' );
 
-	register_setting( 'social-connect-settings-group', 'social_connect_google_enabled');      
-	register_setting( 'social-connect-settings-group', 'social_connect_yahoo_enabled');      
-	register_setting( 'social-connect-settings-group', 'social_connect_wordpress_enabled');    
+	register_setting( 'social-connect-settings-group', 'social_connect_google_enabled' );      
+	register_setting( 'social-connect-settings-group', 'social_connect_yahoo_enabled' );      
+	register_setting( 'social-connect-settings-group', 'social_connect_wordpress_enabled' );    
 }
 
 function sc_render_social_connect_settings(){
@@ -40,18 +40,18 @@ function sc_render_social_connect_settings(){
 					<tr valign="top">
 						<th scope="row">Enable?</th>
 						<td>
-							<input type="checkbox" name="social_connect_facebook_enabled" value="1" <?php checked(get_option('social_connect_facebook_enabled', 1), 1); ?> /><br/>
+							<input type="checkbox" name="social_connect_facebook_enabled" value="1" <?php checked(get_option('social_connect_facebook_enabled', 1 ), 1 ); ?> /><br/>
 							Check this box to enable register/login using Facebook.
 						</td>
 					</tr>
 					<tr valign="top">
 						<th scope="row">API Key</th>
-						<td><input type="text" name="social_connect_facebook_api_key" value="<?php echo get_option('social_connect_facebook_api_key'); ?>" /></td>
+						<td><input type="text" name="social_connect_facebook_api_key" value="<?php echo get_option('social_connect_facebook_api_key' ); ?>" /></td>
 					</tr>
 
 					<tr valign="top">
 						<th scope="row">Secret Key</th>
-						<td><input type="text" name="social_connect_facebook_secret_key" value="<?php echo get_option('social_connect_facebook_secret_key'); ?>" /></td>
+						<td><input type="text" name="social_connect_facebook_secret_key" value="<?php echo get_option('social_connect_facebook_secret_key' ); ?>" /></td>
 					</tr>
 				</table>
 
@@ -68,18 +68,18 @@ function sc_render_social_connect_settings(){
 						<tr valign="top">
 							<th scope="row">Enable?</th>
 							<td>
-								<input type="checkbox" name="social_connect_twitter_enabled" value="1" <?php checked(get_option('social_connect_twitter_enabled'), 1); ?> /><br/>
+								<input type="checkbox" name="social_connect_twitter_enabled" value="1" <?php checked(get_option('social_connect_twitter_enabled' ), 1 ); ?> /><br/>
 								Twitter integration requires the generation of dummy email addresses for authenticating users. <br/>
 								Please check with your domain administrator as this may require changes to your mail server.
 							</td>
 						</tr>
 						<tr valign="top">
 							<th scope="row">Consumer Key</th>
-							<td><input type="text" name="social_connect_twitter_consumer_key" value="<?php echo get_option('social_connect_twitter_consumer_key'); ?>" /></td>
+							<td><input type="text" name="social_connect_twitter_consumer_key" value="<?php echo get_option('social_connect_twitter_consumer_key' ); ?>" /></td>
 						</tr>
 						<tr valign="top">
 							<th scope="row">Consumer Secret</th>
-							<td><input type="text" name="social_connect_twitter_consumer_secret" value="<?php echo get_option('social_connect_twitter_consumer_secret'); ?>" /></td>
+							<td><input type="text" name="social_connect_twitter_consumer_secret" value="<?php echo get_option('social_connect_twitter_consumer_secret' ); ?>" /></td>
 						</tr>
 					</table>
 
@@ -89,30 +89,30 @@ function sc_render_social_connect_settings(){
 						<tr valign="top">
 							<th scope="row">Google</th>
 							<td>
-								<input type="checkbox" name="social_connect_google_enabled" value="1" <?php checked(get_option('social_connect_google_enabled', 1), 1); ?> />
+								<input type="checkbox" name="social_connect_google_enabled" value="1" <?php checked(get_option('social_connect_google_enabled', 1 ), 1 ); ?> />
 							</td>
 						</tr>        
 						<tr valign="top">
 							<th scope="row">Yahoo</th>
 							<td>
-								<input type="checkbox" name="social_connect_yahoo_enabled" value="1" <?php checked(get_option('social_connect_yahoo_enabled', 1), 1); ?> />
+								<input type="checkbox" name="social_connect_yahoo_enabled" value="1" <?php checked(get_option('social_connect_yahoo_enabled', 1 ), 1 ); ?> />
 							</td>
 						</tr>        
 						<tr valign="top">
 							<th scope="row">WordPress.com</th>
 							<td>
-								<input type="checkbox" name="social_connect_wordpress_enabled" value="1" <?php checked(get_option('social_connect_wordpress_enabled', 1), 1); ?> />
+								<input type="checkbox" name="social_connect_wordpress_enabled" value="1" <?php checked(get_option('social_connect_wordpress_enabled', 1 ), 1 ); ?> />
 							</td>
 						</tr>        
 					</table>
 
 					<p class="submit">
-						<input type="submit" class="button-primary" value="<?php _e('Save Changes') ?>" />
+						<input type="submit" class="button-primary" value="<?php _e('Save Changes' ) ?>" />
 					</p>
 
 					<h2>Rewrite Diagnostics</h2>
 					<p>Click on the link below to confirm your URL rewriting and query string parameter passing are setup correctly on your server. If you see a 'Test was successful' message after clicking the link then you are good to go. If you see a 404 error or some other error then you need to update rewrite rules or ask your service provider to configure your server settings such that the below URL works correctly.</p>
-					<p><a href='<?php echo SOCIAL_CONNECT_PLUGIN_URL ?>/diagnostics/test.php?testing=http://www.example.com' target='_blank'>Test server redirection settings</a></p>
+					<p><a class="button-primary" href='<?php echo SOCIAL_CONNECT_PLUGIN_URL ?>/diagnostics/test.php?testing=http://www.example.com' target='_blank'>Test server redirection settings</a></p>
 
 				</form>
 			</div> <?php
