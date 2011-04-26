@@ -172,14 +172,14 @@ class SocialConnectWidget extends WP_Widget {
 			echo $before_title . $title . $after_title;
 		}
 
-		if( !empty( $instance[ 'before_widget_content' ] ) ){
-			echo '<p>' . $instance['before_widget_content'] . '</p>';
+		if( !empty( $instance['before_widget_content'] ) ){
+			echo $instance['before_widget_content'];
 		}
 
 		sc_render_login_form_social_connect( array( 'display_label' => false ) );
 
-		if( !empty( $instance[ 'after_widget_content' ] ) ){
-			echo '<p>' . $instance['after_widget_content'] . '</p>';
+		if( !empty( $instance['after_widget_content'] ) ){
+			echo $instance['after_widget_content'];
 		}
 
 		echo $after_widget;
