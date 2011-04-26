@@ -199,7 +199,11 @@ class SocialConnectWidget extends WP_Widget {
 	function form( $instance ) {
 		/* Set up default widget settings. */
 		$defaults = array( 'title' => '', 'before_widget_content' => '', 'after_widget_content' => '' );
-		$instance = wp_parse_args( (array )$instance, $defaults );
+
+		foreach( $instance as $key => $value ) 
+			$instance[ $key ] = esc_attr( $value );
+
+		$instance = wp_parse_args( (array)$instance, $defaults );
 		?>
 		<p>
 			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:', 'social_connect' ); ?></label>
