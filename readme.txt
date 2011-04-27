@@ -1,6 +1,6 @@
 === Social Connect ===
 Contributors: thenbrent
-Tags: facebook, wordpress.com, twitter, google, yahoo, openid, social, login, register
+Tags: facebook, wordpress.com, twitter, google, yahoo, social, login, register
 Requires at least: 3.0
 Tested up to: 3.1
 Stable tag: 0.6
@@ -14,6 +14,10 @@ Social Connect adds social login buttons on the login, register and comment form
 The buttons offer login and registration using a Twitter, Facebook, Google, Yahoo or WordPress.com account.
 
 It makes it super easy for new members to register with your site and existing members to login.
+
+= Props =
+
+Special thanks to [Wirone](http://profiles.wordpress.org/users/Wirone) for patches & [markusdrake](http://wordpress.org/support/profile/markusdrake) for helping in the support forums.
 
 == Installation ==
 
@@ -41,17 +45,13 @@ If you want to add the social connect login or registration forms to another loc
 
 = Where can I get support? =
 
-Firstly, a few caveats on support. 
+First, a few caveats on support. 
 
-This is free software, no financial reward is received for the countless hours put into it - especially the many hours spent replying to support requests each week. I have to eat, so I prioritise paid work.
+This is free software. Please be patient. All questions *will* be answered, just not on the same day. Polite and descriptive questions will always be given priority.
 
-Please be patient and please search the support forum before asking a question - duplicate questions do not receive a reply.
+Please search the support forums before asking a question - duplicate questions will not receive a reply.
 
-All reasonable questions will be answered, but do not expect an answer within hours or on the same day due to the reasons outlined above. 
-
-Polite and descriptive questions will always be given priority. 
-
-With those caveats in mind, you can ask questions in the [Support Forums](http://wordpress.org/tags/social-connect?forum_id=10#postform).
+With those caveats in mind, ask questions in the [Support Forums](http://wordpress.org/tags/social-connect?forum_id=10#postform).
 
 To help me diagnose the issue, please include the following information in your post on the [Forums](http://wordpress.org/tags/social-connect?forum_id=10#postform):
 
@@ -74,9 +74,15 @@ If you don't have White Label CMS installed, please double check your settings t
 
 == Screenshots ==
 
-1. **Register** - On the registration form, buttons for 3rd party services are provided.
+1. **Login** - on the login and registration form, buttons for 3rd party services are provided.
+2. **Comment** - buttons for 3rd party services are also provided on the comment form.
 
 == Changelog ==
+
+= 0.7 =
+* Social Connect widget can now be customised
+* l10n implemented
+* Polish translation.
 
 = 0.6 =
 * Fixing 'email_exists' bug
@@ -103,6 +109,9 @@ If you don't have White Label CMS installed, please double check your settings t
 * Initial beta release. 
 
 == Upgrade Notice ==
+
+= 0.7 =
+* Upgrade to be able to customise Social Connect widget & use in Polish.
 
 = 0.6 =
 * Important Upgrade: If you are running WordPress 3.0, you must upgrade. For versions 3.1 and above, this is an optional upgrade.
