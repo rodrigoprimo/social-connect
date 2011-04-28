@@ -3,7 +3,7 @@ Contributors: thenbrent
 Tags: facebook, wordpress.com, twitter, google, yahoo, social, login, register
 Requires at least: 3.0
 Tested up to: 3.1
-Stable tag: 0.6
+Stable tag: 0.7
 
 Allow your visitors to comment, login and register with their Twitter, Facebook, Google, Yahoo or WordPress.com account.
 
