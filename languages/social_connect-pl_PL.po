@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Social Connect\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-04-16 12:55+0100\n"
-"PO-Revision-Date: 2011-04-16 12:56+0100\n"
+"POT-Creation-Date: 2011-04-26 18:34+0100\n"
+"PO-Revision-Date: 2011-04-26 18:36+0100\n"
 "Last-Translator: Grzegorz Korba <wirone@gmail.com>\n"
 "Language-Team: app2technologies\n"
 "MIME-Version: 1.0\n"
@@ -17,9 +17,120 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Poedit-SearchPath-0: ../.\n"
 
-#: .././admin.php:110
+#: .././admin.php:26
+msgid "Social Connect Settings"
+msgstr "Ustawienia Social Connect"
+
+#: .././admin.php:30
+msgid "Facebook Settings"
+msgstr "Ustawienia Facebooka"
+
+#: .././admin.php:31
+msgid "To connect your site to Facebook, you need a Facebook Application. If you have already created one, please insert your API & Secret key below."
+msgstr "Aby połączyć swoją witrynę z Facebookiem musisz utworzyć aplikację Facebook. Jeśli już takową zarejestrowałeś wpisz proszę poniżej Twój klucz API oraz klucz sekretny."
+
+#: .././admin.php:32
+#: .././admin.php:60
+#, php-format
+msgid "Already registered? Find your keys in your <a target=\"_blank\" href=\"%2$s\">%1$s Application List</a>"
+msgstr "Posiadasz zarejestrowaną aplikację? Znajdź jej klucze na <a target=\"_blank\" href=\"%2$s\">liście swoich aplikacji %1$s</a>"
+
+#: .././admin.php:33
+msgid "Need to register?"
+msgstr "Potrzebujesz zarejestrować?"
+
+#: .././admin.php:35
+#, php-format
+msgid "Visit the <a target=\"_blank\" href=\"%1$s\">Facebook Application Setup</a> page"
+msgstr "Odwiedź <a target=\"_blank\" href=\"%1$s\">kreatora aplikacji Facebook</a>"
+
+#: .././admin.php:36
+#, php-format
+msgid "Get the API information from the <a target=\"_blank\" href=\"%1$s\">Facebook Application List</a>"
+msgstr "Znajdź informacje o API na <a target=\"_blank\" href=\"%1$s\">liście swoich aplikacji</a>"
+
+#: .././admin.php:37
+msgid "Select the application you created, then copy and paste the API key & Application Secret from there."
+msgstr "Wybierz utworzoną przez siebie aplikację, a następnie skopiuj klucz API i Sekretny Klucz i wklej poniżej."
+
+#: .././admin.php:41
+#: .././admin.php:69
+msgid "Enable?"
+msgstr "Włączyć?"
+
+#: .././admin.php:44
+msgid "Check this box to enable register/login using Facebook."
+msgstr "Zaznacz to pole by włączyć opcję logowania/rejestracji przy użyciu konta Facebook"
+
+#: .././admin.php:48
+msgid "API Key"
+msgstr "Klucz API"
+
+#: .././admin.php:53
+msgid "Secret Key"
+msgstr "Sekretny klucz"
+
+#: .././admin.php:58
+msgid "Twitter Settings"
+msgstr "Ustawienia Twittera"
+
+#: .././admin.php:59
+msgid "To offer login via Twitter, you need to register your site as a Twitter Application and get a <strong>Consumer Key</strong>, a <strong>Consumer Secret</strong>, an <strong>Access Token</strong> and an <strong>Access Token Secret</strong>."
+msgstr "Aby połączyć witrynę z Twitterem musisz ją zarejestrować jako aplikację Twitter i zdobyć <strong>Klucz Konsumenta</strong>, <strong>Klucz Sekretny</strong>, <strong>Klucz (token) Dostępu</strong> oraz <strong>Seretny klucz (token) dostępu</strong>."
+
+#: .././admin.php:61
+#, php-format
+msgid "Need to register? <a href=\"%1$s\">Register an Application</a> and fill the form with the details below:"
+msgstr "Musisz zarejestrować? <a href=\"%1$s\">Zrób to</a> wykorzystując informacje wyszczególnione poniżej:"
+
+#: .././admin.php:63
+msgid "Application Type: <strong>Browser</strong>"
+msgstr "Typ aplikacji: <strong>Przeglądarka (Browser)</strong>"
+
+#: .././admin.php:64
+#, php-format
+msgid "Callback URL: <strong>%1$s</strong>"
+msgstr "Adres zwrotny: <strong>%1$s</strong>"
+
+#: .././admin.php:65
+msgid "Default Access: <strong>Read &amp; Write</strong>"
+msgstr "Domyślny dostęp: <strong>Odczyt &amp; Zapis</strong>"
+
+#: .././admin.php:72
+msgid "Twitter integration requires the generation of dummy email addresses for authenticating users.<br/>Please check with your domain administrator as this may require changes to your mail server."
+msgstr "Integracja z Twitterem wymaga generowania fikcyjnych adresów email w celu autoryzowania użytkowników.<br/>Proszę sprawdź u swojego administratora serwera czy to wymaga zmian w Twoim serwerze poczty."
+
+#: .././admin.php:76
+msgid "Consumer Key"
+msgstr "Klucz konsumenta (API)"
+
+#: .././admin.php:80
+msgid "Consumer Secret"
+msgstr "Sekretny klucz"
+
+#: .././admin.php:85
+msgid "OpenID Providers"
+msgstr "Dostawcy OpenID"
+
+#: .././admin.php:86
+msgid "Choose the OpenID providers your visitors can use to register, comment and login."
+msgstr "Wybierz dostawców OpenID dzięki którym odwiedzający będą mogli się logować, rejestrować i komentować wpisy."
+
+#: .././admin.php:109
 msgid "Save Changes"
 msgstr "Zapisz zmiany"
+
+#: .././admin.php:112
+msgid "Rewrite Diagnostics"
+msgstr "Diagnostyka przekierowań"
+
+#: .././admin.php:113
+msgid "Click on the link below to confirm your URL rewriting and query string parameter passing are setup correctly on your server. If you see a \"Test was successful\" message after clicking the link then you are good to go. If you see a 404 error or some other error then you need to update rewrite rules or ask your service provider to configure your server settings such that the below URL works correctly."
+msgstr "Kliknij w link poniżej aby sprawdzić czy ustawienia serwera dotyczące przekierowań są prawidłowe. Jeśli widzisz komunikat \"Pozytywny wynik testu\" po kliknięciu poniższego linku to znaczy, że konfiguracja jest prawidłowa. Jeśli widzisz błąd 404 lub jakiś inny błąd musisz zaktualizować ustawienia przekierowań lub skontaktować się z dostawcą hostingu w sprawie odpowiedniej konfiguracji serwera."
+
+#: .././admin.php:114
+msgid "Test server redirection settings"
+msgstr "Sprawdź ustawienia serwera"
 
 #: .././social-connect.php:20
 #, php-format
@@ -36,49 +147,66 @@ msgstr "Przykro nam, ale nie możesz korzystać z Social Connect. Wymagana jest 
 msgid "Sorry, but you can not run Social Connect. It requires PHP 5.1.2 or newer. Please contact your web host and request they <a href='http://www.php.net/manual/en/migration5.php'>migrate</a> your PHP installation to run Social Connect.<br/><a href=\"%s\">Return to Plugins Admin page &raquo;</a>"
 msgstr "Przykro nam, ale nie możesz korzystać z Social Connect. Wymagana wersja PHP to 5.1.2 lub nowsza. Proszę skontaktować się z obsługą hostingu w celu uruchomienia odpowiedniej wersji PHP.<br/><a href=\"%s\">Wróć do listy wtyczek &raquo;</a>"
 
-#: .././ui.php:15
+#: .././ui.php:21
 msgid "Connect with"
 msgstr "Połącz z"
 
-#: .././ui.php:61
+#: .././ui.php:63
 #, php-format
 msgid "Welcome back %s, %scontinue?%s"
 msgstr "Witaj %s, %skontynuujemy?%s"
 
-#: .././ui.php:64
+#: .././ui.php:66
 msgid "Not you?"
 msgstr "To nie Ty?"
 
-#: .././ui.php:65
+#: .././ui.php:67
 msgid "Use another account"
 msgstr "Użyj innego konta"
 
-#: .././ui.php:81
+#: .././ui.php:82
 msgid "Enter your OpenID URL"
 msgstr "Wprowadź adres URL dostawcy OpenID"
 
-#: .././ui.php:84
-#: .././ui.php:92
+#: .././ui.php:85
+#: .././ui.php:93
 msgid "Proceed"
 msgstr "Dalej"
 
-#: .././ui.php:89
+#: .././ui.php:90
 msgid "Enter your WordPress.com blog URL"
 msgstr "Uzupełnij adres swojego bloga na WordPress.com"
 
-#: .././ui.php:182
-msgid "Adds functionality to connect with Facebook, Twitter, Yahoo, Google or Wordpress.com account"
-msgstr "Pozwala odwiedzającym komentować, logować i rejestrować się za pomocą konta Twitter, Facebook, Google, Yahoo lub WordPress.com."
+#: .././ui.php:162
+msgid "Login or register with Facebook, Twitter, Yahoo, Google or a Wordpress.com account"
+msgstr "Logowanie oraz rejestracja za pomocą konta Facebook, Twitter, Yahoo, Google lub WordPress.com."
 
-#: .././ui.php:211
+#: .././ui.php:214
 msgid "Title:"
 msgstr "Tytuł:"
 
-#: .././ui.php:213
+#: .././ui.php:216
 msgid "Before widget content:"
 msgstr "Dodaj przed treścią:"
 
-#: .././ui.php:215
+#: .././ui.php:218
 msgid "After widget content:"
 msgstr "Dodaj za treścią:"
+
+#: .././ui.php:220
+msgid "Hide for logged in users:"
+msgstr "Ukryj dla zalogowanych:"
+
+#: .././diagnostics/test.php:8
+msgid "Test was successful! <br/><br/> The rewrite rules on your server appear to be setup correctly for Social Connect to work."
+msgstr "Pozytywny wynik testu! <br/><br/> Zasady przepisywania adresów na Twoim serwerze są odpowiednie dla poprawnego działania Social Connect."
+
+#: .././diagnostics/test.php:10
+#, php-format
+msgid "Test was unsuccessful. Expected \"http://www.example.com\", received \"%s\"."
+msgstr "Test nieudany. Oczekiwano \"http://www.example.com\", otrzymano \"%s\"."
+
+#: .././diagnostics/test.php:20
+msgid "Social Connect Diagnostics"
+msgstr "Diagnostyka Social Connect"
 

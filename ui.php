@@ -156,15 +156,19 @@ class SocialConnectWidget extends WP_Widget {
 	function SocialConnectWidget() {
 		parent::WP_Widget(
 			'social_connect', //unique id
-		'Social Connect', //title displayed at admin panel
-		//Additional parameters
-		array( 'description' => __( 'Login or register with Facebook, Twitter, Yahoo, Google or a Wordpress.com account', 'social_connect' ))
+			'Social Connect', //title displayed at admin panel
+			//Additional parameters
+			array( 
+				'description' => __( 'Login or register with Facebook, Twitter, Yahoo, Google or a Wordpress.com account', 'social_connect' ))
 			);
 	}
 
 	/** This is rendered widget content */
 	function widget( $args, $instance ) {
 		extract( $args );
+		
+		if($instance['hide_for_logged_in']==1 && is_user_logged_in()) return;
+		
 		echo $before_widget;
 
 		if( !empty( $instance['title'] ) ){
@@ -191,6 +195,7 @@ class SocialConnectWidget extends WP_Widget {
 		$instance['title'] = strip_tags( $new_instance['title'] );
 		$instance['before_widget_content'] = $new_instance['before_widget_content'];
 		$instance['after_widget_content'] = $new_instance['after_widget_content'];
+		$instance['hide_for_logged_in'] = $new_instance['hide_for_logged_in'];
 
 		return $instance;
 	}
@@ -212,6 +217,8 @@ class SocialConnectWidget extends WP_Widget {
 			<input class="widefat" id="<?php echo $this->get_field_id( 'before_widget_content' ); ?>" name="<?php echo $this->get_field_name( 'before_widget_content' ); ?>" type="text" value="<?php echo $instance['before_widget_content']; ?>" />
 			<label for="<?php echo $this->get_field_id( 'after_widget_content' ); ?>"><?php _e( 'After widget content:', 'social_connect' ); ?></label>
 			<input class="widefat" id="<?php echo $this->get_field_id( 'after_widget_content' ); ?>" name="<?php echo $this->get_field_name( 'after_widget_content' ); ?>" type="text" value="<?php echo $instance['after_widget_content']; ?>" />
+			<br /><br /><label for="<?php echo $this->get_field_id( 'hide_for_logged_in' ); ?>"><?php _e( 'Hide for logged in users:', 'social_connect' ); ?></label>
+			<input type="checkbox" id="<?php echo $this->get_field_id( 'hide_for_logged_in' ); ?>" name="<?php echo $this->get_field_name( 'hide_for_logged_in' ); ?>" type="text" value="1" <?php if($instance['hide_for_logged_in']==1) echo 'checked="checked"'; ?> />
 		</p>
 		<?php
 }
