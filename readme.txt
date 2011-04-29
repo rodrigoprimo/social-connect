@@ -17,7 +17,10 @@ It makes it super easy for new members to register with your site and existing m
 
 = Props =
 
-Special thanks to [Wirone](http://profiles.wordpress.org/users/Wirone) for patches & [markusdrake](http://wordpress.org/support/profile/markusdrake) for helping in the support forums.
+Special thanks to:
+
+* [Wirone](http://blog.wirone.info/) for polish translation and patches 
+* [markusdrake](http://wordpress.org/support/profile/markusdrake) for helping in the support forums
 
 == Installation ==
 
