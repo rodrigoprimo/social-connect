@@ -19,8 +19,8 @@ It makes it super easy for new members to register with your site and existing m
 
 Special thanks to:
 
-* [Wirone](http://blog.wirone.info/) for polish translation and patches 
-* [markusdrake](http://wordpress.org/support/profile/markusdrake) for helping in the support forums
+* [Wirone](http://blog.wirone.info/) for polish translation and patches; and
+* [markusdrake](http://wordpress.org/support/profile/markusdrake) for patches and helping in the support forums.
 
 == Installation ==
 
