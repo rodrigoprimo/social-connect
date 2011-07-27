@@ -57,7 +57,7 @@ function sc_render_social_connect_settings(){
 
 				<h3><?php _e('Twitter Settings', 'social_connect'); ?></h3>
 				<p><?php _e('To offer login via Twitter, you need to register your site as a Twitter Application and get a <strong>Consumer Key</strong>, a <strong>Consumer Secret</strong>, an <strong>Access Token</strong> and an <strong>Access Token Secret</strong>.', 'social_connect'); ?></p>
-				<p><?php printf(__('Already registered? Find your keys in your <a target="_blank" href="%2$s">%1$s Application List</a>', 'social_connect'), 'Twitter', 'http://www.facebook.com/developers/apps.php'); ?></p>
+				<p><?php printf(__('Already registered? Find your keys in your <a target="_blank" href="%2$s">%1$s Application List</a>', 'social_connect'), 'Twitter', 'https://dev.twitter.com/apps'); ?></p>
 				<p><?php printf(__('Need to register? <a href="%1$s">Register an Application</a> and fill the form with the details below:', 'social_connect'), 'http://dev.twitter.com/apps/new'); ?>
 					<ol>
 						<li><?php _e('Application Type: <strong>Browser</strong>', 'social_connect'); ?></li>
