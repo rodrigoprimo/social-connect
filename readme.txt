@@ -2,7 +2,7 @@
 Contributors: thenbrent
 Tags: facebook, wordpress.com, twitter, google, yahoo, social, login, register
 Requires at least: 3.0
-Tested up to: 3.1
+Tested up to: 3.2.1
 Stable tag: 0.7
 
 Allow your visitors to comment, login and register with their Twitter, Facebook, Google, Yahoo or WordPress.com account.
@@ -21,6 +21,8 @@ Special thanks to:
 
 * [Wirone](http://blog.wirone.info/) for polish translation and patches; and
 * [markusdrake](http://wordpress.org/support/profile/markusdrake) for patches and helping in the support forums.
+
+And everyone else in the forums helping out by sharing the fixes they find and answering others questions. 
 
 == Installation ==
 
