@@ -55,6 +55,7 @@ require_once( dirname( __FILE__ ) . '/ui.php' );
 
 
 function sc_social_connect_process_login( $is_ajax = false ){
+	error_log('$_REQUEST = ' . print_r( $_REQUEST, true ));
 	if ( isset( $_REQUEST[ 'redirect_to' ] ) && $_REQUEST[ 'redirect_to' ] != '' ) {
 		$redirect_to = $_REQUEST[ 'redirect_to' ];
 		// Redirect to https if user wants ssl
@@ -63,6 +64,7 @@ function sc_social_connect_process_login( $is_ajax = false ){
 	} else {
 		$redirect_to = admin_url();
 	}
+	$redirect_to = apply_filters( 'social_connect_redirect_to', $redirect_to );
 
 	$social_connect_provider = $_REQUEST[ 'social_connect_provider' ];
 	$sc_provider_identity_key = 'social_connect_' . $social_connect_provider . '_id';
@@ -200,7 +202,7 @@ function sc_social_connect_process_login( $is_ajax = false ){
 	} else {
 		// create new user and associate provider identity
 		if ( username_exists( $user_login ) ) {
-			$user_login = strtolower("sc_". md5( $social_connect_provider . $sc_provider_identity ) );
+			$user_login = apply_filters( 'social_connect_username_exists', strtolower("sc_". md5( $social_connect_provider . $sc_provider_identity ) ) );
 		}
 
 		$userdata = array( 'user_login' => $user_login, 'user_email' => $sc_email, 'first_name' => $sc_first_name, 'last_name' => $sc_last_name,
