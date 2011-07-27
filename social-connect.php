@@ -55,7 +55,6 @@ require_once( dirname( __FILE__ ) . '/ui.php' );
 
 
 function sc_social_connect_process_login( $is_ajax = false ){
-	error_log('$_REQUEST = ' . print_r( $_REQUEST, true ));
 	if ( isset( $_REQUEST[ 'redirect_to' ] ) && $_REQUEST[ 'redirect_to' ] != '' ) {
 		$redirect_to = $_REQUEST[ 'redirect_to' ];
 		// Redirect to https if user wants ssl
@@ -192,6 +191,8 @@ function sc_social_connect_process_login( $is_ajax = false ){
 
 		// user signed in with provider identity after normal WP signup. Since email is verified, sign him in
 		wp_set_auth_cookie( $user_id );
+		$user_data  = get_userdata( $user_id );
+		$user_login = $user_data->user_login;
 		do_action( 'social_connect_login', $user_login );
 		if ( $is_ajax )
 			echo '{"redirect":"' . $redirect_to . '"}';
