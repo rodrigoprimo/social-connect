@@ -1,4 +1,4 @@
-#social_connect_ui img {
+div.social_connect_ui img {
   border: 0px;
   height: 32px;
   width: 32px;
@@ -13,7 +13,7 @@ img#social_connect_comment_via_provider  {
   height: 16px;
 }
 
-img#social_connect_already_connected_logo {
+img.social_connect_already_connected_logo {
   float:left; 
   padding-right: 10px;
 }

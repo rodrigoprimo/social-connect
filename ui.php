@@ -16,11 +16,11 @@ function sc_render_login_form_social_connect( $args = NULL ) {
 	$yahoo_enabled = get_option( 'social_connect_yahoo_enabled', 1 );
 	$wordpress_enabled = get_option( 'social_connect_wordpress_enabled', 1 );
 	?>
-	<div id="social_connect_ui">
+	<div class="social_connect_ui">
 		<?php if( $display_label !== false ) : ?>
 			<div style="margin-bottom: 3px;"><label><?php _e( 'Connect with', 'social_connect' ); ?>:</label></div>
 		<?php endif; ?>
-		<div id="social_connect_form" class="social_connect_form" title="Social Connect">
+		<div class="social_connect_form" title="Social Connect">
 			<?php if( $facebook_enabled ) : ?>
 				<a href="javascript:void(0);" title="Facebook" class="social_connect_login_facebook"><img alt="Facebook" src="<?php echo $images_url . 'facebook_32.png' ?>" /></a>
 			<?php endif; ?>
@@ -59,7 +59,7 @@ function sc_render_login_form_social_connect( $args = NULL ) {
 		$social_connect_login_continue = 'social_connect_wordpress_proceed';
 		?>
 		<div class="social_connect_already_connected_form" title="Social Connect" provider="<?php echo $social_connect_provider ?>">
-			<img alt="<?php echo $social_connect_provider; ?>" id="social_connect_already_connected_logo" src="<?php echo $images_url . $social_connect_provider . '_32.png' ?>" />
+			<img alt="<?php echo $social_connect_provider; ?>" class="social_connect_already_connected_logo" src="<?php echo $images_url . $social_connect_provider . '_32.png' ?>" />
 			<?php printf( __( 'Welcome back %s, %scontinue?%s', 'social_connect' ), $social_connect_user_name, '<a href="javascript:void(0);" class="'.$social_connect_login_continue.'">',  '</a>' ); ?>
 			<div style="clear:both;"></div>
 			<br/>
