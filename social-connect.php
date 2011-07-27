@@ -14,12 +14,14 @@ License: GPL2
  * Check technical requirements are fulfilled before activating.
  **/
 function sc_activate(){
-	if ( !function_exists( 'register_post_status' ) || !function_exists( 'curl_version' ) || version_compare( PHP_VERSION, '5.1.2', '<' ) ) {
+	if ( !function_exists( 'register_post_status' ) || !function_exists( 'curl_version' ) || !function_exists( 'hash' ) || version_compare( PHP_VERSION, '5.1.2', '<' ) ) {
 		deactivate_plugins( basename( dirname( __FILE__ ) ) . '/' . basename( __FILE__ ) );
 		if ( !function_exists( 'register_post_status' ) )
 			wp_die( sprintf( __( "Sorry, but you can not run Social Connect. It requires WordPress 3.0 or newer. Consider <a href='http://codex.wordpress.org/Updating_WordPress'>upgrading</a> your WordPress installation, it's worth the effort.<br/><a href=\"%s\">Return to Plugins Admin page &raquo;</a>", 'social_connect'), admin_url( 'plugins.php' ) ), 'social-connect' );
 		elseif ( !function_exists( 'curl_version' ) )
 			wp_die( sprintf( __( "Sorry, but you can not run Social Connect. It requires the <a href='http://www.php.net/manual/en/intro.curl.php'>PHP libcurl extension</a> be installed. Please contact your web host and request libcurl be <a href='http://www.php.net/manual/en/intro.curl.php'>installed</a>.<br/><a href=\"%s\">Return to Plugins Admin page &raquo;</a>", 'social_connect'), admin_url( 'plugins.php' ) ), 'social-connect' );
+		elseif ( !function_exists( 'hash' ) )
+			wp_die( sprintf( __( "Sorry, but you can not run Social Connect. It requires the <a href='http://www.php.net/manual/en/intro.hash.php'>PHP Hash Engine</a>. Please contact your web host and request Hash engine be <a href='http://www.php.net/manual/en/hash.setup.php'>installed</a>.<br/><a href=\"%s\">Return to Plugins Admin page &raquo;</a>", 'social_connect'), admin_url( 'plugins.php' ) ), 'social-connect' );
 		else
 			wp_die( sprintf( __( "Sorry, but you can not run Social Connect. It requires PHP 5.1.2 or newer. Please contact your web host and request they <a href='http://www.php.net/manual/en/migration5.php'>migrate</a> your PHP installation to run Social Connect.<br/><a href=\"%s\">Return to Plugins Admin page &raquo;</a>", 'social_connect'), admin_url( 'plugins.php' ) ), 'social-connect' );
 	}
