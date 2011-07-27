@@ -19,8 +19,9 @@ It makes it super easy for new members to register with your site and existing m
 
 Special thanks to:
 
-* [Wirone](http://blog.wirone.info/) for polish translation and patches; and
-* [markusdrake](http://wordpress.org/support/profile/markusdrake) for patches and helping in the support forums.
+* [Wirone](http://blog.wirone.info/) for polish translation and patches;
+* [markusdrake](http://wordpress.org/support/profile/markusdrake) for patches and helping in the support forums; and 
+* [Geodanny](http://wordpress.org/support/profile/geodanny) for helping in the support forums.
 
 And everyone else in the forums helping out by sharing the fixes they find and answering others questions. 
 
@@ -42,17 +43,23 @@ Yes.
 
 = Do I need to add template tags to my theme? =
 
-No social connect works with the default WordPress login and registration forms. 
+Social Connect attempts to work with the default WordPress login and registration forms. 
 
 If you want to add the social connect login or registration forms to another location in your theme, you can insert the following code in that location:
 
 `<?php if( 'sc_render_login_form_social_connect' ) sc_render_login_form_social_connect(); ?>`
 
-= Where can I get support? =
+= What do I do if the Rewrite Diagnostics fail? =
+
+If you get a 403 and 404 on the Rewrite Diagnostics test, please request your hosting provider whitelist your domain on mod_security. This problem has been encountered with **Host Gator* and **GoDaddy**.
+
+For more information, see [Geodanny](http://wordpress.org/support/profile/geodanny) kind responses in the forums to similar issues (here)[http://wordpress.org/support/topic/plugin-social-connect-url-rewriting-and-query-string-parameter-passing] and (here)[http://wordpress.org/support/topic/plugin-social-connect-url-rewrite]
+
+= Where can I report bugs & get support? =
 
 First, a few caveats on support. 
 
-This is free software. Please be patient. All questions *will* be answered, just not on the same day. Polite and descriptive questions will always be given priority.
+This is free software. Please be patient. I attempt to answer all questions, just not on the same day or even week. Polite and descriptive questions will always be given priority.
 
 Please search the support forums before asking a question - duplicate questions will not receive a reply.
 
