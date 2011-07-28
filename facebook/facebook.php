@@ -12,6 +12,7 @@ if (!function_exists('json_decode')) {
  *
  * @author Naitik Shah <naitik@facebook.com>
  */
+if (!class_exists('FacebookApiException')) :
 class FacebookApiException extends Exception
 {
   /**
@@ -89,7 +90,9 @@ class FacebookApiException extends Exception
     return $str . $this->message;
   }
 }
+endif;
 
+if (!class_exists('Facebook')) :
 /**
  * Provides access to the Facebook Platform.
  *
@@ -953,3 +956,4 @@ class Facebook
     return base64_decode(strtr($input, '-_', '+/'));
   }
 }
+endif;
