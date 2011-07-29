@@ -89,19 +89,14 @@ function sc_social_connect_process_login( $is_ajax = false ){
 		$names = explode(" ", $sc_name );
 		$sc_first_name = $names[0];
 		$sc_last_name = $names[1];
-
 		$sc_screen_name = $_REQUEST[ 'social_connect_screen_name' ];
 		$sc_profile_url = '';
-
-		// get host name from URL http://in.php.net/preg_match
-		preg_match("/^( http:\/\/)?([^\/]+)/i", site_url(), $matches );
-		$host = $matches[2];
-		preg_match("/[^\.\/]+\.[^\.\/]+$/", $host, $matches );
-		$domain_name = $matches[0];
-
-		$sc_email = 'tw_' . md5( $sc_provider_identity ) . '@' . $domain_name;
+		// Get host name from URL
+		$site_url = parse_url( site_url() );
+		$sc_email = 'tw_' . md5( $sc_provider_identity ) . '@' . $site_url['host'];
 		$user_login = $sc_screen_name;
 		break;
+
 		case 'google':
 		$sc_provider_identity = $_REQUEST[ 'social_connect_openid_identity' ];
 		social_connect_verify_signature( $sc_provider_identity, $sc_provided_signature, $redirect_to );
@@ -155,74 +150,46 @@ function sc_social_connect_process_login( $is_ajax = false ){
 			$sc_first_name = $names[0];
 			$sc_last_name = $names[1];
 		}
-
 		$user_login = strtolower( $sc_first_name.$sc_last_name );
-
-		setcookie("social_connect_wordpress_blog_url", $sc_provider_identity, time()+3600, SITECOOKIEPATH, COOKIE_DOMAIN, false, true );
-
 		break;
 	}
 
-	// cookies used to display welcome message if already signed in recently using some provider
+	// Cookies used to display welcome message if already signed in recently using some provider
 	setcookie("social_connect_current_provider", $social_connect_provider, time()+3600, SITECOOKIEPATH, COOKIE_DOMAIN, false, true );
-	if ( $sc_name == '') {
-		setcookie("social_connect_current_name", $user_login, time()+3600, SITECOOKIEPATH, COOKIE_DOMAIN, false, true );
-	} else {
-		setcookie("social_connect_current_name", $sc_name, time()+3600, SITECOOKIEPATH, COOKIE_DOMAIN, false, true );
-	}
 
-	// get user by meta
+	// Get user by meta
 	$user_id = social_connect_get_user_by_meta( $sc_provider_identity_key, $sc_provider_identity );
 	if ( $user_id ) {
-		// user already exists, just log him in
-		wp_set_auth_cookie( $user_id );
-		do_action( 'social_connect_login', $user_login );
-		if ( $is_ajax )
-			echo '{"redirect":"' . $redirect_to . '"}';
-		else
-			wp_safe_redirect( $redirect_to );
-		exit();
-	}
-
-	// user not found by provider identity, check by email
-	if ( ( $user_id = email_exists( $sc_email ) ) ) {
-		// user already exists, associate with provider identity
-		update_user_meta( $user_id, $sc_provider_identity_key, $sc_provider_identity );
-
-		// user signed in with provider identity after normal WP signup. Since email is verified, sign him in
-		wp_set_auth_cookie( $user_id );
 		$user_data  = get_userdata( $user_id );
 		$user_login = $user_data->user_login;
-		do_action( 'social_connect_login', $user_login );
-		if ( $is_ajax )
-			echo '{"redirect":"' . $redirect_to . '"}';
-		else
-			wp_safe_redirect( $redirect_to );
-		exit();
+	} elseif ( $user_id = email_exists( $sc_email ) ) { // User not found by provider identity, check by email
+		update_user_meta( $user_id, $sc_provider_identity_key, $sc_provider_identity );
 
-	} else {
-		// create new user and associate provider identity
-		if ( username_exists( $user_login ) ) {
+		$user_data  = get_userdata( $user_id );
+		$user_login = $user_data->user_login;
+
+	} else { // Create new user and associate provider identity
+		if ( username_exists( $user_login ) )
 			$user_login = apply_filters( 'social_connect_username_exists', strtolower("sc_". md5( $social_connect_provider . $sc_provider_identity ) ) );
-		}
 
-		$userdata = array( 'user_login' => $user_login, 'user_email' => $sc_email, 'first_name' => $sc_first_name, 'last_name' => $sc_last_name,
-			'user_url' => $sc_profile_url, 'user_pass' => wp_generate_password() );
+		$userdata = array( 'user_login' => $user_login, 'user_email' => $sc_email, 'first_name' => $sc_first_name, 'last_name' => $sc_last_name, 'user_url' => $sc_profile_url, 'user_pass' => wp_generate_password() );
 
-		// create a new user
+		// Create a new user
 		$user_id = wp_insert_user( $userdata );
-		if ( $user_id && is_integer( $user_id ) ) {
-			update_user_meta( $user_id, $sc_provider_identity_key, $sc_provider_identity );
 
-			wp_set_auth_cookie( $user_id );
-			do_action( 'social_connect_login', $user_login );
-			if ( $is_ajax )
-				echo '{"redirect":"' . $redirect_to . '"}';
-			else
-				wp_safe_redirect( $redirect_to );
-			exit();
-		}
+		if ( $user_id && is_integer( $user_id ) )
+			update_user_meta( $user_id, $sc_provider_identity_key, $sc_provider_identity );
 	}
+
+	wp_set_auth_cookie( $user_id );
+
+	do_action( 'social_connect_login', $user_login );
+
+	if ( $is_ajax )
+		echo '{"redirect":"' . $redirect_to . '"}';
+	else
+		wp_safe_redirect( $redirect_to );
+	exit();
 }
 // Hook to 'login_form_' . $action
 add_action( 'login_form_social_connect', 'sc_social_connect_process_login');
