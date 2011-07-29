@@ -5,7 +5,6 @@ require_once(dirname(__FILE__) . '/EpiOAuth.php' );
 require_once(dirname(__FILE__) . '/EpiTwitter.php' );
 require_once(dirname(dirname(__FILE__)) . '/utils.php' );
 
-
 $consumer_key = get_option('social_connect_twitter_consumer_key');
 $consumer_secret = get_option('social_connect_twitter_consumer_secret');
 $twitter_api = new EpiTwitter($consumer_key, $consumer_secret);
