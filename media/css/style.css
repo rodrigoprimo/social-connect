@@ -22,10 +22,6 @@ div.social_connect_wordpress_form {
   display:none;
 }
 
-div.social_connect_openid_form {
-  display:none;
-}
-
 div.social_connect_already_connected_form {
   display:none;
 }
@@ -35,10 +31,6 @@ div.social_connect_facebook_auth {
 }
 
 div.social_connect_twitter_auth {
-  display:none;
-}
-
-div.social_connect_liveid_auth {
   display:none;
 }
 

@@ -53,21 +53,6 @@ function sc_render_login_form_social_connect( $args = NULL ) {
 		$social_connect_wordpress_blog_name = $subdomains[0];
 	}
 
-	if( $social_connect_provider ) :
-		$social_connect_login_continue = 'social_connect_login_continue_' . $social_connect_provider;
-		if( $social_connect_provider == 'wordpress' ) // trigger the wordpress URL form instead			
-		$social_connect_login_continue = 'social_connect_wordpress_proceed';
-		?>
-		<div class="social_connect_already_connected_form" title="Social Connect" provider="<?php echo $social_connect_provider ?>">
-			<img alt="<?php echo $social_connect_provider; ?>" class="social_connect_already_connected_logo" src="<?php echo $images_url . $social_connect_provider . '_32.png' ?>" />
-			<?php printf( __( 'Welcome back %s, %scontinue?%s', 'social_connect' ), $social_connect_user_name, '<a href="javascript:void(0);" class="'.$social_connect_login_continue.'">',  '</a>' ); ?>
-			<div style="clear:both;"></div>
-			<br/>
-			<a href="javascript:void(0);" class="social_connect_already_connected_form_not_you"><?php _e( 'Not you?', 'social_connect' ); ?></a> <br/>
-			<a href="javascript:void(0);" class="social_connect_already_connected_user_another"><?php _e( 'Use another account', 'social_connect' ); ?></a> <br/>
-		</div>
-		<?php
-	endif;
 ?>
 	<div id="social_connect_facebook_auth">
 		<input type="hidden" name="client_id" value="<?php echo get_option( 'social_connect_facebook_api_key' ); ?>" />
@@ -77,14 +62,6 @@ function sc_render_login_form_social_connect( $args = NULL ) {
 	<div id="social_connect_google_auth"><input type="hidden" name="redirect_uri" value="<?php echo( SOCIAL_CONNECT_PLUGIN_URL . '/google/connect.php' ); ?>" /></div>
 	<div id="social_connect_yahoo_auth"><input type="hidden" name="redirect_uri" value="<?php echo( SOCIAL_CONNECT_PLUGIN_URL . '/yahoo/connect.php' ); ?>" /></div>
 	<div id="social_connect_wordpress_auth"><input type="hidden" name="redirect_uri" value="<?php echo( SOCIAL_CONNECT_PLUGIN_URL . '/wordpress/connect.php' ); ?>" /></div>
-
-	<div class="social_connect_openid_form" title="OpenID">
-		<p><?php _e( 'Enter your OpenID URL', 'social_connect' ); ?></p><br/>
-		<p>
-			<span>http://</span><input class="openid_url" size="15" value="<?php echo $social_connect_openid_url ?>"/> <br/><br/>
-			<a href="javascript:void(0);" class="social_connect_openid_proceed"><?php _e( 'Proceed', 'social_connect' ); ?></a>
-		</p>
-	</div>
 
 	<div class="social_connect_wordpress_form" title="WordPress">
 		<p><?php _e( 'Enter your WordPress.com blog URL', 'social_connect' ); ?></p><br/>
