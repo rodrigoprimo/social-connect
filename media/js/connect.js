@@ -94,7 +94,6 @@ jQuery.noConflict();
 			_social_connect_wordpress_form.dialog('open');     
 		});
 
-
 		$(".social_connect_wordpress_proceed").click(function(e) {
 			_do_wordpress_connect(e);
 		});
