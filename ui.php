@@ -16,7 +16,7 @@ function sc_render_login_form_social_connect( $args = NULL ) {
 	$yahoo_enabled = get_option( 'social_connect_yahoo_enabled', 1 );
 	$wordpress_enabled = get_option( 'social_connect_wordpress_enabled', 1 );
 	?>
-	<div class="social_connect_ui">
+	<div class="social_connect_ui <?php if( strpos( $_SERVER['REQUEST_URI'], 'wp-signup.php' ) ) echo 'mu_signup'; ?>">
 		<?php if( $display_label !== false ) : ?>
 			<div style="margin-bottom: 3px;"><label><?php _e( 'Connect with', 'social_connect' ); ?>:</label></div>
 		<?php endif; ?>
