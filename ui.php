@@ -72,7 +72,7 @@ function sc_social_connect_add_meta_to_comment_form() {
 		echo "<input type='hidden' name='social_connect_comment_via_provider' value='$social_connect_provider' />";
 	}
 }
-add_action( 'comment_form', 'sc_social_connect_add_meta_to_comment_form' );
+add_action( 'comment_form_top', 'sc_social_connect_add_meta_to_comment_form' );
 
 
 function sc_social_connect_add_comment_meta( $comment_id ) {
@@ -102,7 +102,7 @@ function sc_render_comment_form_social_connect() {
 		sc_render_login_form_social_connect();
 	}
 }
-add_action( 'comment_form', 'sc_render_comment_form_social_connect' );
+add_action( 'comment_form_top', 'sc_render_comment_form_social_connect' );
 
 
 function sc_render_login_page_uri(){
