@@ -61,18 +61,10 @@ function sc_render_login_form_social_connect( $args = NULL ) {
 </div> <!-- End of social_connect_ui div -->
 <?php
 }
-add_action( 'login_form', 'sc_render_login_form_social_connect' );
-add_action( 'register_form', 'sc_render_login_form_social_connect' );
-add_action( 'after_signup_form', 'sc_render_login_form_social_connect' );
-
-
-function sc_social_connect_add_meta_to_comment_form() {
-	$social_connect_provider = isset( $_COOKIE['social_connect_current_provider']) ? $_COOKIE['social_connect_current_provider'] : '';
-	if( $social_connect_provider != '' ) {
-		echo "<input type='hidden' name='social_connect_comment_via_provider' value='$social_connect_provider' />";
-	}
-}
-add_action( 'comment_form_top', 'sc_social_connect_add_meta_to_comment_form' );
+add_action( 'login_form',          'sc_render_login_form_social_connect' );
+add_action( 'register_form',       'sc_render_login_form_social_connect' );
+add_action( 'after_signup_form',   'sc_render_login_form_social_connect' );
+add_action( 'social_connect_form', 'sc_render_login_form_social_connect' );
 
 
 function sc_social_connect_add_comment_meta( $comment_id ) {
