@@ -58,7 +58,7 @@ If you want to add the social connect login or registration forms to another loc
 
 If you get a 403 and 404 on the Rewrite Diagnostics test, please request your hosting provider whitelist your domain on mod_security. This problem has been encountered with **Host Gator* and **GoDaddy**.
 
-For more information, see [Geodanny](http://wordpress.org/support/profile/geodanny) kind responses in the forums to similar issues (here)[http://wordpress.org/support/topic/plugin-social-connect-url-rewriting-and-query-string-parameter-passing] and (here)[http://wordpress.org/support/topic/plugin-social-connect-url-rewrite]
+For more information, see [Geodanny's](http://wordpress.org/support/profile/geodanny) kind responses in the forums to similar issues [here](http://wordpress.org/support/topic/plugin-social-connect-url-rewriting-and-query-string-parameter-passing) and [here](http://wordpress.org/support/topic/plugin-social-connect-url-rewrite).
 
 = Where can I report bugs & get support? =
 
@@ -85,7 +85,7 @@ Please make sure you are running the latest version of Social Connect and the la
 
 If you have White Label CMS installed, the javascript it adds to your login page breaks all other plugins which run javascript on the login form. 
 
-For a quick fix and for more information see here: http://wordpress.org/support/topic/social-connect-does-not-work-at-all?replies=7#post-2029255
+For a quick fix and for more information see this [forum topic](http://wordpress.org/support/topic/social-connect-does-not-work-at-all?replies=7#post-2029255).
 
 If you don't have White Label CMS installed, please double check your settings then post a question in the [Support Forums](http://wordpress.org/tags/social-connect?forum_id=10#postform). 
 
@@ -134,7 +134,7 @@ If you don't have White Label CMS installed, please double check your settings t
 == Upgrade Notice ==
 
 = 0.8 =
-* Upgrade to fix bugs affecting Facebook connect on servers. 
+* Upgrade to fix bugs affecting Facebook connect on certain servers. 
 
 = 0.7 =
 * Upgrade to be able to customise Social Connect widget & use in Polish.
