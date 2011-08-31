@@ -3,7 +3,7 @@ Contributors: thenbrent
 Tags: facebook, wordpress.com, twitter, google, yahoo, social, login, register
 Requires at least: 3.0
 Tested up to: 3.2.1
-Stable tag: 0.8
+Stable tag: 0.9
 
 Allow your visitors to comment, login and register with their Twitter, Facebook, Google, Yahoo or WordPress.com account.
 
@@ -96,6 +96,9 @@ If you don't have White Label CMS installed, please double check your settings t
 
 == Changelog ==
 
+= 0.9 =
+* Setting CURLOPT_SSL_VERIFYPEER to false
+
 = 0.8 =
 * Moving comments icons to top of comment form (using `comment_form_top` hook instead of `comment_form` hook)
 * No longer relying on `file_get_contents()` function (using custom `sc_curl_get_contents()` function)
@@ -132,6 +135,9 @@ If you don't have White Label CMS installed, please double check your settings t
 * Initial beta release. 
 
 == Upgrade Notice ==
+
+= 0.9 =
+* Upgrade to fix Facebook connect SSL bug effecting some servers.
 
 = 0.8 =
 * Upgrade to fix bugs affecting Facebook connect on certain servers. 
