@@ -26,6 +26,15 @@ Special thanks to:
 
 And everyone else in the forums sharing the fixes they find and answering each others questions.
 
+= Contribute =
+
+As Social Connect grows in popularity, help is greatly appreciated. 
+
+If you're a developer, you can contribute fixes & optimisations via [Social Connect on GitHub](https://github.com/thenbrent/social-connect).
+
+Everyone can help out by answering questions in the [Support Forums](http://wordpress.org/tags/social-connect?forum_id=10#postform). 
+
+
 == Installation ==
 
 1. Upload everything into the "/wp-content/plugins/" directory of your WordPress site.
