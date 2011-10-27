@@ -24,13 +24,16 @@ $signature = social_connect_generate_signature($twitter_id);
 <head>
 <script>
 function init() {
-  window.opener.wp_social_connect({'action' : 'social_connect', 'social_connect_provider' : 'twitter', 
-    'social_connect_signature' : '<?php echo $signature ?>',
-    'social_connect_twitter_identity' : '<?php echo $twitter_id ?>',
-    'social_connect_screen_name' : '<?php echo $screen_name ?>',
-    'social_connect_name' : '<?php echo $name ?>'});
-    
-  window.close();
+	window.opener.wp_social_connect({
+		'action' : 'social_connect', 
+		'social_connect_provider' : 'twitter', 
+		'social_connect_signature' : '<?php echo $signature ?>',
+		'social_connect_twitter_identity' : '<?php echo $twitter_id ?>',
+		'social_connect_screen_name' : '<?php echo $screen_name ?>',
+		'social_connect_name' : '<?php echo $name ?>'
+	});
+
+	window.close();
 }
 </script>
 </head>
