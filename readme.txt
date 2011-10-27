@@ -28,7 +28,7 @@ And everyone else in the forums sharing the fixes they find and answering each o
 
 = Contribute =
 
-As Social Connect grows in popularity, help is greatly appreciated. 
+Social Connect is rapidly growing in popularity and help with the growing pains is appreciated. 
 
 If you're a developer, you can contribute fixes & optimisations via [Social Connect on GitHub](https://github.com/thenbrent/social-connect).
 
