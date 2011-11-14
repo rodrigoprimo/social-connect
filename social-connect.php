@@ -169,8 +169,7 @@ function sc_social_connect_process_login( $is_ajax = false ){
 		$user_login = $user_data->user_login;
 
 	} else { // Create new user and associate provider identity
-		if ( username_exists( $user_login ) )
-			$user_login = apply_filters( 'social_connect_username_exists', strtolower("sc_". md5( $social_connect_provider . $sc_provider_identity ) ) );
+		$user_login = sc_get_unique_username($user_login);
 
 		$userdata = array( 'user_login' => $user_login, 'user_email' => $sc_email, 'first_name' => $sc_first_name, 'last_name' => $sc_last_name, 'user_url' => $sc_profile_url, 'user_pass' => wp_generate_password() );
 
@@ -191,6 +190,21 @@ function sc_social_connect_process_login( $is_ajax = false ){
 		wp_safe_redirect( $redirect_to );
 	exit();
 }
+
+function sc_get_unique_username($user_login, $c = 1) {
+	if ( username_exists( $user_login ) ) {
+		if ($c > 5)
+			$append = '_'.substr(md5($user_login),0,3) . $c;
+		else
+			$append = $c;
+		
+		$user_login = apply_filters( 'social_connect_username_exists', $user_login . $append );
+		return sc_get_unique_username($user_login,++$c);
+	} else {
+		return $user_login;
+	}
+}
+
 // Hook to 'login_form_' . $action
 add_action( 'login_form_social_connect', 'sc_social_connect_process_login');
 
