@@ -33,13 +33,11 @@ add_action( 'admin_print_styles', 'sc_add_admin_stylesheets' );
 
 
 function sc_add_javascripts(){
-	if( !wp_script_is( 'social_connect', 'registered' ) ) {
-		wp_register_script( "social_connect", SOCIAL_CONNECT_PLUGIN_URL . "/media/js/connect.js" );
-	}
-	wp_print_scripts( "jquery" );
-	wp_print_scripts( 'jquery-ui-core' );
-	wp_print_scripts( 'jquery-ui-dialog' );
-	wp_print_scripts( "social_connect" );
+
+	if( ! wp_script_is( 'social_connect', 'registered' ) )
+		wp_register_script( 'social_connect', SOCIAL_CONNECT_PLUGIN_URL . '/media/js/connect.js', array( 'jquery', 'jquery-ui-core', 'jquery-ui-dialog' ) );
+
+	wp_enqueue_script( 'social_connect' );
 }
-add_action( 'login_head', 'sc_add_javascripts' );
-add_action( 'wp_head', 'sc_add_javascripts' );
+add_action( 'login_head',         'sc_add_javascripts' );
+add_action( 'wp_enqueue_scripts', 'sc_add_javascripts' );

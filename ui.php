@@ -61,10 +61,10 @@ function sc_render_login_form_social_connect( $args = NULL ) {
 </div> <!-- End of social_connect_ui div -->
 <?php
 }
-add_action( 'login_form',          'sc_render_login_form_social_connect' );
-add_action( 'register_form',       'sc_render_login_form_social_connect' );
-add_action( 'after_signup_form',   'sc_render_login_form_social_connect' );
-add_action( 'social_connect_form', 'sc_render_login_form_social_connect' );
+add_action( 'login_form',          'sc_render_login_form_social_connect', 10 );
+add_action( 'register_form',       'sc_render_login_form_social_connect', 10 );
+add_action( 'after_signup_form',   'sc_render_login_form_social_connect', 10 );
+add_action( 'social_connect_form', 'sc_render_login_form_social_connect', 10 );
 
 
 function sc_social_connect_add_comment_meta( $comment_id ) {
