@@ -215,3 +215,80 @@ function sc_ajax_login(){
 		sc_social_connect_process_login( true );
 }
 add_action( 'init', 'sc_ajax_login');
+
+/**
+ * Use avatars in priority order
+ * @author Aaron Oneal
+ * @link http://aarononeal.info
+ *
+ */
+function sc_filter_avatar($avatar, $id_or_email, $size, $default, $alt) {
+	$custom_avatar = '';
+	$social_id = '';
+	$provider_id = '';
+	
+	// Providers to search for (assume user prefers their current logged in service)
+	// Note: OpenID providers use gravatars
+	$providers = array('facebook', 'twitter');
+	
+	$social_connect_provider = isset( $_COOKIE['social_connect_current_provider']) ? $_COOKIE['social_connect_current_provider'] : '';
+	if(!empty($social_connect_provider) && $social_connect_provider == 'twitter')
+		$providers = array('twitter', 'facebook');
+	
+	foreach($providers as $search_provider) {
+		$social_id = get_user_meta($id_or_email, 'social_connect_'.$search_provider.'_id', true);
+		if(!empty($social_id)) {
+			$provider_id = $search_provider;
+			break;
+		}
+	}
+	
+	// At least one social ID was found
+	if(!empty($social_id))
+	{
+		switch($provider_id)
+		{
+			case 'facebook':
+				// square (50x50)
+				// small (50 pixels wide, variable height)
+				// normal (100 pixels wide, variable height)
+				// large (about 200 pixels wide, variable height)
+
+				$size_label = 'large';
+				
+				if($size <= 100)
+					$size_label = 'normal';
+				else if($size <= 50)
+					$size_label = 'small';
+			
+				$custom_avatar = "http://graph.facebook.com/$social_id/picture?type=$size_label";
+				break;
+			case 'twitter':
+				// bigger - 73px by 73px
+				// normal - 48px by 48px
+				// mini - 24px by 24px
+				
+				$size_label = 'bigger';
+				
+				if($size <= 48)
+					$size_label = 'normal';
+				else if($size <= 24)
+					$size_label = 'mini';
+				
+				$custom_avatar = "http://api.twitter.com/1/users/profile_image?id=$social_id&size=$size_label";
+				break;
+		}
+	}
+		
+	if(!empty($custom_avatar)) // return the custom avatar from the social network
+		$return = '<img class="avatar" src="'.$custom_avatar.'" style="width:'.$size.'px" alt="'.$alt.'" />';
+	else if ($avatar) // gravatar
+		$return = $avatar;
+	else // default
+		$return = '<img class="avatar" src="'.$default.'" style="width:'.$size.'px" alt="'.$alt.'" />';
+
+	return $return;
+}
+add_filter('get_avatar', 'sc_filter_avatar', 10, 5);
+
+?>
