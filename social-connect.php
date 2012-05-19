@@ -227,19 +227,22 @@ function sc_filter_avatar($avatar, $id_or_email, $size, $default, $alt) {
 	$social_id = '';
 	$provider_id = '';
 	
-	// Providers to search for (assume user prefers their current logged in service)
-	// Note: OpenID providers use gravatars
-	$providers = array('facebook', 'twitter');
-	
-	$social_connect_provider = isset( $_COOKIE['social_connect_current_provider']) ? $_COOKIE['social_connect_current_provider'] : '';
-	if(!empty($social_connect_provider) && $social_connect_provider == 'twitter')
-		$providers = array('twitter', 'facebook');
-	
-	foreach($providers as $search_provider) {
-		$social_id = get_user_meta($id_or_email, 'social_connect_'.$search_provider.'_id', true);
-		if(!empty($social_id)) {
-			$provider_id = $search_provider;
-			break;
+	if(is_string($id_or_email) || is_int($id_or_email) || (get_class($id_or_email) && !empty($id_or_email->user_id)))
+	{
+		// Providers to search for (assume user prefers their current logged in service)
+		// Note: OpenID providers use gravatars
+		$providers = array('facebook', 'twitter');
+		
+		$social_connect_provider = isset( $_COOKIE['social_connect_current_provider']) ? $_COOKIE['social_connect_current_provider'] : '';
+		if(!empty($social_connect_provider) && $social_connect_provider == 'twitter')
+			$providers = array('twitter', 'facebook');
+		
+		foreach($providers as $search_provider) {
+			$social_id = get_user_meta($id_or_email, 'social_connect_'.$search_provider.'_id', true);
+			if(!empty($social_id)) {
+				$provider_id = $search_provider;
+				break;
+			}
 		}
 	}
 	
