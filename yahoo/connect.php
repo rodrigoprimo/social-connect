@@ -17,6 +17,8 @@ try {
       $name = $attributes['namePerson'];
       $username = $attributes['namePerson/friendly'];
       $signature = social_connect_generate_signature($yahoo_id);
+      
+      do_action( 'social_connect_before_register_yahoo', $yahoo_id, $signature );
       ?>
 <html>
 <head>

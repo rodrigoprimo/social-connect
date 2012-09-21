@@ -32,8 +32,8 @@ try {
 				</html>
 				<?php
 			die();
-		}
-
+            }
+            do_action( 'social_connect_before_register_wordpress', $wordpress_id, $signature );
 		?>
 		<html>
 		<head>

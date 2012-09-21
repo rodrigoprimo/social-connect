@@ -17,6 +17,7 @@ try {
       $first_name = $attributes['namePerson/first'];
       $last_name = $attributes['namePerson/last'];
       $signature = social_connect_generate_signature($google_id);
+      do_action( 'social_connect_before_register_google', $google_id, $signature );
       ?>
 <html>
 <head>
