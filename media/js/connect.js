@@ -58,43 +58,43 @@ jQuery.noConflict();
 			closedialog = 1;
 		}
 
-		$(".social_connect_login_facebook").click(function() {
+		$(".social_connect_login_facebook").live("click", function() {
 			_do_facebook_connect();
 		});
 
-		$(".social_connect_login_continue_facebook").click(function() {
+		$(".social_connect_login_continue_facebook").live("click", function() {
 			_do_facebook_connect();
 		});
 
-		$(".social_connect_login_twitter").click(function() {
+		$(".social_connect_login_twitter").live("click", function() {
 			_do_twitter_connect();
 		});
 
-		$(".social_connect_login_continue_twitter").click(function() {
+		$(".social_connect_login_continue_twitter").live("click", function() {
 			_do_twitter_connect();
 		});
 
-		$(".social_connect_login_google").click(function() {
+		$(".social_connect_login_google").live("click", function() {
 			_do_google_connect();
 		});
 
-		$(".social_connect_login_continue_google").click(function() {
+		$(".social_connect_login_continue_google").live("click",function() {
 			_do_google_connect();
 		});
 
-		$(".social_connect_login_yahoo").click(function() {
+		$(".social_connect_login_yahoo").live("click", function() {
 			_do_yahoo_connect();
 		});
 
-		$(".social_connect_login_continue_yahoo").click(function() {
+		$(".social_connect_login_continue_yahoo").live("click", function() {
 			_do_yahoo_connect();
 		});
 
-		$(".social_connect_login_wordpress").click(function() {
+		$(".social_connect_login_wordpress").live("click", function() {
 			_social_connect_wordpress_form.dialog('open');     
 		});
 
-		$(".social_connect_wordpress_proceed").click(function(e) {
+		$(".social_connect_wordpress_proceed").live("click", function(e) {
 			_do_wordpress_connect(e);
 		});
 	});

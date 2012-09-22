@@ -18,6 +18,8 @@ $name = $user->name;
 $screen_name = $user->screen_name;
 $twitter_id = $user->id;
 $signature = social_connect_generate_signature($twitter_id);
+
+do_action( 'social_connect_before_register_twitter', $twitter_id, $signature );
 ?>
 
 <html>
