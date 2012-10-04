@@ -19,8 +19,9 @@ function sc_render_login_form_social_connect( $args = NULL ) {
 	$wordpress_enabled = get_option( 'social_connect_wordpress_enabled', 1 );
 	?>
 	<div class="social_connect_ui <?php if( strpos( $_SERVER['REQUEST_URI'], 'wp-signup.php' ) ) echo 'mu_signup'; ?>">
+                <p class="comment-form-social-connect">
 		<?php if( $display_label !== false ) : ?>
-			<div style="margin-bottom: 3px;"><label><?php _e( 'Connect with', 'social_connect' ); ?></label></div>
+			<label><?php _e( 'Connect with', 'social_connect' ); ?></label>
 		<?php endif; ?>
 		<div class="social_connect_form" title="Social Connect">
 			<?php if( $facebook_enabled ) :
@@ -38,7 +39,7 @@ function sc_render_login_form_social_connect( $args = NULL ) {
 			<?php if( $wordpress_enabled ) :
 				echo apply_filters('social_connect_login_wordpress','<a href="javascript:void(0);" title="WordPress.com" class="social_connect_login_wordpress"><img alt="WordPress.com" src="'.$images_url.'wordpress_32.png" /></a>');
 			       endif; ?>
-		</div>
+		</div></p>
 
 		<?php
 	$social_connect_provider = isset( $_COOKIE['social_connect_current_provider']) ? $_COOKIE['social_connect_current_provider'] : '';
