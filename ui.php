@@ -1,5 +1,7 @@
 <?php
 
+if (!function_exists('sc_render_login_form_social_connect')) :
+
 function sc_render_login_form_social_connect( $args = NULL ) {
 
 	if( $args == NULL )
@@ -8,7 +10,7 @@ function sc_render_login_form_social_connect( $args = NULL ) {
 		extract( $args );
 
 	if( !isset( $images_url ) )
-		$images_url = SOCIAL_CONNECT_PLUGIN_URL . '/media/img/';
+		$images_url = apply_filters('social_connect_images_url', SOCIAL_CONNECT_PLUGIN_URL . '/media/img/');
 
 	$twitter_enabled = get_option( 'social_connect_twitter_enabled' ) && get_option( 'social_connect_twitter_consumer_key' ) && get_option( 'social_connect_twitter_consumer_secret' );
 	$facebook_enabled = get_option( 'social_connect_facebook_enabled', 1 ) && get_option( 'social_connect_facebook_api_key' ) && get_option( 'social_connect_facebook_secret_key' );
@@ -21,21 +23,21 @@ function sc_render_login_form_social_connect( $args = NULL ) {
 			<div style="margin-bottom: 3px;"><label><?php _e( 'Connect with', 'social_connect' ); ?>:</label></div>
 		<?php endif; ?>
 		<div class="social_connect_form" title="Social Connect">
-			<?php if( $facebook_enabled ) : ?>
-				<a href="javascript:void(0);" title="Facebook" class="social_connect_login_facebook"><img alt="Facebook" src="<?php echo $images_url . 'facebook_32.png' ?>" /></a>
-			<?php endif; ?>
-			<?php if( $twitter_enabled ) : ?>
-				<a href="javascript:void(0);" title="Twitter" class="social_connect_login_twitter"><img alt="Twitter" src="<?php echo $images_url . 'twitter_32.png' ?>" /></a>
-			<?php endif; ?>
-			<?php if( $google_enabled ) : ?>
-				<a href="javascript:void(0);" title="Google" class="social_connect_login_google"><img alt="Google" src="<?php echo $images_url . 'google_32.png' ?>" /></a>
-			<?php endif; ?>
-			<?php if( $yahoo_enabled ) : ?>
-				<a href="javascript:void(0);" title="Yahoo" class="social_connect_login_yahoo"><img alt="Yahoo" src="<?php echo $images_url . 'yahoo_32.png' ?>" /></a>
-			<?php endif; ?>
-			<?php if( $wordpress_enabled ) : ?>
-				<a href="javascript:void(0);" title="WordPress.com" class="social_connect_login_wordpress"><img alt="Wordpress.com" src="<?php echo $images_url . 'wordpress_32.png' ?>" /></a>
-			<?php endif; ?>
+			<?php if( $facebook_enabled ) :
+				echo apply_filters('social_connect_login_facebook','<a href="javascript:void(0);" title="Facebook" class="social_connect_login_facebook"><img alt="Facebook" src="'.$images_url.'facebook_32.png" /></a>');
+			       endif; ?>
+			<?php if( $twitter_enabled ) :
+				echo apply_filters('social_connect_login_twitter','<a href="javascript:void(0);" title="Twitter" class="social_connect_login_twitter"><img alt="Twitter" src="'.$images_url.'twitter_32.png" /></a>');
+			       endif; ?>
+			<?php if( $google_enabled ) :
+				echo apply_filters('social_connect_login_google','<a href="javascript:void(0);" title="Google" class="social_connect_login_google"><img alt="Google" src="'.$images_url.'google_32.png" /></a>');
+			       endif; ?>
+			<?php if( $yahoo_enabled ) :
+				echo apply_filters('social_connect_login_yahoo','<a href="javascript:void(0);" title="Yahoo" class="social_connect_login_yahoo"><img alt="Yahoo" src="'.$images_url.'yahoo_32.png" /></a>');
+			       endif; ?>
+			<?php if( $wordpress_enabled ) :
+				echo apply_filters('social_connect_login_wordpress','<a href="javascript:void(0);" title="WordPress.com" class="social_connect_login_wordpress"><img alt="WordPress.com" src="'.$images_url.'wordpress_32.png" /></a>');
+			       endif; ?>
 		</div>
 
 		<?php
@@ -61,6 +63,8 @@ function sc_render_login_form_social_connect( $args = NULL ) {
 </div> <!-- End of social_connect_ui div -->
 <?php
 }
+endif; // function_exist
+
 add_action( 'login_form',          'sc_render_login_form_social_connect', 10 );
 add_action( 'register_form',       'sc_render_login_form_social_connect', 10 );
 add_action( 'after_signup_form',   'sc_render_login_form_social_connect', 10 );
@@ -115,7 +119,7 @@ class SocialConnectWidget extends WP_Widget {
 			'social_connect', //unique id
 			'Social Connect', //title displayed at admin panel
 			//Additional parameters
-			array( 
+			array(
 				'description' => __( 'Login or register with Facebook, Twitter, Yahoo, Google or a Wordpress.com account', 'social_connect' ))
 			);
 	}
@@ -123,9 +127,9 @@ class SocialConnectWidget extends WP_Widget {
 	/** This is rendered widget content */
 	function widget( $args, $instance ) {
 		extract( $args );
-		
+
 		if($instance['hide_for_logged_in']==1 && is_user_logged_in()) return;
-		
+
 		echo $before_widget;
 
 		if( !empty( $instance['title'] ) ){
@@ -162,7 +166,7 @@ class SocialConnectWidget extends WP_Widget {
 		/* Set up default widget settings. */
 		$defaults = array( 'title' => '', 'before_widget_content' => '', 'after_widget_content' => '' );
 
-		foreach( $instance as $key => $value ) 
+		foreach( $instance as $key => $value )
 			$instance[ $key ] = esc_attr( $value );
 
 		$instance = wp_parse_args( (array)$instance, $defaults );
