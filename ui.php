@@ -20,7 +20,7 @@ function sc_render_login_form_social_connect( $args = NULL ) {
 	?>
 	<div class="social_connect_ui <?php if( strpos( $_SERVER['REQUEST_URI'], 'wp-signup.php' ) ) echo 'mu_signup'; ?>">
 		<?php if( $display_label !== false ) : ?>
-			<div style="margin-bottom: 3px;"><label><?php _e( 'Connect with', 'social_connect' ); ?>:</label></div>
+			<div style="margin-bottom: 3px;"><label><?php _e( 'Connect with', 'social_connect' ); ?></label></div>
 		<?php endif; ?>
 		<div class="social_connect_form" title="Social Connect">
 			<?php if( $facebook_enabled ) :
