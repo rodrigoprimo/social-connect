@@ -19,11 +19,12 @@ function sc_render_login_form_social_connect( $args = NULL ) {
 	$wordpress_enabled = get_option( 'social_connect_wordpress_enabled', 1 );
 	?>
 	<div class="social_connect_ui <?php if( strpos( $_SERVER['REQUEST_URI'], 'wp-signup.php' ) ) echo 'mu_signup'; ?>">
-                <p class="comment-form-social-connect">
+      <p class="comment-form-social-connect">
 		<?php if( $display_label !== false ) : ?>
 			<label><?php _e( 'Connect with', 'social_connect' ); ?></label>
 		<?php endif; ?>
-		<div class="social_connect_form" title="Social Connect">
+		<div class="social_connect_form">
+      <?php do_action ('social_connect_pre_form'); ?>
 			<?php if( $facebook_enabled ) :
 				echo apply_filters('social_connect_login_facebook','<a href="javascript:void(0);" title="Facebook" class="social_connect_login_facebook"><img alt="Facebook" src="'.$images_url.'facebook_32.png" /></a>');
 			       endif; ?>
@@ -39,12 +40,14 @@ function sc_render_login_form_social_connect( $args = NULL ) {
 			<?php if( $wordpress_enabled ) :
 				echo apply_filters('social_connect_login_wordpress','<a href="javascript:void(0);" title="WordPress.com" class="social_connect_login_wordpress"><img alt="WordPress.com" src="'.$images_url.'wordpress_32.png" /></a>');
 			       endif; ?>
+      <?php do_action ('social_connect_post_form'); ?>
 		</div></p>
 
 		<?php
 	$social_connect_provider = isset( $_COOKIE['social_connect_current_provider']) ? $_COOKIE['social_connect_current_provider'] : '';
 
 ?>
+  <?php do_action ('social_connect_auth'); ?>
 	<div id="social_connect_facebook_auth">
 		<input type="hidden" name="client_id" value="<?php echo get_option( 'social_connect_facebook_api_key' ); ?>" />
 		<input type="hidden" name="redirect_uri" value="<?php echo urlencode( SOCIAL_CONNECT_PLUGIN_URL . '/facebook/callback.php' ); ?>" />
@@ -55,9 +58,9 @@ function sc_render_login_form_social_connect( $args = NULL ) {
 	<div id="social_connect_wordpress_auth"><input type="hidden" name="redirect_uri" value="<?php echo( SOCIAL_CONNECT_PLUGIN_URL . '/wordpress/connect.php' ); ?>" /></div>
 
 	<div class="social_connect_wordpress_form" title="WordPress">
-		<p><?php _e( 'Enter your WordPress.com blog URL', 'social_connect' ); ?></p><br/>
+		<p><?php _e( 'Enter your WordPress.com blog URL', 'social_connect' ); ?></p><br />
 		<p>
-			<span>http://</span><input class="wordpress_blog_url" size="15" value=""/><span>.wordpress.com</span> <br/><br/>
+			<span>http://</span><input class="wordpress_blog_url" size="15" value=""/><span>.wordpress.com</span> <br /><br />
 			<a href="javascript:void(0);" class="social_connect_wordpress_proceed"><?php _e( 'Proceed', 'social_connect' ); ?></a>
 		</p>
 	</div>
