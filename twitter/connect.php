@@ -1,18 +1,38 @@
 <?php
 require_once(dirname(dirname(dirname(dirname(dirname(__FILE__))))) . '/wp-load.php');
-require_once(dirname(__FILE__) . '/EpiCurl.php' );
-require_once(dirname(__FILE__) . '/EpiOAuth.php' );
-require_once(dirname(__FILE__) . '/EpiTwitter.php' );
+
+if (!session_id()) {
+    session_start();
+}
+
+require_once('twitteroauth/twitteroauth.php');
+
+define('CONSUMER_KEY', get_option('social_connect_twitter_consumer_key'));
+define('CONSUMER_SECRET', get_option('social_connect_twitter_consumer_secret'));
+define('OAUTH_CALLBACK', SOCIAL_CONNECT_PLUGIN_URL . '/twitter/callback.php');
 
 $twitter_enabled = get_option('social_connect_twitter_enabled');
-$consumer_key = get_option('social_connect_twitter_consumer_key');
-$consumer_secret = get_option('social_connect_twitter_consumer_secret');
 
-if($twitter_enabled && $consumer_key && $consumer_secret) {
-  $twitter_api = new EpiTwitter($consumer_key, $consumer_secret);
-  wp_redirect($twitter_api->getAuthenticateUrl());
-  exit();
+if($twitter_enabled && CONSUMER_KEY != '' && CONSUMER_SECRET != '') {
+		/* Build TwitterOAuth object with client credentials. */
+		$connection = new TwitterOAuth(CONSUMER_KEY, CONSUMER_SECRET);
+	 
+		/* Get temporary credentials. */
+		$request_token = $connection->getRequestToken(OAUTH_CALLBACK);
+		$_SESSION['oauth_token'] = $token = $request_token['oauth_token'];
+		$_SESSION['oauth_token_secret'] = $request_token['oauth_token_secret'];
+		/* If last connection failed don't display authorization link. */
+		switch ($connection->http_code) {
+		  case 200:
+			/* Build authorize URL and redirect user to Twitter. */
+			$url = $connection->getAuthorizeURL($token);
+			wp_redirect($url);
+			break;
+		  default:
+			/* Show notification if something went wrong. */
+			echo 'Could not connect to Twitter. Refresh the page or try again later.';
+		}
+	  
+		exit();
+	
 }
-?>
-<p>Social Connect plugin has not been configured for Twitter</p>
-
