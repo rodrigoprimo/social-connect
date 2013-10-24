@@ -1,0 +1,266 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Social Connect\n"
+"POT-Creation-Date: 2013-10-24 15:28-0300\n"
+"PO-Revision-Date: 2013-10-24 15:40-0300\n"
+"Last-Translator: Rodrigo Primo <rodrigo@hacklab.com.br>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.4\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: ..\n"
+
+#: ../admin.php:26
+msgid "Social Connect Settings"
+msgstr "Configurações do Social Connect"
+
+#: ../admin.php:30
+msgid "Facebook Settings"
+msgstr "Configurações do Facebook"
+
+#: ../admin.php:31
+msgid ""
+"To connect your site to Facebook, you need a Facebook Application. If you "
+"have already created one, please insert your API & Secret key below."
+msgstr ""
+"Para conectar o seu site ao Facebook você precisa de uma aplicação nesta "
+"rede social. Se você já criou uma, coloque a sua chave da API e a chave "
+"secreta abaixo."
+
+#: ../admin.php:32 ../admin.php:60
+#, php-format
+msgid ""
+"Already registered? Find your keys in your <a target=\"_blank\" href=\"%2$s"
+"\">%1$s Application List</a>"
+msgstr ""
+
+#: ../admin.php:33
+msgid "Need to register?"
+msgstr "Precisa cadastrar-se?"
+
+#: ../admin.php:35
+#, php-format
+msgid ""
+"Visit the <a target=\"_blank\" href=\"%1$s\">Facebook Application Setup</a> "
+"page"
+msgstr ""
+"Visite a página <a target=\"_blank\" href=\"%1$s\">Facebook Application "
+"Setup</a>"
+
+#: ../admin.php:36
+#, php-format
+msgid ""
+"Get the API information from the <a target=\"_blank\" href=\"%1$s\">Facebook "
+"Application List</a>"
+msgstr ""
+"Pegue as informações da API na página <a target=\"_blank\" href=\"%1$s"
+"\">Facebook Application List</a>"
+
+#: ../admin.php:37
+msgid ""
+"Select the application you created, then copy and paste the API key & "
+"Application Secret from there."
+msgstr ""
+"Selecione a aplicação que você criou e então copie e cole a API key e o "
+"Application Secret de lá."
+
+#: ../admin.php:41 ../admin.php:69
+msgid "Enable?"
+msgstr "Habilitado?"
+
+#: ../admin.php:44
+msgid "Check this box to enable register/login using Facebook."
+msgstr ""
+"Selecione esta caixa para habilitar o registro e login usando o Facebook"
+
+#: ../admin.php:48
+msgid "API Key"
+msgstr "API Key"
+
+#: ../admin.php:53
+msgid "Secret Key"
+msgstr "Secret Key"
+
+#: ../admin.php:58
+msgid "Twitter Settings"
+msgstr "Configurações do Twitter"
+
+#: ../admin.php:59
+msgid ""
+"To offer login via Twitter, you need to register your site as a Twitter "
+"Application and get a <strong>Consumer Key</strong>, a <strong>Consumer "
+"Secret</strong>, an <strong>Access Token</strong> and an <strong>Access "
+"Token Secret</strong>."
+msgstr ""
+
+#: ../admin.php:61
+#, php-format
+msgid ""
+"Need to register? <a href=\"%1$s\">Register an Application</a> and fill the "
+"form with the details below:"
+msgstr ""
+
+#: ../admin.php:63
+msgid "Application Type: <strong>Browser</strong>"
+msgstr ""
+
+#: ../admin.php:64
+#, php-format
+msgid "Callback URL: <strong>%1$s</strong>"
+msgstr ""
+
+#: ../admin.php:65
+msgid "Default Access: <strong>Read &amp; Write</strong>"
+msgstr "Acesso padrão: <strong>Escrita e leitura</strong>"
+
+#: ../admin.php:72
+msgid ""
+"Twitter integration requires the generation of dummy email addresses for "
+"authenticating users.<br/>Please check with your domain administrator as "
+"this may require changes to your mail server."
+msgstr ""
+
+#: ../admin.php:76
+msgid "Consumer Key"
+msgstr ""
+
+#: ../admin.php:80
+msgid "Consumer Secret"
+msgstr ""
+
+#: ../admin.php:85
+msgid "OpenID Providers"
+msgstr ""
+
+#: ../admin.php:86
+msgid ""
+"Choose the OpenID providers your visitors can use to register, comment and "
+"login."
+msgstr ""
+"Escolha os servidores OpenID que os usuários podem utilizar para comentar, "
+"entrar no site e se registrar."
+
+#: ../admin.php:109
+msgid "Save Changes"
+msgstr "Salvar alterações"
+
+#: ../admin.php:112
+msgid "Rewrite Diagnostics"
+msgstr ""
+
+#: ../admin.php:113
+msgid ""
+"Click on the link below to confirm your URL rewriting and query string "
+"parameter passing are setup correctly on your server. If you see a \"Test "
+"was successful\" message after clicking the link then you are good to go. If "
+"you see a 404 error or some other error then you need to update rewrite "
+"rules or ask your service provider to configure your server settings such "
+"that the below URL works correctly."
+msgstr ""
+
+#: ../admin.php:114
+msgid "Test server redirection settings"
+msgstr "Verificar as configurações de redirecionamento do servidor"
+
+#: ../ui.php:24
+msgid "Connect with"
+msgstr "Conectar com"
+
+#: ../ui.php:61
+msgid "Enter your WordPress.com blog URL"
+msgstr "Digite a URL do seu blog no WordPress.com"
+
+#: ../ui.php:64
+msgid "Proceed"
+msgstr "Continuar"
+
+#: ../ui.php:127
+msgid ""
+"Login or register with Facebook, Twitter, Yahoo, Google or a Wordpress.com "
+"account"
+msgstr ""
+"Faça login ou se cadastre com uma conta do Facebook, Twitter, Yahoo, Google "
+"ou WordPress.com"
+
+#: ../ui.php:179
+msgid "Title:"
+msgstr "Título:"
+
+#: ../ui.php:181
+msgid "Before widget content:"
+msgstr ""
+
+#: ../ui.php:183
+msgid "After widget content:"
+msgstr ""
+
+#: ../ui.php:185
+msgid "Hide for logged in users:"
+msgstr ""
+
+#: ../social-connect.php:20
+#, php-format
+msgid ""
+"Sorry, but you can not run Social Connect. It requires WordPress 3.0 or "
+"newer. Consider <a href='http://codex.wordpress.org/"
+"Updating_WordPress'>upgrading</a> your WordPress installation, it's worth "
+"the effort.<br/><a href=\"%s\">Return to Plugins Admin page &raquo;</a>"
+msgstr ""
+
+#: ../social-connect.php:22
+#, php-format
+msgid ""
+"Sorry, but you can not run Social Connect. It requires the <a href='http://"
+"www.php.net/manual/en/intro.curl.php'>PHP libcurl extension</a> be "
+"installed. Please contact your web host and request libcurl be <a "
+"href='http://www.php.net/manual/en/intro.curl.php'>installed</a>.<br/><a "
+"href=\"%s\">Return to Plugins Admin page &raquo;</a>"
+msgstr ""
+
+#: ../social-connect.php:24
+#, php-format
+msgid ""
+"Sorry, but you can not run Social Connect. It requires the <a href='http://"
+"www.php.net/manual/en/intro.hash.php'>PHP Hash Engine</a>. Please contact "
+"your web host and request Hash engine be <a href='http://www.php.net/manual/"
+"en/hash.setup.php'>installed</a>.<br/><a href=\"%s\">Return to Plugins Admin "
+"page &raquo;</a>"
+msgstr ""
+
+#: ../social-connect.php:26
+#, php-format
+msgid ""
+"Sorry, but you can not run Social Connect. It requires PHP 5.1.2 or newer. "
+"Please contact your web host and request they <a href='http://www.php.net/"
+"manual/en/migration5.php'>migrate</a> your PHP installation to run Social "
+"Connect.<br/><a href=\"%s\">Return to Plugins Admin page &raquo;</a>"
+msgstr ""
+
+#: ../diagnostics/test.php:8
+msgid ""
+"Test was successful! <br/><br/> The rewrite rules on your server appear to "
+"be setup correctly for Social Connect to work."
+msgstr ""
+
+#: ../diagnostics/test.php:10
+#, php-format
+msgid ""
+"Test was unsuccessful. Expected \"http://www.example.com\", received \"%s\"."
+msgstr ""
+
+#: ../diagnostics/test.php:20
+msgid "Social Connect Diagnostics"
+msgstr ""
+
+#: ../wordpress/connect.php:14
+msgid "You have cancelled this login. Please close this window and try again."
+msgstr ""
+
+#: ../wordpress/connect.php:30
+msgid ""
+"You need to share your email address when prompted at wordpress.com. Please "
+"close this window and try again."
+msgstr ""
