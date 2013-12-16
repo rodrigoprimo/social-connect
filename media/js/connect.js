@@ -2,8 +2,11 @@ jQuery.noConflict();
 (function($) { 
 	$(function() {
 		// ready to roll
-		var _social_connect_wordpress_form = $($('.social_connect_wordpress_form')[0]);
-		_social_connect_wordpress_form.dialog({ autoOpen: false, modal: true, dialogClass: 'social-connect-dialog', resizable: false, maxHeight: 400, width:350, maxWidth: 600 });
+		
+		if (social_connect_data.wordpress_enabled) {
+			var _social_connect_wordpress_form = $($('.social_connect_wordpress_form')[0]);
+			_social_connect_wordpress_form.dialog({ autoOpen: false, modal: true, dialogClass: 'social-connect-dialog', resizable: false, maxHeight: 400, width:350, maxWidth: 600 });
+		}
 
 		var _do_google_connect = function() {
 			var google_auth = $('#social_connect_google_auth');
@@ -49,14 +52,6 @@ jQuery.noConflict();
 				'','scrollbars=no,menubar=no,height=400,width=800,resizable=yes,toolbar=no,status=no');
 			}
 		};
-
-		// Close dialog if open and user clicks anywhere outside of it
-		function overlay_click_close() {
-			if (closedialog) {
-				_social_connect_already_connected_form.dialog('close');
-			}
-			closedialog = 1;
-		}
 
 		$(".social_connect_login_facebook").live("click", function() {
 			_do_facebook_connect();
