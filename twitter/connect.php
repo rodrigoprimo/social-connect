@@ -11,9 +11,7 @@ define('CONSUMER_KEY', get_option('social_connect_twitter_consumer_key'));
 define('CONSUMER_SECRET', get_option('social_connect_twitter_consumer_secret'));
 define('OAUTH_CALLBACK', SOCIAL_CONNECT_PLUGIN_URL . '/twitter/callback.php');
 
-$twitter_enabled = get_option('social_connect_twitter_enabled');
-
-if($twitter_enabled && CONSUMER_KEY != '' && CONSUMER_SECRET != '') {
+if(CONSUMER_KEY != '' && CONSUMER_SECRET != '') {
 		/* Build TwitterOAuth object with client credentials. */
 		$connection = new TwitterOAuth(CONSUMER_KEY, CONSUMER_SECRET);
 	 
