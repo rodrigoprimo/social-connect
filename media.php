@@ -3,7 +3,7 @@
 function sc_add_stylesheets(){
 	if( !wp_style_is( 'social_connect', 'registered' ) ) {
 		wp_register_style( "social_connect", SOCIAL_CONNECT_PLUGIN_URL . "/media/css/style.css" );
-		wp_register_style( "jquery-ui", 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/themes/smoothness/jquery-ui.css' );
+		wp_register_style( "jquery-ui", 'https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/themes/smoothness/jquery-ui.css' );
 	}
 
 	if ( did_action( 'wp_print_styles' ) ) {
