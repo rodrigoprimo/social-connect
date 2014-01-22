@@ -3,7 +3,8 @@ require_once( dirname( dirname( dirname( dirname( dirname( __FILE__ ) ) ) ) ) . 
 
 $testing = "";
 $msg = "";
-$testing = $_REQUEST['testing'];
+$testing = filter_input(INPUT_GET, 'testing', FILTER_SANITIZE_STRING);
+
 if ( $testing == "http://www.example.com" ) {
 	$msg = __( 'Test was successful! <br/><br/> The rewrite rules on your server appear to be setup correctly for Social Connect to work.', 'social_connect' );
 } else {
@@ -22,5 +23,3 @@ if ( $testing == "http://www.example.com" ) {
 	</div>  
 </body>
 </html>
-
-
