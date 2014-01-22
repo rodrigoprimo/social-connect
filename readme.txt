@@ -105,6 +105,9 @@ If you don't have White Label CMS installed, please double check your settings t
 
 == Changelog ==
 
+= 0.10.1 =
+* Use HTTPS version of Google CDN to include jQuery UI CSS (proposed by ismailfazal)
+
 = 0.10 =
 * Fix Twitter login
 * Added several hooks to make it easier to extend the plugin
