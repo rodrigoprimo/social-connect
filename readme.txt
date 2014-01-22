@@ -3,7 +3,7 @@ Contributors: thenbrent, rodrigosprimo
 Tags: facebook, wordpress.com, twitter, google, yahoo, social, login, register
 Requires at least: 3.0
 Tested up to: 3.8
-Stable tag: 0.10.1
+Stable tag: 0.10.2
 
 Allow your visitors to comment, login and register with their Twitter, Facebook, Google, Yahoo or WordPress.com account.
 
@@ -104,6 +104,9 @@ If you don't have White Label CMS installed, please double check your settings t
 2. **Comment** - buttons for 3rd party services are also provided on the comment form.
 
 == Changelog ==
+
+= 0.10.2 =
+* Fix XSS vulnerability
 
 = 0.10.1 =
 * Use HTTPS version of Google CDN to include jQuery UI CSS (proposed by ismailfazal)
