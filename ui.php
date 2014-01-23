@@ -3,6 +3,7 @@
 if (!function_exists('sc_render_login_form_social_connect')) :
 
 function sc_render_login_form_social_connect( $args = NULL ) {
+	$display_label = false;
 
 	if( $args == NULL )
 		$display_label = true;
