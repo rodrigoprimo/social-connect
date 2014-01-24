@@ -1,4 +1,5 @@
 <?php
+
 require_once(dirname(dirname(dirname(dirname(dirname(__FILE__))))) . '/wp-load.php');
 require_once(dirname(dirname(__FILE__)) . '/utils.php' );
 
@@ -10,19 +11,12 @@ if (!session_id()) {
 }
 
 /**
- * @file
  * Take the user when they return from Twitter. Get access tokens.
  * Verify credentials and redirect to based on response from Twitter.
  */
 
 /* Start session and load lib */
 require_once('twitteroauth/twitteroauth.php');
-
-/* If the oauth_token is old redirect to the connect page. */
-/*if (isset($_REQUEST['oauth_token']) && $_SESSION['oauth_token'] !== $_REQUEST['oauth_token']) {
-  $_SESSION['oauth_status'] = 'oldtoken';
-  header('Location: ./clearsessions.php');
-}*/
 
 /* Create TwitteroAuth object with app key/secret and token key/secret from default phase */
 $connection = new TwitterOAuth(CONSUMER_KEY, CONSUMER_SECRET, $_SESSION['oauth_token'], $_SESSION['oauth_token_secret']);
@@ -39,38 +33,36 @@ unset($_SESSION['oauth_token_secret']);
 
 /* If HTTP response is 200 continue otherwise send to connect page to retry */
 if (200 == $connection->http_code) {
-  /* The user has been verified and the access tokens can be saved for future use */
-  $_SESSION['status'] = 'verified';
+	/* The user has been verified and the access tokens can be saved for future use */
+	$_SESSION['status'] = 'verified';
   
 	$user = $connection->get('account/verify_credentials');
 	$name = $user->name;
 	$screen_name = $user->screen_name;
 	$twitter_id = $user->id;
 	$signature = social_connect_generate_signature($twitter_id);
-?>
+	?>
+	
+	<html>
+		<head>
+			<script>
+				function init() {
+					window.opener.wp_social_connect({'action' : 'social_connect', 'social_connect_provider' : 'twitter', 
+					    'social_connect_signature' : '<?php echo $signature ?>',
+					    'social_connect_twitter_identity' : '<?php echo $twitter_id ?>',
+					    'social_connect_screen_name' : '<?php echo $screen_name ?>',
+					    'social_connect_name' : '<?php echo $name ?>'});
 
-<html>
-<head>
-<script>
-function init() {
-  window.opener.wp_social_connect({'action' : 'social_connect', 'social_connect_provider' : 'twitter', 
-    'social_connect_signature' : '<?php echo $signature ?>',
-    'social_connect_twitter_identity' : '<?php echo $twitter_id ?>',
-    'social_connect_screen_name' : '<?php echo $screen_name ?>',
-    'social_connect_name' : '<?php echo $name ?>'});
-    
-  window.close();
-}
-</script>
-</head>
-<body onload="init();">
-</body>
-</html>
-
-<?php
-  //header('Location: ./index.php');
+					window.close();
+				}
+			</script>
+		</head>
+		<body onload="init();">
+		</body>
+	</html>
+	
+	<?php
 } else {
-  /* Save HTTP status for error dialog on connnect page.*/
-  //header('Location: ./clearsessions.php');
-  echo 'Login error';
+	/* Save HTTP status for error dialog on connnect page.*/
+	echo 'Login error';
 }
