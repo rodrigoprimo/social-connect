@@ -1,5 +1,5 @@
 === Social Connect ===
-Contributors: rodrigosprimo
+Contributors: thenbrent, rodrigosprimo
 Tags: facebook, wordpress.com, twitter, google, yahoo, social, login, register
 Requires at least: 3.0
 Tested up to: 3.8
