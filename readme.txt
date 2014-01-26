@@ -26,6 +26,11 @@ Special thanks to:
 
 And everyone else in the forums sharing the fixes they find and answering each others questions.
 
+= Notes =
+
+* Better WP Security plugin Fix/Limitation
+  Disable “Prevent long URL strings” option
+
 = Contribute =
 
 Social Connect is rapidly growing in popularity and help with the growing pains is appreciated. 
