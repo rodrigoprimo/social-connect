@@ -3,15 +3,14 @@
 function sc_add_stylesheets(){
 	if( !wp_style_is( 'social_connect', 'registered' ) ) {
 		wp_register_style( "social_connect", SOCIAL_CONNECT_PLUGIN_URL . "/media/css/style.css" );
-		wp_register_style( "jquery-ui", 'https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/themes/smoothness/jquery-ui.css' );
 	}
 
 	if ( did_action( 'wp_print_styles' ) ) {
 		wp_print_styles( 'social_connect' );
-		wp_print_styles( 'jquery-ui' );
+		wp_print_styles( 'wp-jquery-ui-dialog' );
 	} else {
 		wp_enqueue_style( "social_connect" );
-		wp_enqueue_style( "jquery-ui" );
+		wp_enqueue_style( "wp-jquery-ui-dialog" );
 	}
 }
 add_action( 'login_head', 'sc_add_stylesheets' );

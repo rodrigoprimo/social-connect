@@ -2,10 +2,13 @@ jQuery.noConflict();
 (function($) { 
 	$(function() {
 		// ready to roll
-		
 		if (social_connect_data.wordpress_enabled) {
 			var _social_connect_wordpress_form = $($('.social_connect_wordpress_form')[0]);
-			_social_connect_wordpress_form.dialog({ autoOpen: false, modal: true, dialogClass: 'social-connect-dialog', resizable: false, maxHeight: 400, width:350, maxWidth: 600 });
+			_social_connect_wordpress_form.dialog({
+				'dialogClass' : 'wp-dialog',
+				'modal' : true,
+				'autoOpen' : false,
+			});
 		}
 
 		var _do_google_connect = function() {

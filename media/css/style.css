@@ -4,6 +4,10 @@ div.social_connect_ui img {
   width: 32px;
 }
 
+.social_connect_wordpress_form {
+  margin: 5px;
+}
+
 .social_connect_wordpress_form input {
   height: 18px;
 }
