@@ -8,9 +8,12 @@ try {
 		$openid = new LightOpenID;
 		$openid->identity = 'https://www.google.com/accounts/o8/id';
 		$openid->required = array('namePerson/first', 'namePerson/last', 'contact/email');
+		$openid->returnUrl = home_url('index.php?social-connect=google');
 		header('Location: ' . $openid->authUrl());
+		die();
 	} else {
 		$openid = new LightOpenID;
+		$openid->returnUrl = home_url('index.php?social-connect=google');
 		if ($openid->validate()) {
 			$google_id = $openid->identity;
 			$attributes = $openid->getAttributes();

@@ -8,7 +8,9 @@ try {
 		$openid = new LightOpenID;
 		$openid->identity = urldecode($_GET['wordpress_blog_url']);
 		$openid->required = array('namePerson', 'namePerson/friendly', 'contact/email');
+		$openid->returnUrl = home_url('index.php?social-connect=wordpress');
 		header('Location: ' . $openid->authUrl());
+		die();
 	} elseif($_GET['openid_mode'] == 'cancel') {
 		?>
 		<html>
@@ -19,6 +21,7 @@ try {
 		<?php
 	} else {
 		$openid = new LightOpenID;
+		$openid->returnUrl = home_url('index.php?social-connect=wordpress');
 		if ($openid->validate()) {
 			$wordpress_id = $openid->identity;
 			$attributes = $openid->getAttributes();

@@ -52,12 +52,13 @@ function sc_render_login_form_social_connect( $args = NULL ) {
 			do_action ('social_connect_auth'); ?>
 			<div id="social_connect_facebook_auth">
 				<input type="hidden" name="client_id" value="<?php echo get_option( 'social_connect_facebook_api_key' ); ?>" />
-				<input type="hidden" name="redirect_uri" value="<?php echo urlencode( SOCIAL_CONNECT_PLUGIN_URL . '/facebook/callback.php' ); ?>" />
+				<input type="hidden" name="redirect_uri" value="<?php echo home_url('index.php?social-connect=facebook-callback'); ?>" />
 			</div>
-			<div id="social_connect_twitter_auth"><input type="hidden" name="redirect_uri" value="<?php echo( SOCIAL_CONNECT_PLUGIN_URL . '/twitter/connect.php' ); ?>" /></div>
-			<div id="social_connect_google_auth"><input type="hidden" name="redirect_uri" value="<?php echo( SOCIAL_CONNECT_PLUGIN_URL . '/google/connect.php' ); ?>" /></div>
-			<div id="social_connect_yahoo_auth"><input type="hidden" name="redirect_uri" value="<?php echo( SOCIAL_CONNECT_PLUGIN_URL . '/yahoo/connect.php' ); ?>" /></div>
-			<div id="social_connect_wordpress_auth"><input type="hidden" name="redirect_uri" value="<?php echo( SOCIAL_CONNECT_PLUGIN_URL . '/wordpress/connect.php' ); ?>" /></div>
+			
+			<div id="social_connect_twitter_auth"><input type="hidden" name="redirect_uri" value="<?php echo home_url('index.php?social-connect=twitter'); ?>" /></div>
+			<div id="social_connect_google_auth"><input type="hidden" name="redirect_uri" value="<?php echo home_url('index.php?social-connect=google'); ?>" /></div>
+			<div id="social_connect_yahoo_auth"><input type="hidden" name="redirect_uri" value="<?php echo home_url('index.php?social-connect=yahoo'); ?>" /></div>
+			<div id="social_connect_wordpress_auth"><input type="hidden" name="redirect_uri" value="<?php echo home_url('index.php?social-connect=wordpress'); ?>" /></div>
 		
 			<div class="social_connect_wordpress_form" title="WordPress">
 				<p><?php _e( 'Enter your WordPress.com blog URL', 'social_connect' ); ?></p><br />

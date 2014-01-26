@@ -1,14 +1,9 @@
 <?php
 
-require_once(dirname(dirname(dirname(dirname(dirname(__FILE__))))) . '/wp-load.php');
-require_once(dirname(dirname(__FILE__)) . '/utils.php' );
+require_once dirname( __FILE__ ) . '/../utils.php';
 
 define('CONSUMER_KEY', get_option('social_connect_twitter_consumer_key'));
 define('CONSUMER_SECRET', get_option('social_connect_twitter_consumer_secret'));
-
-if (!session_id()) {
-    session_start();
-}
 
 /**
  * Take the user when they return from Twitter. Get access tokens.

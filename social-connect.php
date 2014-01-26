@@ -7,8 +7,7 @@ Version: 0.10.3
 Author: Brent Shepherd and Rodrigo Primo
 Author URI: http://wordpress.org/extend/plugins/social-connect/
 License: GPL2
- */
-
+*/
 
 /** 
  * Check technical requirements are fulfilled before activating.
@@ -53,6 +52,54 @@ require_once( dirname( __FILE__ ) . '/media.php' );
 require_once( dirname( __FILE__ ) . '/admin.php' );
 require_once( dirname( __FILE__ ) . '/ui.php' );
 
+/**
+ * Add valid query vars to WordPress for Social Connect.
+ */
+function sc_query_vars($vars) {
+	$vars[] = 'social-connect';
+	return $vars;
+}
+add_action('query_vars', 'sc_query_vars');
+
+/**
+ * Parse the WordPress request. If the query var 'social-connect' is present,
+ * then handle the request accordingly.
+ *
+ * @param WP $wp WP instance for the current request
+ */
+function sc_parse_request($wp) {
+	if (array_key_exists('social-connect', $wp->query_vars)) {
+		if (!session_id()) {
+			session_start();
+		}
+		
+		switch ($wp->query_vars['social-connect']) {
+			case 'twitter':
+				require_once 'twitter/connect.php';
+				break;
+			case 'twitter-callback':
+				require_once 'twitter/callback.php';
+				break;
+			case 'facebook-callback':
+				require_once 'facebook/callback.php';
+				break;
+			case 'google':
+				require_once 'google/connect.php';
+				break;
+			case 'yahoo':
+				require_once 'yahoo/connect.php';
+				break;
+			case 'wordpress':
+				require_once 'wordpress/connect.php';
+				break;
+			default:
+				break;
+		}
+		
+		wp_die();
+	}
+}
+add_action('parse_request', 'sc_parse_request');
 
 function sc_social_connect_process_login( $is_ajax = false ){
 	if ( isset( $_REQUEST[ 'redirect_to' ] ) && $_REQUEST[ 'redirect_to' ] != '' ) {
@@ -294,5 +341,3 @@ function sc_filter_avatar($avatar, $id_or_email, $size, $default, $alt) {
 	return $return;
 }
 add_filter('get_avatar', 'sc_filter_avatar', 10, 5);
-
-?>

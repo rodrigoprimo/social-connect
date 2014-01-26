@@ -1,15 +1,10 @@
 <?php
-require_once(dirname(dirname(dirname(dirname(dirname(__FILE__))))) . '/wp-load.php');
-
-if (!session_id()) {
-    session_start();
-}
 
 require_once('twitteroauth/twitteroauth.php');
 
 define('CONSUMER_KEY', get_option('social_connect_twitter_consumer_key'));
 define('CONSUMER_SECRET', get_option('social_connect_twitter_consumer_secret'));
-define('OAUTH_CALLBACK', SOCIAL_CONNECT_PLUGIN_URL . '/twitter/callback.php');
+define( 'OAUTH_CALLBACK', home_url( 'index.php?social-connect=twitter-callback' ) );
 
 if (CONSUMER_KEY != '' && CONSUMER_SECRET != '') {
 	/* Build TwitterOAuth object with client credentials. */
@@ -19,6 +14,7 @@ if (CONSUMER_KEY != '' && CONSUMER_SECRET != '') {
 	$request_token = $connection->getRequestToken(OAUTH_CALLBACK);
 	$_SESSION['oauth_token'] = $token = $request_token['oauth_token'];
 	$_SESSION['oauth_token_secret'] = $request_token['oauth_token_secret'];
+	
 	/* If last connection failed don't display authorization link. */
 	switch ($connection->http_code) {
 		case 200:

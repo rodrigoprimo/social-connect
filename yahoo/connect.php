@@ -8,9 +8,12 @@ try {
 		$openid = new LightOpenID;
 		$openid->identity = 'me.yahoo.com';
 		$openid->required = array('namePerson', 'namePerson/friendly', 'contact/email');
+		$openid->returnUrl = home_url('index.php?social-connect=yahoo');
 		header('Location: ' . $openid->authUrl());
+		die();
 	} else {
 		$openid = new LightOpenID;
+		$openid->returnUrl = home_url('index.php?social-connect=yahoo');
 		if ($openid->validate()) {
 			$yahoo_id = $openid->identity;
 			$attributes = $openid->getAttributes();

@@ -1,5 +1,4 @@
 <?php
-require_once( dirname( dirname( dirname( dirname( __FILE__ ) ) ) ) . '/wp-load.php' );
 
 function social_connect_get_user_by_meta( $meta_key, $meta_value ) {
 	global $wpdb;
