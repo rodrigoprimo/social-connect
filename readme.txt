@@ -26,11 +26,6 @@ Special thanks to:
 
 And everyone else in the forums sharing the fixes they find and answering each others questions.
 
-= Notes =
-
-* Better WP Security plugin Fix/Limitation
-  Disable “Prevent long URL strings” option
-
 = Contribute =
 
 Social Connect is rapidly growing in popularity and help with the growing pains is appreciated. 
@@ -101,7 +96,11 @@ If you have White Label CMS installed, the javascript it adds to your login page
 
 For a quick fix and for more information see this [forum topic](http://wordpress.org/support/topic/social-connect-does-not-work-at-all?replies=7#post-2029255).
 
-If you don't have White Label CMS installed, please double check your settings then post a question in the [Support Forums](http://wordpress.org/tags/social-connect?forum_id=10#postform). 
+If you don't have White Label CMS installed, please double check your settings then post a question in the [Support Forums](http://wordpress.org/tags/social-connect?forum_id=10#postform).
+
+= Social Connect and Better WP Security plugin =
+
+If you have Better WP Security plugin enable you must disable "Prevent long URL strings" option otherwise Social Connect won't work properly.
 
 == Screenshots ==
 
