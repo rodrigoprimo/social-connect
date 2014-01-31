@@ -119,7 +119,7 @@ function sc_social_connect_process_login( $is_ajax = false ) {
 	switch( $social_connect_provider ) {
 		case 'facebook':
 			social_connect_verify_signature( $_REQUEST[ 'social_connect_access_token' ], $sc_provided_signature, $redirect_to );
-			$fb_json = json_decode( sc_curl_get_contents("https://graph.facebook.com/me?access_token=" . $_REQUEST[ 'social_connect_access_token' ]) );
+			$fb_json = json_decode( sc_http_get_contents("https://graph.facebook.com/me?access_token=" . $_REQUEST['social_connect_access_token']) );
 			$sc_provider_identity = $fb_json->{ 'id' };
 			$sc_email = $fb_json->{ 'email' };
 			$sc_first_name = $fb_json->{ 'first_name' };

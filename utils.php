@@ -20,15 +20,10 @@ function social_connect_verify_signature( $data, $signature, $redirect_to ) {
 	}
 }
 
-function sc_curl_get_contents( $url ) {
-	$curl = curl_init();
-	curl_setopt( $curl, CURLOPT_RETURNTRANSFER, 1 );
-	curl_setopt( $curl, CURLOPT_URL, $url );
-	curl_setopt( $curl, CURLOPT_SSL_VERIFYPEER, false );
+function sc_http_get_contents( $url ) {
+	$response = wp_remote_get( $url );
 
-	$html = curl_exec( $curl );
-
-	curl_close( $curl );
-
-	return $html;
+	if ( ! is_wp_error( $url ) ) {
+		return $response['body'];
+	}
 }
