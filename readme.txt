@@ -3,7 +3,7 @@ Contributors: rodrigosprimo
 Tags: facebook, wordpress.com, twitter, google, yahoo, social, login, register
 Requires at least: 3.0
 Tested up to: 3.8
-Stable tag: 0.10.3
+Stable tag: 1.0
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Donate link: http://rodrigoprimo.com/donate/
@@ -112,6 +112,12 @@ If you have Better WP Security plugin enable you must disable "Prevent long URL 
 2. **Comment** - buttons for 3rd party services are also provided on the comment form.
 
 == Changelog ==
+
+= 1.0 =
+* Replace custom jQuery dialog CSS with the one used by WP to avoid conflicts with other plugins and themes 
+* Only create a new WP user if registration is enabled
+* Replace curl with WordPress HTTP API - thanks rmathis
+* Remove direct calls to wp-load.php
 
 = 0.10.3 =
 * Remove rewrite diagnostics section from the admin
