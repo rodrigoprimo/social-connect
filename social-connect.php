@@ -226,12 +226,7 @@ function sc_social_connect_process_login( $is_ajax = false ) {
 				update_user_meta( $user_id, $sc_provider_identity_key, $sc_provider_identity );
 			}
 		} else {
-			add_filter( 'wp_login_errors', function ( $errors ) {
-				$errors->errors = array();
-				$errors->add( 'registration_disabled', __( '<strong>ERROR</strong>: Registration is disabled.', 'social-connect' ) );
-				
-				return $errors;
-			});
+			add_filter( 'wp_login_errors', 'sc_login_errors' );
 			
 			return;
 		}
@@ -248,6 +243,20 @@ function sc_social_connect_process_login( $is_ajax = false ) {
 	}
 	
 	exit();
+}
+
+/**
+ * Add error message when user try to login
+ * with an nonexistent e-mail and registration is disabled
+ * 
+ * @param WP_Error $errors
+ * @return WP_Error
+ */
+function sc_login_errors( $errors ) {
+	$errors->errors = array();
+	$errors->add( 'registration_disabled', __( '<strong>ERROR</strong>: Registration is disabled.', 'social-connect' ) );
+
+	return $errors;
 }
 
 function sc_get_unique_username($user_login, $c = 1) {
