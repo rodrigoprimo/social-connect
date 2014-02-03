@@ -3,7 +3,7 @@ Contributors: rodrigosprimo
 Tags: facebook, wordpress.com, twitter, google, yahoo, social, login, register
 Requires at least: 3.0
 Tested up to: 3.8
-Stable tag: 1.0
+Stable tag: 1.0.1
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Donate link: http://rodrigoprimo.com/donate/
@@ -112,6 +112,9 @@ If you have Better WP Security plugin enable you must disable "Prevent long URL 
 2. **Comment** - buttons for 3rd party services are also provided on the comment form.
 
 == Changelog ==
+
+= 1.0.1 =
+* Remove anonymous function to preserve PHP 5.2 compatibility broken with the release of version 1.0 of the plugin
 
 = 1.0 =
 * Replace custom jQuery dialog CSS with the one used by WP to avoid conflicts with other plugins and themes 
