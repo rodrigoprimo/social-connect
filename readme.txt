@@ -67,12 +67,6 @@ If you want to add the social connect login or registration forms to another loc
 
 `<?php do_action( 'social_connect_form' ); ?>`
 
-= What do I do if the Rewrite Diagnostics fail? =
-
-If you get a 403 and 404 on the Rewrite Diagnostics test, please request your hosting provider whitelist your domain on mod_security. This problem has been encountered with **Host Gator* and **GoDaddy**.
-
-For more information, see [Geodanny's](http://wordpress.org/support/profile/geodanny) kind responses in the forums to similar issues [here](http://wordpress.org/support/topic/plugin-social-connect-url-rewriting-and-query-string-parameter-passing) and [here](http://wordpress.org/support/topic/plugin-social-connect-url-rewrite).
-
 = Where can I report bugs & get support? =
 
 First, a few caveats on support. 
@@ -105,6 +99,10 @@ If you don't have White Label CMS installed, please double check your settings t
 = Social Connect and Better WP Security plugin =
 
 If you have Better WP Security plugin enable you must disable "Prevent long URL strings" option otherwise Social Connect won't work properly.
+
+= Why a random e-mail is created when connecting using Twitter? =
+
+Unfortunately the Twitter API don't return the user email address. So the plugin gerates a random e-mail address like tw_50e472278151e7941c4254a01773a22e@mysiteurl.com.
 
 == Screenshots ==
 
