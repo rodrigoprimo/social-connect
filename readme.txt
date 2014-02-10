@@ -108,6 +108,7 @@ Unfortunately the Twitter API don't return the user email address. So the plugin
 
 1. **Login** - on the login and registration form, buttons for 3rd party services are provided.
 2. **Comment** - buttons for 3rd party services are also provided on the comment form.
+3. **Admin** - plugin options
 
 == Changelog ==
 
