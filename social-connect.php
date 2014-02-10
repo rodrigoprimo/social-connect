@@ -3,7 +3,7 @@
 Plugin Name: Social Connect
 Plugin URI: http://wordpress.org/extend/plugins/social-connect/
 Description: Allow your visitors to comment, login and register with their Twitter, Facebook, Google, Yahoo or WordPress.com account.
-Version: 1.0.1
+Version: 1.0.2
 Author: Rodrigo Primo
 Author URI: http://rodrigoprimo.com/
 License: GPL2
