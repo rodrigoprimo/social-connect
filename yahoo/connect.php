@@ -8,6 +8,7 @@ try {
 		$openid = new LightOpenID;
 		$openid->identity = 'me.yahoo.com';
 		$openid->required = array('namePerson', 'namePerson/friendly', 'contact/email');
+		$openid->realm = home_url();
 		$openid->returnUrl = home_url('index.php?social-connect=yahoo');
 		header('Location: ' . $openid->authUrl());
 		die();
