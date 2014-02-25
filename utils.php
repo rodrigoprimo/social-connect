@@ -23,7 +23,7 @@ function social_connect_verify_signature( $data, $signature, $redirect_to ) {
 function sc_http_get_contents( $url ) {
 	$response = wp_remote_get( $url );
 
-	if ( ! is_wp_error( $url ) ) {
+	if ( ! is_wp_error( $response ) ) {
 		return $response['body'];
 	}
 }
