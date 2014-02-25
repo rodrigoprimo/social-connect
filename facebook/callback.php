@@ -19,7 +19,7 @@ if (isset($_GET['code'])) {
 
 	$signature = social_connect_generate_signature($access_token);
 
-	do_action( 'social_connect_before_register_facebook', $code, $signature );
+	do_action( 'social_connect_before_register_facebook', $code, $signature, $acces_token );
 	?>
 	<html>
 		<head>
