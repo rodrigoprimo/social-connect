@@ -3,7 +3,7 @@ Contributors: rodrigosprimo
 Tags: facebook, wordpress.com, twitter, google, yahoo, social, login, register
 Requires at least: 3.0
 Tested up to: 3.8
-Stable tag: 1.0.3
+Stable tag: 1.0.4
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Donate link: http://rodrigoprimo.com/donate/
@@ -111,6 +111,11 @@ Unfortunately the Twitter API don't return the user email address. So the plugin
 3. **Admin** - plugin options
 
 == Changelog ==
+
+= 1.0.4 =
+* Added social_connect_before_register_twitter action hook (proposed by appsxtreme)
+* Added $access_token to the parameters of the 'social_connect_before_register_facebook' action hook (proposed by appsxtreme)
+* Test the right variable in sc_http_get_contents() (proposed by appsxtreme)
 
 = 1.0.3 =
 * Fix error with OpenID provider when server has HTTPS enabled (reported by @ciudy)
