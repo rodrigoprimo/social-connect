@@ -30,14 +30,14 @@ unset($_SESSION['oauth_token_secret']);
 if (200 == $connection->http_code) {
 	/* The user has been verified and the access tokens can be saved for future use */
 	$_SESSION['status'] = 'verified';
-  
+
 	$user = $connection->get('account/verify_credentials');
 	$name = $user->name;
 	$screen_name = $user->screen_name;
 	$twitter_id = $user->id;
 	$signature = social_connect_generate_signature($twitter_id);
 
-    do_action( 'social_connect_before_register_twitter', $twitter_id, $signature );
+	do_action( 'social_connect_before_register_twitter', $twitter_id, $signature );
 	?>
 	
 	<html>
@@ -45,10 +45,10 @@ if (200 == $connection->http_code) {
 			<script>
 				function init() {
 					window.opener.wp_social_connect({'action' : 'social_connect', 'social_connect_provider' : 'twitter', 
-					    'social_connect_signature' : '<?php echo $signature ?>',
-					    'social_connect_twitter_identity' : '<?php echo $twitter_id ?>',
-					    'social_connect_screen_name' : '<?php echo $screen_name ?>',
-					    'social_connect_name' : '<?php echo $name ?>'});
+						'social_connect_signature' : '<?php echo $signature ?>',
+						'social_connect_twitter_identity' : '<?php echo $twitter_id ?>',
+						'social_connect_screen_name' : '<?php echo $screen_name ?>',
+						'social_connect_name' : '<?php echo $name ?>'});
 
 					window.close();
 				}
