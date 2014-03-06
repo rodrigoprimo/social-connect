@@ -23,7 +23,9 @@ function social_connect_verify_signature( $data, $signature, $redirect_to ) {
 function sc_http_get_contents( $url ) {
 	$response = wp_remote_get( $url );
 
-	if ( ! is_wp_error( $response ) ) {
+	if ( is_wp_error( $response ) ) {
+		die( sprintf( __( 'Something went wrong: %s', 'social-connect' ), $response->get_error_message() ) );
+	} else {
 		return $response['body'];
 	}
 }
