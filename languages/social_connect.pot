@@ -1,84 +1,80 @@
+# Copyright (C) 2014 Social Connect
+# This file is distributed under the same license as the Social Connect package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Social Connect\n"
-"POT-Creation-Date: 2013-10-24 15:28-0300\n"
-"PO-Revision-Date: 2013-10-24 15:28-0300\n"
-"Last-Translator: Rodrigo Primo <rodrigo@hacklab.com.br>\n"
-"Language-Team: \n"
+"Project-Id-Version: Social Connect 1.0.4\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/social-connect\n"
+"POT-Creation-Date: 2014-03-06 18:21:06+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.4\n"
-"X-Poedit-Basepath: .\n"
-"X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-SearchPath-0: ..\n"
+"PO-Revision-Date: 2014-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 
-#: ../admin.php:26
+#: admin.php:26
 msgid "Social Connect Settings"
 msgstr ""
 
-#: ../admin.php:30
+#: admin.php:30
 msgid "Facebook Settings"
 msgstr ""
 
-#: ../admin.php:31
+#: admin.php:31
 msgid ""
 "To connect your site to Facebook, you need a Facebook Application. If you "
 "have already created one, please insert your API & Secret key below."
 msgstr ""
 
-#: ../admin.php:32 ../admin.php:60
-#, php-format
+#: admin.php:32 admin.php:60
 msgid ""
 "Already registered? Find your keys in your <a target=\"_blank\" href=\"%2$s"
 "\">%1$s Application List</a>"
 msgstr ""
 
-#: ../admin.php:33
+#: admin.php:33
 msgid "Need to register?"
 msgstr ""
 
-#: ../admin.php:35
-#, php-format
+#: admin.php:35
 msgid ""
 "Visit the <a target=\"_blank\" href=\"%1$s\">Facebook Application Setup</a> "
 "page"
 msgstr ""
 
-#: ../admin.php:36
-#, php-format
+#: admin.php:36
 msgid ""
 "Get the API information from the <a target=\"_blank\" href=\"%1$s\">Facebook "
 "Application List</a>"
 msgstr ""
 
-#: ../admin.php:37
+#: admin.php:37
 msgid ""
 "Select the application you created, then copy and paste the API key & "
 "Application Secret from there."
 msgstr ""
 
-#: ../admin.php:41 ../admin.php:69
+#: admin.php:41 admin.php:69
 msgid "Enable?"
 msgstr ""
 
-#: ../admin.php:44
+#: admin.php:44
 msgid "Check this box to enable register/login using Facebook."
 msgstr ""
 
-#: ../admin.php:48
+#: admin.php:48
 msgid "API Key"
 msgstr ""
 
-#: ../admin.php:53
+#: admin.php:53
 msgid "Secret Key"
 msgstr ""
 
-#: ../admin.php:58
+#: admin.php:58
 msgid "Twitter Settings"
 msgstr ""
 
-#: ../admin.php:59
+#: admin.php:59
 msgid ""
 "To offer login via Twitter, you need to register your site as a Twitter "
 "Application and get a <strong>Consumer Key</strong>, a <strong>Consumer "
@@ -86,109 +82,54 @@ msgid ""
 "Token Secret</strong>."
 msgstr ""
 
-#: ../admin.php:61
-#, php-format
+#: admin.php:61
 msgid ""
 "Need to register? <a href=\"%1$s\">Register an Application</a> and fill the "
 "form with the details below:"
 msgstr ""
 
-#: ../admin.php:63
+#: admin.php:63
 msgid "Application Type: <strong>Browser</strong>"
 msgstr ""
 
-#: ../admin.php:64
-#, php-format
+#: admin.php:64
 msgid "Callback URL: <strong>%1$s</strong>"
 msgstr ""
 
-#: ../admin.php:65
+#: admin.php:65
 msgid "Default Access: <strong>Read &amp; Write</strong>"
 msgstr ""
 
-#: ../admin.php:72
+#: admin.php:72
 msgid ""
 "Twitter integration requires the generation of dummy email addresses for "
 "authenticating users.<br/>Please check with your domain administrator as "
 "this may require changes to your mail server."
 msgstr ""
 
-#: ../admin.php:76
+#: admin.php:76
 msgid "Consumer Key"
 msgstr ""
 
-#: ../admin.php:80
+#: admin.php:80
 msgid "Consumer Secret"
 msgstr ""
 
-#: ../admin.php:85
+#: admin.php:85
 msgid "OpenID Providers"
 msgstr ""
 
-#: ../admin.php:86
+#: admin.php:86
 msgid ""
 "Choose the OpenID providers your visitors can use to register, comment and "
 "login."
 msgstr ""
 
-#: ../admin.php:109
+#: admin.php:109
 msgid "Save Changes"
 msgstr ""
 
-#: ../admin.php:112
-msgid "Rewrite Diagnostics"
-msgstr ""
-
-#: ../admin.php:113
-msgid ""
-"Click on the link below to confirm your URL rewriting and query string "
-"parameter passing are setup correctly on your server. If you see a \"Test "
-"was successful\" message after clicking the link then you are good to go. If "
-"you see a 404 error or some other error then you need to update rewrite "
-"rules or ask your service provider to configure your server settings such "
-"that the below URL works correctly."
-msgstr ""
-
-#: ../admin.php:114
-msgid "Test server redirection settings"
-msgstr ""
-
-#: ../ui.php:24
-msgid "Connect with"
-msgstr ""
-
-#: ../ui.php:61
-msgid "Enter your WordPress.com blog URL"
-msgstr ""
-
-#: ../ui.php:64
-msgid "Proceed"
-msgstr ""
-
-#: ../ui.php:127
-msgid ""
-"Login or register with Facebook, Twitter, Yahoo, Google or a Wordpress.com "
-"account"
-msgstr ""
-
-#: ../ui.php:179
-msgid "Title:"
-msgstr ""
-
-#: ../ui.php:181
-msgid "Before widget content:"
-msgstr ""
-
-#: ../ui.php:183
-msgid "After widget content:"
-msgstr ""
-
-#: ../ui.php:185
-msgid "Hide for logged in users:"
-msgstr ""
-
-#: ../social-connect.php:20
-#, php-format
+#: social-connect.php:19
 msgid ""
 "Sorry, but you can not run Social Connect. It requires WordPress 3.0 or "
 "newer. Consider <a href='http://codex.wordpress.org/"
@@ -196,8 +137,7 @@ msgid ""
 "the effort.<br/><a href=\"%s\">Return to Plugins Admin page &raquo;</a>"
 msgstr ""
 
-#: ../social-connect.php:22
-#, php-format
+#: social-connect.php:21
 msgid ""
 "Sorry, but you can not run Social Connect. It requires the <a href='http://"
 "www.php.net/manual/en/intro.curl.php'>PHP libcurl extension</a> be "
@@ -206,8 +146,7 @@ msgid ""
 "href=\"%s\">Return to Plugins Admin page &raquo;</a>"
 msgstr ""
 
-#: ../social-connect.php:24
-#, php-format
+#: social-connect.php:23
 msgid ""
 "Sorry, but you can not run Social Connect. It requires the <a href='http://"
 "www.php.net/manual/en/intro.hash.php'>PHP Hash Engine</a>. Please contact "
@@ -216,8 +155,7 @@ msgid ""
 "page &raquo;</a>"
 msgstr ""
 
-#: ../social-connect.php:26
-#, php-format
+#: social-connect.php:25
 msgid ""
 "Sorry, but you can not run Social Connect. It requires PHP 5.1.2 or newer. "
 "Please contact your web host and request they <a href='http://www.php.net/"
@@ -225,28 +163,76 @@ msgid ""
 "Connect.<br/><a href=\"%s\">Return to Plugins Admin page &raquo;</a>"
 msgstr ""
 
-#: ../diagnostics/test.php:8
+#: social-connect.php:257
+msgid "<strong>ERROR</strong>: Registration is disabled."
+msgstr ""
+
+#: ui.php:27
+msgid "Connect with"
+msgstr ""
+
+#: ui.php:64
+msgid "Enter your WordPress.com blog URL"
+msgstr ""
+
+#: ui.php:67
+msgid "Proceed"
+msgstr ""
+
+#: ui.php:130
 msgid ""
-"Test was successful! <br/><br/> The rewrite rules on your server appear to "
-"be setup correctly for Social Connect to work."
+"Login or register with Facebook, Twitter, Yahoo, Google or a Wordpress.com "
+"account"
 msgstr ""
 
-#: ../diagnostics/test.php:10
-#, php-format
-msgid ""
-"Test was unsuccessful. Expected \"http://www.example.com\", received \"%s\"."
+#: ui.php:182
+msgid "Title:"
 msgstr ""
 
-#: ../diagnostics/test.php:20
-msgid "Social Connect Diagnostics"
+#: ui.php:184
+msgid "Before widget content:"
 msgstr ""
 
-#: ../wordpress/connect.php:14
+#: ui.php:186
+msgid "After widget content:"
+msgstr ""
+
+#: ui.php:188
+msgid "Hide for logged in users:"
+msgstr ""
+
+#: utils.php:27
+msgid "Something went wrong: %s"
+msgstr ""
+
+#: wordpress/connect.php:18
 msgid "You have cancelled this login. Please close this window and try again."
 msgstr ""
 
-#: ../wordpress/connect.php:30
+#: wordpress/connect.php:35
 msgid ""
 "You need to share your email address when prompted at wordpress.com. Please "
 "close this window and try again."
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "Social Connect"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "http://wordpress.org/extend/plugins/social-connect/"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid ""
+"Allow your visitors to comment, login and register with their Twitter, "
+"Facebook, Google, Yahoo or WordPress.com account."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Rodrigo Primo"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://rodrigoprimo.com/"
 msgstr ""
