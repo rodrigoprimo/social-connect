@@ -10,8 +10,9 @@ define('CONSUMER_SECRET', get_option('social_connect_twitter_consumer_secret'));
  * Verify credentials and redirect to based on response from Twitter.
  */
 
-/* Start session and load lib */
-require_once('twitteroauth/twitteroauth.php');
+if ( ! class_exists( 'TwitterOAuth' ) ) {
+	require_once 'twitteroauth/twitteroauth.php';
+}
 
 /* Create TwitteroAuth object with app key/secret and token key/secret from default phase */
 $connection = new TwitterOAuth(CONSUMER_KEY, CONSUMER_SECRET, $_SESSION['oauth_token'], $_SESSION['oauth_token_secret']);

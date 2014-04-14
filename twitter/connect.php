@@ -1,6 +1,8 @@
 <?php
 
-require_once('twitteroauth/twitteroauth.php');
+if ( ! class_exists( 'TwitterOAuth' ) ) {
+	require_once 'twitteroauth/twitteroauth.php';
+}
 
 define('CONSUMER_KEY', get_option('social_connect_twitter_consumer_key'));
 define('CONSUMER_SECRET', get_option('social_connect_twitter_consumer_secret'));
