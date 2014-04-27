@@ -369,7 +369,7 @@ add_filter('get_avatar', 'sc_filter_avatar', 10, 5);
 /**
  * Add link to Social Connect settings page in the plugins page
  * 
- * @return null
+ * @return array plugin links
 */
 function sc_add_settings_link( $default_links ) {
 	$links = array('<a href="' . get_admin_url(null, 'options-general.php?page=social-connect-id') . '">' . __('Settings', 'social_connect') . '</a>');
