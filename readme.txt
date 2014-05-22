@@ -2,8 +2,8 @@
 Contributors: rodrigosprimo
 Tags: facebook, wordpress.com, twitter, google, yahoo, social, login, register
 Requires at least: 3.0
-Tested up to: 3.9
-Stable tag: 1.0.6
+Tested up to: 3.9.1
+Stable tag: 1.1
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Donate link: http://rodrigoprimo.com/donate/
@@ -111,6 +111,13 @@ Unfortunately the Twitter API don't return the user email address. So the plugin
 3. **Admin** - plugin options
 
 == Changelog ==
+
+= 1.1 =
+* Update facebook-php-sdk to latest version
+* Add link to Social Connect settings page in the plugins page
+* Replace jQuery .live() method with .on() method (proposed by nunomorgadinho)
+* Remove unnecessary call to jQuery noconflict (proposed by nunomorgadinho)
+* Fix Social Connect login from registration page when multisite is enabled (reported by bvpraveenkumar)
 
 = 1.0.6 =
 * Make sure TwitterOAuth is not available before including it to avoid conflict with other plugins using the same library
