@@ -45,12 +45,12 @@ function sc_render_social_connect_settings() {
 					</td>
 				</tr>
 				<tr valign="top">
-					<th scope="row"><?php _e('API Key', 'social_connect'); ?></th>
+					<th scope="row"><?php _e('API key', 'social_connect'); ?></th>
 					<td><input type="text" name="social_connect_facebook_api_key" value="<?php echo get_option('social_connect_facebook_api_key' ); ?>" /></td>
 				</tr>
 
 				<tr valign="top">
-					<th scope="row"><?php _e('Secret Key', 'social_connect'); ?></th>
+					<th scope="row"><?php _e('API secret', 'social_connect'); ?></th>
 					<td><input type="text" name="social_connect_facebook_secret_key" value="<?php echo get_option('social_connect_facebook_secret_key' ); ?>" /></td>
 				</tr>
 			</table>
@@ -60,9 +60,8 @@ function sc_render_social_connect_settings() {
 			<p><?php printf(__('Already registered? Find your keys in your <a target="_blank" href="%2$s">%1$s Application List</a>', 'social_connect'), 'Twitter', 'https://dev.twitter.com/apps'); ?></p>
 			<p><?php printf(__('Need to register? <a href="%1$s">Register an Application</a> and fill the form with the details below:', 'social_connect'), 'http://dev.twitter.com/apps/new'); ?></p>
 			<ol>
-				<li><?php _e('Application Type: <strong>Browser</strong>', 'social_connect'); ?></li>
 				<li><?php printf(__('Callback URL: <strong>%1$s</strong>', 'social_connect'), SOCIAL_CONNECT_PLUGIN_URL . '/twitter/callback.php'); ?></li>
-				<li><?php _e('Default Access: <strong>Read &amp; Write</strong>', 'social_connect'); ?></li>
+				<li><?php _e('Access level: <strong>Read-only</strong>', 'social_connect'); ?></li>
 			</ol>
 			<table class="form-table">
 				<tr valign="top">
@@ -73,11 +72,11 @@ function sc_render_social_connect_settings() {
 					</td>
 				</tr>
 				<tr valign="top">
-					<th scope="row"><?php _e('Consumer Key', 'social_connect'); ?></th>
+					<th scope="row"><?php _e('API Key', 'social_connect'); ?></th>
 					<td><input type="text" name="social_connect_twitter_consumer_key" value="<?php echo get_option('social_connect_twitter_consumer_key' ); ?>" /></td>
 				</tr>
 				<tr valign="top">
-					<th scope="row"><?php _e('Consumer Secret', 'social_connect'); ?></th>
+					<th scope="row"><?php _e('API Secret', 'social_connect'); ?></th>
 					<td><input type="text" name="social_connect_twitter_consumer_secret" value="<?php echo get_option('social_connect_twitter_consumer_secret' ); ?>" /></td>
 				</tr>
 			</table>
