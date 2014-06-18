@@ -15,12 +15,13 @@ function sc_render_login_form_social_connect( $args = NULL ) {
 
 	$twitter_enabled = get_option( 'social_connect_twitter_enabled' ) && get_option( 'social_connect_twitter_consumer_key' ) && get_option( 'social_connect_twitter_consumer_secret' );
 	$facebook_enabled = get_option( 'social_connect_facebook_enabled', 1 ) && get_option( 'social_connect_facebook_api_key' ) && get_option( 'social_connect_facebook_secret_key' );
+	$google_plus_enabled = get_option( 'social_connect_google_plus_enabled', 1 );
 	$google_enabled = get_option( 'social_connect_google_enabled', 1 );
 	$yahoo_enabled = get_option( 'social_connect_yahoo_enabled', 1 );
 	$wordpress_enabled = get_option( 'social_connect_wordpress_enabled', 1 );
 	?>
 	
-	<?php if ($twitter_enabled || $facebook_enabled || $google_enabled || $yahoo_enabled || $wordpress_enabled) : ?>
+	<?php if ($twitter_enabled || $facebook_enabled || $google_enabled || $google_plus_enabled|| $yahoo_enabled || $wordpress_enabled) : ?>
 		<div class="social_connect_ui <?php if( strpos( $_SERVER['REQUEST_URI'], 'wp-signup.php' ) ) echo 'mu_signup'; ?>">
 			<p class="comment-form-social-connect">
 			<?php if( $display_label !== false ) : ?>
@@ -33,6 +34,9 @@ function sc_render_login_form_social_connect( $args = NULL ) {
 				endif; ?>
 				<?php if( $twitter_enabled ) :
 					echo apply_filters('social_connect_login_twitter','<a href="javascript:void(0);" title="Twitter" class="social_connect_login_twitter"><img alt="Twitter" src="'.$images_url.'twitter_32.png" /></a>');
+				endif; ?>
+				<?php if( $google_plus_enabled ) :
+					echo apply_filters('social_connect_login_google_plus','<a href="javascript:void(0);" title="Google+" class="social_connect_login_google_plus"><img alt="Google+" src="'.$images_url.'google_plus_32.png" /></a>');
 				endif; ?>
 				<?php if( $google_enabled ) :
 					echo apply_filters('social_connect_login_google','<a href="javascript:void(0);" title="Google" class="social_connect_login_google"><img alt="Google" src="'.$images_url.'google_32.png" /></a>');
@@ -57,6 +61,7 @@ function sc_render_login_form_social_connect( $args = NULL ) {
 			
 			<div id="social_connect_twitter_auth"><input type="hidden" name="redirect_uri" value="<?php echo home_url('index.php?social-connect=twitter'); ?>" /></div>
 			<div id="social_connect_google_auth"><input type="hidden" name="redirect_uri" value="<?php echo home_url('index.php?social-connect=google'); ?>" /></div>
+			<div id="social_connect_google_plus_auth"><input type="hidden" name="redirect_uri" value="<?php echo home_url('index.php?social-connect=google-plus'); ?>" /></div>
 			<div id="social_connect_yahoo_auth"><input type="hidden" name="redirect_uri" value="<?php echo home_url('index.php?social-connect=yahoo'); ?>" /></div>
 			<div id="social_connect_wordpress_auth"><input type="hidden" name="redirect_uri" value="<?php echo home_url('index.php?social-connect=wordpress'); ?>" /></div>
 		
