@@ -9,8 +9,6 @@ $secret_key = get_option('social_connect_facebook_secret_key');
 
 if (isset($_GET['code'])) {
 	$code = $_GET['code'];
-	$client_id = get_option('social_connect_facebook_api_key');
-	$secret_key = get_option('social_connect_facebook_secret_key');
 
 	parse_str( sc_http_get_contents( "https://graph.facebook.com/oauth/access_token?" .
 		'client_id=' . $client_id . '&redirect_uri=' . home_url( 'index.php?social-connect=facebook-callback' ) .
