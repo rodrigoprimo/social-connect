@@ -89,6 +89,9 @@ function sc_parse_request($wp) {
 			case 'google-plus':
 				require_once 'google-plus/connect.php';
 				break;
+			case 'google-plus-callback':
+				require_once 'google-plus/callback.php';
+				break;
 			case 'yahoo':
 				require_once 'yahoo/connect.php';
 				break;
