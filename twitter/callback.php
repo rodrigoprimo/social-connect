@@ -36,21 +36,25 @@ if (200 == $connection->http_code) {
 	$name = $user->name;
 	$screen_name = $user->screen_name;
 	$twitter_id = $user->id;
+	$avatar = $user->profile_image_url;
 	$signature = social_connect_generate_signature($twitter_id);
 
 	do_action( 'social_connect_before_register_twitter', $twitter_id, $signature );
 	?>
-	
+
 	<html>
 		<head>
 			<script>
 				function init() {
-					window.opener.wp_social_connect({'action' : 'social_connect', 'social_connect_provider' : 'twitter', 
-						'social_connect_signature' : '<?php echo $signature ?>',
-						'social_connect_twitter_identity' : '<?php echo $twitter_id ?>',
-						'social_connect_screen_name' : '<?php echo $screen_name ?>',
-						'social_connect_name' : '<?php echo $name ?>'});
-
+					window.opener.wp_social_connect({
+						'action' : 'social_connect',
+						'social_connect_provider' : 'twitter',
+						'social_connect_signature' : '<?php echo $signature; ?>',
+						'social_connect_twitter_identity' : '<?php echo $twitter_id; ?>',
+						'social_connect_screen_name' : '<?php echo $screen_name; ?>',
+						'social_connect_avatar' : '<?php echo $avatar; ?>',
+						'social_connect_name' : '<?php echo $name; ?>'
+					});
 					window.close();
 				}
 			</script>
@@ -58,7 +62,7 @@ if (200 == $connection->http_code) {
 		<body onload="init();">
 		</body>
 	</html>
-	
+
 	<?php
 } else {
 	/* Save HTTP status for error dialog on connnect page.*/
