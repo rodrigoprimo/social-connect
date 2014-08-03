@@ -136,7 +136,7 @@ function sc_social_connect_process_login( $is_ajax = false ) {
 			$sc_first_name = $names[0];
 			$sc_last_name = $names[1];
 			$sc_screen_name = $_REQUEST[ 'social_connect_screen_name' ];
-			$sc_avatar = isset($_REQUEST[ 'social_connect_avatar' ]) ? $_REQUEST[ 'social_connect_avatar' ] : '';
+			$sc_avatar = isset($_REQUEST[ 'social_connect_avatar' ]) ? str_replace('http:', '', $_REQUEST[ 'social_connect_avatar' ]) : '';
 			$sc_profile_url = '';
 			// Get host name from URL
 			$site_url = parse_url( site_url() );
