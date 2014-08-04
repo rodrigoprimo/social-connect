@@ -28,15 +28,6 @@ function sc_activate(){
 }
 register_activation_hook( __FILE__, 'sc_activate' );
 
-
-/**
- * Registration.php is deprecated since version 3.1 with no alternative available.
- * registration.php functions moved to user.php, everything is now included by default
- * This file only need to be included for versions before 3.1.
- */
-if ( !function_exists( 'email_exists' ) )
-	require_once( ABSPATH . WPINC . '/registration.php' );
-
 /**
  * Internationalization of the plugin
  **/
