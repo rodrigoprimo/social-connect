@@ -218,8 +218,8 @@ function sc_social_connect_process_login( $is_ajax = false ) {
 				update_user_meta( $user_id, $sc_provider_identity_key, $sc_provider_identity );
 			}
 
-			if(isset($sc_avatar) && $sc_avatar){
-				update_user_meta($user_id, 'social_connect_twitter_avatar', $sc_avatar);
+			if( isset( $sc_avatar ) && $sc_avatar ){
+				update_user_meta( $user_id, 'social_connect_twitter_avatar', $sc_avatar );
 			}
 		} else {
 			add_filter( 'wp_login_errors', 'sc_login_errors' );
