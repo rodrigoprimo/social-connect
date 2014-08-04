@@ -28,15 +28,6 @@ function sc_activate(){
 }
 register_activation_hook( __FILE__, 'sc_activate' );
 
-
-/**
- * Registration.php is deprecated since version 3.1 with no alternative available.
- * registration.php functions moved to user.php, everything is now included by default
- * This file only need to be included for versions before 3.1.
- */
-if ( !function_exists( 'email_exists' ) )
-	require_once( ABSPATH . WPINC . '/registration.php' );
-
 /**
  * Internationalization of the plugin
  **/
@@ -132,7 +123,7 @@ function sc_social_connect_process_login( $is_ajax = false ) {
 			$sc_provider_identity = $_REQUEST[ 'social_connect_twitter_identity' ];
 			social_connect_verify_signature( $sc_provider_identity, $sc_provided_signature, $redirect_to );
 			$sc_name = $_REQUEST[ 'social_connect_name' ];
-			$names = explode(" ", $sc_name );
+			$names = explode( ' ', $sc_name, 2 );
 			$sc_first_name = $names[0];
 			$sc_last_name = $names[1];
 			$sc_screen_name = $_REQUEST[ 'social_connect_screen_name' ];
@@ -167,12 +158,12 @@ function sc_social_connect_process_login( $is_ajax = false ) {
 					$sc_first_name = $sc_name;
 					$sc_last_name = '';
 				} else {
-					$names = explode(" ", $sc_username );
+					$names = explode( ' ', $sc_username, 2 );
 					$sc_first_name = $names[0];
 					$sc_last_name = $names[1];
 				}
 			} else {
-				$names = explode(" ", $sc_name );
+				$names = explode( ' ', $sc_name, 2 );
 				$sc_first_name = $names[0];
 				$sc_last_name = $names[1];
 			}
@@ -190,7 +181,7 @@ function sc_social_connect_process_login( $is_ajax = false ) {
 				$sc_first_name = $sc_name;
 				$sc_last_name = '';
 			} else {
-				$names = explode(" ", $sc_name );
+				$names = explode( ' ', $sc_name, 2 );
 				$sc_first_name = $names[0];
 				$sc_last_name = $names[1];
 			}
@@ -351,8 +342,8 @@ function sc_filter_avatar($avatar, $id_or_email, $size, $default, $alt) {
 					$size_label = 'mini';
 				}
 
-				$custom_avatar = get_user_meta($user_id, 'social_connect_twitter_avatar', true);
-				$custom_avatar = str_replace('_normal', '_'.$size_label, $custom_avatar);
+				$custom_avatar = get_user_meta( $user_id, 'social_connect_twitter_avatar', true );
+				$custom_avatar = str_replace( '_normal', '_' . $size_label, $custom_avatar );
 				break;
 		}
 	}
