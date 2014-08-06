@@ -29,11 +29,11 @@ function sc_render_social_connect_settings() {
 			<?php settings_fields( 'social-connect-settings-group' ); ?>
 			<h3><?php _e('Facebook Settings', 'social_connect'); ?></h3>
 			<p><?php _e('To connect your site to Facebook, you need a Facebook Application. If you have already created one, please insert your App ID and App Secret below.', 'social_connect'); ?></p>
-			<p><?php printf(__('Already registered? Find your keys in your <a target="_blank" href="%2$s">%1$s Application List</a>', 'social_connect'), 'Facebook', 'http://www.facebook.com/developers/apps.php'); ?></p>
+			<p><?php printf(__('Already registered? Find your keys in your <a target="_blank" href="%2$s">%1$s Application List</a>', 'social_connect'), 'Facebook', 'https://developers.facebook.com/apps/'); ?></p>
 			<p><?php _e('Need to register?', 'social_connect'); ?></p>
 			<ol>
-				<li><?php printf(__('Visit the <a target="_blank" href="%1$s">Facebook Application Setup</a> page', 'social_connect'), 'http://www.facebook.com/developers/createapp.php'); ?></li>
-				<li><?php printf(__('Get the API information from the <a target="_blank" href="%1$s">Facebook Application List</a>', 'social_connect'), 'http://www.facebook.com/developers/apps.php'); ?></li>
+				<li><?php printf(__('Visit the <a target="_blank" href="%1$s">Facebook Application Setup</a> page', 'social_connect'), 'https://developers.facebook.com/apps/'); ?></li>
+				<li><?php printf(__('Get the API information from the <a target="_blank" href="%1$s">Facebook Application List</a>', 'social_connect'), 'https://developers.facebook.com/apps/'); ?></li>
 				<li><?php _e('Select the application you created, then copy and paste the App ID and App Secret from there.', 'social_connect'); ?></li>
 			</ol>
 			<table class="form-table">
