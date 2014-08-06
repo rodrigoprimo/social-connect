@@ -211,11 +211,13 @@ function sc_social_connect_process_login( $is_ajax = false ) {
 			$userdata = array( 'user_login' => $user_login, 'user_email' => $sc_email, 'first_name' => $sc_first_name, 'last_name' => $sc_last_name, 'user_url' => $sc_profile_url, 'user_pass' => wp_generate_password() );
 
 			// Create a new user
-			$user_id = wp_insert_user( $userdata );
+			$user_id = wp_insert_user( apply_filters( 'social_connect_insert_user', $userdata ) );
 
 			if ( $user_id && is_integer( $user_id ) ) {
 				update_user_meta( $user_id, $sc_provider_identity_key, $sc_provider_identity );
 			}
+
+			do_action( 'social_connect_inserted_user', $user_id, $social_connect_provider );
 		} else {
 			add_filter( 'wp_login_errors', 'sc_login_errors' );
 
