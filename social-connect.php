@@ -127,6 +127,7 @@ function sc_social_connect_process_login( $is_ajax = false ) {
 			$sc_first_name = $names[0];
 			$sc_last_name = $names[1];
 			$sc_screen_name = $_REQUEST[ 'social_connect_screen_name' ];
+			$sc_avatar = isset( $_REQUEST['social_connect_avatar'] ) ? str_replace( 'http:', '', $_REQUEST['social_connect_avatar'] ) : '';
 			$sc_profile_url = '';
 			// Get host name from URL
 			$site_url = parse_url( site_url() );
@@ -215,6 +216,10 @@ function sc_social_connect_process_login( $is_ajax = false ) {
 
 			if ( $user_id && is_integer( $user_id ) ) {
 				update_user_meta( $user_id, $sc_provider_identity_key, $sc_provider_identity );
+			}
+
+			if( isset( $sc_avatar ) && $sc_avatar ){
+				update_user_meta( $user_id, 'social_connect_twitter_avatar', $sc_avatar );
 			}
 		} else {
 			add_filter( 'wp_login_errors', 'sc_login_errors' );
@@ -337,7 +342,8 @@ function sc_filter_avatar($avatar, $id_or_email, $size, $default, $alt) {
 					$size_label = 'mini';
 				}
 
-				$custom_avatar = "http://api.twitter.com/1/users/profile_image?id=$social_id&size=$size_label";
+				$custom_avatar = get_user_meta( $user_id, 'social_connect_twitter_avatar', true );
+				$custom_avatar = str_replace( '_normal', '_' . $size_label, $custom_avatar );
 				break;
 		}
 	}
