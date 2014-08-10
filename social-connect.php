@@ -117,7 +117,7 @@ function sc_social_connect_process_login( $is_ajax = false ) {
 			$sc_last_name = $fb_json->{ 'last_name' };
 			$sc_profile_url = $fb_json->{ 'link' };
 			$sc_name = $sc_first_name . ' ' . $sc_last_name;
-			$user_login = strtolower( $sc_first_name.$sc_last_name );
+			$user_login = strtolower( str_replace( ' ', '', $sc_first_name . $sc_last_name ) );
 			break;
 		case 'twitter':
 			$sc_provider_identity = $_REQUEST[ 'social_connect_twitter_identity' ];
@@ -142,7 +142,7 @@ function sc_social_connect_process_login( $is_ajax = false ) {
 			$sc_last_name = $_REQUEST[ 'social_connect_last_name' ];
 			$sc_profile_url = '';
 			$sc_name = $sc_first_name . ' ' . $sc_last_name;
-			$user_login = strtolower( $sc_first_name.$sc_last_name );
+			$user_login = strtolower( str_replace( ' ', '', $sc_first_name . $sc_last_name ) );
 			break;
 		case 'yahoo':
 			$sc_provider_identity = $_REQUEST[ 'social_connect_openid_identity' ];
@@ -167,7 +167,7 @@ function sc_social_connect_process_login( $is_ajax = false ) {
 				$sc_first_name = $names[0];
 				$sc_last_name = $names[1];
 			}
-			$user_login = strtolower( $sc_first_name.$sc_last_name );
+			$user_login = strtolower( str_replace( ' ', '', $sc_first_name . $sc_last_name ) );
 			break;
 		case 'wordpress':
 			$sc_provider_identity = $_REQUEST[ 'social_connect_openid_identity' ];
@@ -185,7 +185,7 @@ function sc_social_connect_process_login( $is_ajax = false ) {
 				$sc_first_name = $names[0];
 				$sc_last_name = $names[1];
 			}
-			$user_login = strtolower( $sc_first_name.$sc_last_name );
+			$user_login = strtolower( str_replace( ' ', '', $sc_first_name . $sc_last_name ) );
 			break;
 		default:
 			break;
