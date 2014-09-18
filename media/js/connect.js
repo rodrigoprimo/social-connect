@@ -17,6 +17,13 @@
 			window.open(redirect_uri,'','scrollbars=no,menubar=no,height=400,width=800,resizable=yes,toolbar=no,status=no');
 		};
 
+		var _do_google_plus_connect = function() {
+			var google_plus_auth = $('#social_connect_google_plus_auth');
+			var redirect_uri = google_plus_auth.find('input[type=hidden][name=redirect_uri]').val();
+
+			window.open(redirect_uri,'','scrollbars=no,menubar=no,height=400,width=800,resizable=yes,toolbar=no,status=no');
+		};
+
 		var _do_yahoo_connect = function() {
 			var yahoo_auth = $('#social_connect_yahoo_auth');
 			var redirect_uri = yahoo_auth.find('input[type=hidden][name=redirect_uri]').val();
@@ -77,6 +84,10 @@
 
 		$(".social_connect_login_continue_google").on("click",function() {
 			_do_google_connect();
+		});
+
+		$(".social_connect_login_google_plus").on("click", function() {
+			_do_google_plus_connect();
 		});
 
 		$(".social_connect_login_yahoo").on("click", function() {

@@ -3,7 +3,7 @@
 Plugin Name: Social Connect
 Plugin URI: http://wordpress.org/extend/plugins/social-connect/
 Description: Allow your visitors to comment, login and register with their Twitter, Facebook, Google, Yahoo or WordPress.com account.
-Version: 1.1
+Version: 1.2
 Author: Rodrigo Primo
 Author URI: http://rodrigoprimo.com/
 License: GPL2
@@ -77,6 +77,12 @@ function sc_parse_request($wp) {
 			case 'google':
 				require_once 'google/connect.php';
 				break;
+			case 'google-plus':
+				require_once 'google-plus/connect.php';
+				break;
+			case 'google-plus-callback':
+				require_once 'google-plus/callback.php';
+				break;
 			case 'yahoo':
 				require_once 'yahoo/connect.php';
 				break;
@@ -143,6 +149,15 @@ function sc_social_connect_process_login( $is_ajax = false ) {
 			$sc_profile_url = '';
 			$sc_name = $sc_first_name . ' ' . $sc_last_name;
 			$user_login = strtolower( str_replace( ' ', '', $sc_first_name . $sc_last_name ) );
+			break;
+		case 'google-plus':
+			$sc_provider_identity = $_REQUEST['social_connect_google_id'];
+			social_connect_verify_signature( $sc_provider_identity, $sc_provided_signature, $redirect_to );
+			$sc_email = $_REQUEST['social_connect_email'];
+			$sc_first_name = $_REQUEST['social_connect_first_name'];
+			$sc_last_name = $_REQUEST['social_connect_last_name'];
+			$sc_profile_url = $_REQUEST['social_connect_profile_url'];
+			$user_login = strtolower( $sc_first_name.$sc_last_name );
 			break;
 		case 'yahoo':
 			$sc_provider_identity = $_REQUEST[ 'social_connect_openid_identity' ];
