@@ -13,24 +13,24 @@ if (isset($_GET['code'])) {
 	$redirect_uri = SOCIAL_CONNECT_GOOGLE_PLUS_REDIRECT_URL;
 
 	$client = new Google_Client();
-	$client->setClientId($client_id);
-	$client->setClientSecret($client_secret);
-	$client->setRedirectUri($redirect_uri);
+	$client->setClientId( $client_id );
+	$client->setClientSecret( $client_secret );
+	$client->setRedirectUri( $redirect_uri );
 
-	if (isset($_REQUEST['logout'])) {
-		unset($_SESSION['access_token']);
+	if ( isset( $_REQUEST['logout'] ) ) {
+		unset( $_SESSION['access_token'] );
 	}
 
-	if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {
-		$client->setAccessToken($_SESSION['access_token']);
-	} else if (isset($code)) {
-		$client->authenticate($_GET['code']);
+	if ( isset( $_SESSION['access_token'] ) && $_SESSION['access_token'] ) {
+		$client->setAccessToken( $_SESSION['access_token'] );
+	} elseif ( isset( $code ) ) {
+		$client->authenticate( $_GET['code'] );
 		$_SESSION['access_token'] = $client->getAccessToken();
 	}
 
-	$token = json_decode($client->getAccessToken());
+	$token = json_decode( $client->getAccessToken() );
 
-	$google_oauthV2 = new Google_Service_Oauth2($client);
+	$google_oauthV2 = new Google_Service_Oauth2( $client );
 	$user = $google_oauthV2->userinfo->get();
 	$google_id = $user['id'];
 	$email = $user['email'];
@@ -39,7 +39,7 @@ if (isset($_GET['code'])) {
 	$profile_url = $user['link'];
 
 
-	$signature = social_connect_generate_signature($google_id);
+	$signature = social_connect_generate_signature( $google_id );
 
 	?>
 	<html>
@@ -62,4 +62,3 @@ if (isset($_GET['code'])) {
 	</html>
 <?php
 }
-?>

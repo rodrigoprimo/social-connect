@@ -160,7 +160,7 @@ function sc_social_connect_process_login( $is_ajax = false ) {
 			break;
 		case 'google-plus':
 			$sc_provider_identity = $_REQUEST['social_connect_google_id'];
-			social_connect_verify_signature( $sc_provider_identity, $sc_provided_signature, $redirect_to);
+			social_connect_verify_signature( $sc_provider_identity, $sc_provided_signature, $redirect_to );
 			$sc_email = $_REQUEST['social_connect_email'];
 			$sc_first_name = $_REQUEST['social_connect_first_name'];
 			$sc_last_name = $_REQUEST['social_connect_last_name'];
