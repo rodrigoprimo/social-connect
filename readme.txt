@@ -3,7 +3,7 @@ Contributors: rodrigosprimo
 Tags: facebook, wordpress.com, twitter, google, yahoo, social, login, register
 Requires at least: 3.0
 Tested up to: 3.9.1
-Stable tag: 1.1
+Stable tag: 1.2
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Donate link: http://rodrigoprimo.com/donate/
@@ -111,6 +111,13 @@ Unfortunately the Twitter API don't return the user email address. So the plugin
 3. **Admin** - plugin options
 
 == Changelog ==
+
+= 1.2 =
+* Add support to Google+ Sign-In (thanks jneto for your help)
+* Added a filter & a hook to process the new user account (proposed by Frique)
+* Updated dead links to Facebook apps page (proposed by Frique)
+* Fix issue with Twitter avatar (proposed by Frique)
+* Support for multi-word last names retreived from social networks (proposed by Frique) 1.2
 
 = 1.1 =
 * Update facebook-php-sdk to latest version
