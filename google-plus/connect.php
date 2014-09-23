@@ -6,7 +6,7 @@ require_once 'Google/Client.php';
 $client_id = get_option('social_connect_google_plus_client_id');
 $client_secret = get_option('social_connect_google_plus_client_secret');
 $redirect_uri = SOCIAL_CONNECT_GOOGLE_PLUS_REDIRECT_URL;
-$app_name = printf(__('Login to %s', 'social_connect'), get_option('siteurl'));
+$app_name = sprintf(__('Login to %s', 'social_connect'), get_option('siteurl'));
 
 if (!empty($client_id) && !empty($client_secret)) {
 	$client = new Google_Client();
