@@ -13,29 +13,45 @@
 		var _do_google_connect = function() {
 			var google_auth = $('#social_connect_google_auth');
 			var redirect_uri = google_auth.find('input[type=hidden][name=redirect_uri]').val();
+			var width = 460;
+			var height = 650;
+			var top = (screen.height / 2) - (height / 2);
+			var left = (screen.width / 2 ) - (width / 2);
 
-			window.open(redirect_uri,'','scrollbars=no,menubar=no,height=400,width=800,resizable=yes,toolbar=no,status=no');
+			window.open(redirect_uri, '', 'scrollbars=no,menubar=no,height=' + height + ',width=' + width + ',resizable=yes,toolbar=no,status=no,top=' + top + ',left=' + left);
 		};
 
 		var _do_google_plus_connect = function() {
 			var google_plus_auth = $('#social_connect_google_plus_auth');
 			var redirect_uri = google_plus_auth.find('input[type=hidden][name=redirect_uri]').val();
+			var width = 440;
+			var height = 630;
+			var top = (screen.height / 2) - (height / 2);
+			var left = (screen.width / 2 ) - (width / 2);
 
-			window.open(redirect_uri,'','scrollbars=no,menubar=no,height=600,width=800,resizable=yes,toolbar=no,status=no');
+			window.open(redirect_uri, '', 'scrollbars=no,menubar=no,height=' + height + ',width=' + width + ',resizable=yes,toolbar=no,status=no,top=' + top + ',left=' + left);
 		};
 
 		var _do_yahoo_connect = function() {
 			var yahoo_auth = $('#social_connect_yahoo_auth');
 			var redirect_uri = yahoo_auth.find('input[type=hidden][name=redirect_uri]').val();
+			var width = 500;
+			var height = 548;
+			var top = (screen.height / 2) - (height / 2);
+			var left = (screen.width / 2 ) - (width / 2);
 
-			window.open(redirect_uri,'','scrollbars=no,menubar=no,height=400,width=800,resizable=yes,toolbar=no,status=no');
+			window.open(redirect_uri, '', 'scrollbars=no,menubar=no,height=' + height + ',width=' + width + ',resizable=yes,toolbar=no,status=no,top=' + top + ',left=' + left);
 		};
 
 		var _do_twitter_connect = function() {
 			var twitter_auth = $('#social_connect_twitter_auth');
 			var redirect_uri = twitter_auth.find('input[type=hidden][name=redirect_uri]').val();
+			var width = 800;
+			var height = 800;
+			var top = (screen.height / 2) - (height / 2);
+			var left = (screen.width / 2 ) - (width / 2);
 
-			window.open(redirect_uri,'','scrollbars=no,menubar=no,height=400,width=800,resizable=yes,toolbar=no,status=no');
+			window.open(redirect_uri, '', 'scrollbars=no,menubar=no,height=' + height + ',width=' + width + ',resizable=yes,toolbar=no,status=no,top=' + top + ',left=' + left);
 		};
 
 		var _do_wordpress_connect = function(e) {
@@ -45,20 +61,28 @@
 			var blog_name = $('.wordpress_blog_url', context).val();
 			var blog_url = "http://" + blog_name + ".wordpress.com";
 			redirect_uri = redirect_uri + "&wordpress_blog_url=" + encodeURIComponent(blog_url);
+			var width = 800;
+			var height = 400;
+			var top = (screen.height / 2) - (height / 2);
+			var left = (screen.width / 2 ) - (width / 2);
 
-			window.open(redirect_uri,'','scrollbars=yes,menubar=no,height=400,width=800,resizable=yes,toolbar=no,status=no');
+			window.open(redirect_uri, '', 'scrollbars=yes,menubar=no,height=' + height + ',width=' + width + ',resizable=yes,toolbar=no,status=no,top=' + top + ',left=' + left);
 		};
 
 		var _do_facebook_connect = function() {
 			var facebook_auth = $('#social_connect_facebook_auth');
 			var client_id = facebook_auth.find('input[type=hidden][name=client_id]').val();
 			var redirect_uri = facebook_auth.find('input[type=hidden][name=redirect_uri]').val();
+			var width = 1280;
+			var height = 540;
+			var top = (screen.height / 2) - (height / 2);
+			var left = (screen.width / 2 ) - (width / 2);
 
 			if(client_id == "") {
 				alert("Social Connect plugin has not been configured for this provider")
 			} else {
 				window.open('https://graph.facebook.com/oauth/authorize?client_id=' + client_id + '&redirect_uri=' + redirect_uri + '&scope=email',
-				'','scrollbars=no,menubar=no,height=400,width=800,resizable=yes,toolbar=no,status=no');
+				'', 'scrollbars=no,menubar=no,height=' + height + ',width=' + width + ',resizable=yes,toolbar=no,status=no,top=' + top + ',left=' + left);
 			}
 		};
 
