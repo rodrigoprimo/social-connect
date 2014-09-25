@@ -1,4 +1,4 @@
-(function($) { 
+(function($) {
 	$(function() {
 		// ready to roll
 		if (social_connect_data.wordpress_enabled) {
@@ -6,7 +6,7 @@
 			_social_connect_wordpress_form.dialog({
 				'dialogClass' : 'wp-dialog',
 				'modal' : true,
-				'autoOpen' : false,
+				'autoOpen' : false
 			});
 		}
 
@@ -78,8 +78,8 @@
 			var top = (screen.height / 2) - (height / 2);
 			var left = (screen.width / 2 ) - (width / 2);
 
-			if(client_id == "") {
-				alert("Social Connect plugin has not been configured for this provider")
+			if(client_id === "") {
+				alert("Social Connect plugin has not been configured for this provider");
 			} else {
 				window.open('https://graph.facebook.com/oauth/authorize?client_id=' + client_id + '&redirect_uri=' + redirect_uri + '&scope=email',
 				'', 'scrollbars=no,menubar=no,height=' + height + ',width=' + width + ',resizable=yes,toolbar=no,status=no,top=' + top + ',left=' + left);
@@ -123,7 +123,7 @@
 		});
 
 		$(".social_connect_login_wordpress").on("click", function() {
-			_social_connect_wordpress_form.dialog('open');     
+			_social_connect_wordpress_form.dialog('open');
 		});
 
 		$(".social_connect_wordpress_proceed").on("click", function(e) {
@@ -131,7 +131,6 @@
 		});
 	});
 })(jQuery);
-
 
 window.wp_social_connect = function(config) {
 	jQuery('#loginform').unbind('submit.simplemodal-login');
@@ -152,10 +151,10 @@ window.wp_social_connect = function(config) {
 		}
 	}
 
-	jQuery.each(config, function(key, value) { 
+	jQuery.each(config, function(key, value) {
 		jQuery("#" + key).remove();
 		jQuery(form_id).append("<input type='hidden' id='" + key + "' name='" + key + "' value='" + value + "'>");
-	});  
+	});
 
 	if(jQuery("#simplemodal-login-form").length) {
 		var current_url = window.location.href;
@@ -164,4 +163,4 @@ window.wp_social_connect = function(config) {
 	}
 
 	jQuery(form_id).submit();
-}
+};
