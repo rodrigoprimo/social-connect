@@ -23,32 +23,33 @@ function sc_render_login_form_social_connect( $args = NULL ) {
 	
 	<?php if ($twitter_enabled || $facebook_enabled || $google_enabled || $google_plus_enabled|| $yahoo_enabled || $wordpress_enabled) : ?>
 		<div class="social_connect_ui <?php if( strpos( $_SERVER['REQUEST_URI'], 'wp-signup.php' ) ) echo 'mu_signup'; ?>">
-			<p class="comment-form-social-connect">
-			<?php if( $display_label !== false ) : ?>
-				<label><?php _e( 'Connect with', 'social_connect' ); ?></label>
-			<?php endif; ?>
-			<div class="social_connect_form">
-			<?php do_action ('social_connect_pre_form'); ?>
-				<?php if( $facebook_enabled ) :
-					echo apply_filters('social_connect_login_facebook','<a href="javascript:void(0);" title="Facebook" class="social_connect_login_facebook"><img alt="Facebook" src="'.$images_url.'facebook_32.png" /></a>');
-				endif; ?>
-				<?php if( $twitter_enabled ) :
-					echo apply_filters('social_connect_login_twitter','<a href="javascript:void(0);" title="Twitter" class="social_connect_login_twitter"><img alt="Twitter" src="'.$images_url.'twitter_32.png" /></a>');
-				endif; ?>
-				<?php if( $google_plus_enabled ) :
-					echo apply_filters('social_connect_login_google_plus','<a href="javascript:void(0);" title="Google+" class="social_connect_login_google_plus"><img alt="Google+" src="'.$images_url.'google_plus_32.png" /></a>');
-				endif; ?>
-				<?php if( $google_enabled ) :
-					echo apply_filters('social_connect_login_google','<a href="javascript:void(0);" title="Google" class="social_connect_login_google"><img alt="Google" src="'.$images_url.'google_32.png" /></a>');
-				endif; ?>
-				<?php if( $yahoo_enabled ) :
-					echo apply_filters('social_connect_login_yahoo','<a href="javascript:void(0);" title="Yahoo" class="social_connect_login_yahoo"><img alt="Yahoo" src="'.$images_url.'yahoo_32.png" /></a>');
-				endif; ?>
-				<?php if( $wordpress_enabled ) :
-					echo apply_filters('social_connect_login_wordpress','<a href="javascript:void(0);" title="WordPress.com" class="social_connect_login_wordpress"><img alt="WordPress.com" src="'.$images_url.'wordpress_32.png" /></a>');
-				endif; ?>
-			<?php do_action ('social_connect_post_form'); ?>
-			</div></p>
+			<div class="comment-form-social-connect">
+				<?php if( $display_label !== false ) : ?>
+					<label><?php _e( 'Connect with', 'social_connect' ); ?></label>
+				<?php endif; ?>
+				<div class="social_connect_form">
+					<?php do_action ('social_connect_pre_form'); ?>
+					<?php if( $facebook_enabled ) :
+						echo apply_filters('social_connect_login_facebook','<a href="javascript:void(0);" title="Facebook" class="social_connect_login_facebook"><img alt="Facebook" src="'.$images_url.'facebook_32.png" /></a>');
+					endif; ?>
+					<?php if( $twitter_enabled ) :
+						echo apply_filters('social_connect_login_twitter','<a href="javascript:void(0);" title="Twitter" class="social_connect_login_twitter"><img alt="Twitter" src="'.$images_url.'twitter_32.png" /></a>');
+					endif; ?>
+					<?php if( $google_plus_enabled ) :
+						echo apply_filters('social_connect_login_google_plus','<a href="javascript:void(0);" title="Google+" class="social_connect_login_google_plus"><img alt="Google+" src="'.$images_url.'google_plus_32.png" /></a>');
+					endif; ?>
+					<?php if( $google_enabled ) :
+						echo apply_filters('social_connect_login_google','<a href="javascript:void(0);" title="Google" class="social_connect_login_google"><img alt="Google" src="'.$images_url.'google_32.png" /></a>');
+					endif; ?>
+					<?php if( $yahoo_enabled ) :
+						echo apply_filters('social_connect_login_yahoo','<a href="javascript:void(0);" title="Yahoo" class="social_connect_login_yahoo"><img alt="Yahoo" src="'.$images_url.'yahoo_32.png" /></a>');
+					endif; ?>
+					<?php if( $wordpress_enabled ) :
+						echo apply_filters('social_connect_login_wordpress','<a href="javascript:void(0);" title="WordPress.com" class="social_connect_login_wordpress"><img alt="WordPress.com" src="'.$images_url.'wordpress_32.png" /></a>');
+					endif; ?>
+					<?php do_action ('social_connect_post_form'); ?>
+				</div>
+			</div>
 	
 			<?php
 			$social_connect_provider = isset( $_COOKIE['social_connect_current_provider']) ? $_COOKIE['social_connect_current_provider'] : '';
