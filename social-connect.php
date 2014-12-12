@@ -343,7 +343,7 @@ function sc_filter_avatar($avatar, $id_or_email, $size, $default, $alt) {
 				else if($size <= 50)
 					$size_label = 'small';
 
-				$custom_avatar = "http://graph.facebook.com/$social_id/picture?type=$size_label";
+				$custom_avatar = "//graph.facebook.com/$social_id/picture?type=$size_label";
 				break;
 			case 'twitter':
 				// bigger - 73px by 73px
