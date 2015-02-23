@@ -67,6 +67,10 @@ If you want to add the social connect login or registration forms to another loc
 
 `<?php do_action( 'social_connect_form' ); ?>`
 
+You can also use the shortcode below to add Social Connect login to a page or post:
+
+`[social_connect]`
+
 = Where can I report bugs & get support? =
 
 First, a few caveats on support. 
