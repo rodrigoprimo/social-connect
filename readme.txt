@@ -13,6 +13,13 @@ Allow your visitors to comment, login and register with their Twitter, Facebook,
 
 == Description ==
 
+<strong>Looking for maintainers.</strong> This plugin is currently not maintained. If you would like to take over the development please let me know using the plugin support forum or GitHub issue system.
+
+WordPress Social Login is a good alternative to this plugin:
+
+https://wordpress.org/plugins/wordpress-social-login/
+
+
 Social Connect adds social login buttons on the login, register and comment forms of your WordPress site.
 
 The buttons offer login and registration using a Twitter, Facebook, Google, Yahoo or WordPress.com account.

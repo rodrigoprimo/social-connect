@@ -1,5 +1,12 @@
 # WordPress Social Connect
 
+<strong>Looking for maintainers.</strong> This plugin is currently not maintained. If you would like to take over the development please let me know using the plugin support forum or GitHub issue system.
+
+WordPress Social Login is a good alternative to this plugin:
+
+https://wordpress.org/plugins/wordpress-social-login/
+
+
 Give visitors to your WordPress site the option to register and login using their existing Twitter, Facebook, Google, Yahoo or wordpress.com account.
 
 ## Description
