@@ -127,8 +127,8 @@ add_action( 'wp_footer', 'sc_render_login_page_uri' );
  */
 class SocialConnectWidget extends WP_Widget {
 	/** constructor */
-	function SocialConnectWidget() {
-		parent::WP_Widget(
+	function __construct() {
+		parent::__construct(
 			'social_connect', //unique id
 			'Social Connect', //title displayed at admin panel
 			//Additional parameters
